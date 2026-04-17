@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AbyssalBlade</title>
+<title>Abyssalwyrm</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
 <style>
 /* ===== CSS VARIABLES & THEMES ===== */
@@ -722,7 +722,7 @@ nav.beat-nav{
 
 <!-- ===== NAVIGATION ===== -->
 <nav id="main-nav">
-  <div class="nav-logo">AbyssalBlade</div>
+  <div class="nav-logo">Abyssalwyrm</div>
   <div class="nav-links">
     <a href="#about" data-i18n="nav_about">Обо мне</a>
     <a href="#projects" data-i18n="nav_projects">Проекты</a>
@@ -774,7 +774,7 @@ nav.beat-nav{
       <div class="about-avatar-wrap reveal">
         <div class="avatar-frame">
           <div class="avatar-glow"></div>
-          <img src="__Cawird.github.io__/images/avatar.jpg" alt="AbyssalBlade" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22260%22 height=%22260%22%3E%3Crect width=%22260%22 height=%22260%22 fill=%22%23180810%22/%3E%3Ctext x=%22130%22 y=%22140%22 text-anchor=%22middle%22 font-size=%2260%22 fill=%22%23b30000%22%3E⚔%3C/text%3E%3C/svg%3E'"/>
+          <img src="images/avatar.jpg" alt="AbyssalBlade" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22260%22 height=%22260%22%3E%3Crect width=%22260%22 height=%22260%22 fill=%22%23180810%22/%3E%3Ctext x=%22130%22 y=%22140%22 text-anchor=%22middle%22 font-size=%2260%22 fill=%22%23b30000%22%3E⚔%3C/text%3E%3C/svg%3E'"/>
         </div>
         <div class="about-stats">
           <div class="stat-card beat-reactive">
@@ -1228,21 +1228,35 @@ const playlists = [
   { // 0 - Автоспорт
     name: 'Автоспорт',
     tracks: [
-      { name: 'Пожалуйста, только не домой', artist: 'Автоспорт', src: 'Cawird.github.io/music/motorsport/Пожалуйста, только не домой.mp3' },
+      { name: 'Пожалуйста, только не домой', artist: 'Автоспорт', src: '/music/motorsport/Пожалуйста, только не домой.mp3' },
+      { name: 'Автоспорт Береги себя', artist: 'Автоспорт', src: '/music/motorsport/Автоспорт Береги себя.mp3' },
+      { name: 'Автоспорт песня о привязанности', artist: 'Автоспорт', src: '/music/motorsport/Автоспорт песня о привязанности.mp3' },
+      { name: 'Автоспорт пятый день недели', artist: 'Автоспорт', src: '/music/motorsport/Автоспорт пятый день недели.mp3' },
+      { name: 'Автоспорт я не буду спать', artist: 'Автоспорт', src: '/music/motorsport/Автоспорт я не буду спать.mp3' },
+      { name: 'Стой', artist: 'Автоспорт', src: '/music/motorsport/Стой.mp3' },
       // { name: 'Ещё трек', artist: 'Автоспорт', src: 'путь к файлу' },
     ]
   },
   { // 1 - C418
     name: 'C418',
     tracks: [
-      { name: 'Moog City', artist: 'C418', src: 'Cawird.github.io/music/c418/C418 Moog City.mp3' },
+      { name: 'Moog City', artist: 'C418', src: 'music/c418/C418 Moog City.mp3' },
+      { name: 'C418 Dry Hands', artist: 'C418', src: 'music/c418/C418 Dry Hands.mp3' },
+      { name: 'C418 Haggstrom', artist: 'C418', src: 'music/c418/C418 Haggstrom.mp3' },
+      { name: 'C418 Mice On Venus', artist: 'C418', src: 'music/c418/C418 Mice On Venus.mp3' },
+      { name: 'C418 Subwoofer Lullaby', artist: 'C418', src: 'music/c418/C418 Subwoofer Lullaby.mp3' },
+      { name: 'C418 Sweden', artist: 'C418', src: 'music/c418/C418 Sweden.mp3' },
+      { name: 'C418 Wet Hands', artist: 'C418', src: 'music/c418/C418 Wet Hands.mp3' },
       // { name: 'Sweden', artist: 'C418', src: 'путь к файлу' },
     ]
   },
   { // 2 - Разное
     name: 'Разное',
     tracks: [
-      { name: 'shinra untitled', artist: 'semmmyq', src: 'Cawird.github.io/music/misc/semmmyq shinra untitled.mp3' },
+      { name: 'shinra untitled', artist: 'semmmyq', src: 'music/misc/semmmyq shinra untitled.mp3' },
+      { name: 'Unknown_artist_superswag', artist: 'semmmyq', src: 'music/misc/Unknown_artist_superswag.mp3' },
+      { name: 'You Could Be The One', artist: 'semmmyq', src: 'music/misc/You Could Be The One.mp3' },
+
       // { name: 'Ещё трек', artist: '...', src: 'путь к файлу' },
     ]
   }
@@ -1403,11 +1417,21 @@ function beatLoop() {
 /* ===== GALLERY ===== */
 // ★ ADD MORE IMAGES HERE — just add objects: { src, category, label }
 const galleryItems = [
-  { src: 'Cawird.github.io/images/minecraft/1.png', category: 'minecraft', label: 'Minecraft' },
+  { src: 'images/minecraft/1.png', category: 'minecraft', label: 'Minecraft' },
+  { src: 'images/minecraft/2.png', category: 'minecraft', label: 'Minecraft' },
+  { src: 'images/minecraft/3.png', category: 'minecraft', label: 'Minecraft' },
+  { src: 'images/minecraft/4.png', category: 'minecraft', label: 'Minecraft' },
+  { src: 'images/minecraft/5.png', category: 'minecraft', label: 'Minecraft' },
+  { src: 'images/minecraft/6.png', category: 'minecraft', label: 'Minecraft' },
   // { src: 'Cawird.github.io/images/minecraft/2.png', category: 'minecraft', label: 'Minecraft' },
-  { src: 'Cawird.github.io/images/spore/Spore.png', category: 'spore', label: 'Spore' },
+  { src: 'images/spore/Spore.png', category: 'spore', label: 'Spore' },
   // { src: 'Cawird.github.io/images/spore/2.png', category: 'spore', label: 'Spore' },
-  { src: 'Cawird.github.io/images/dota2/1.jpg', category: 'dota2', label: 'Dota 2' },
+  { src: 'images/dota2/1.jpg', category: 'dota2', label: 'Dota 2' },
+  { src: 'images/dota2/2.jpg', category: 'dota2', label: 'Dota 2' },
+  { src: 'images/dota2/3.png', category: 'dota2', label: 'Dota 2' },
+  { src: 'images/dota2/4.jpg', category: 'dota2', label: 'Dota 2' },
+  { src: 'images/dota2/5.jpg', category: 'dota2', label: 'Dota 2' },
+  { src: 'images/dota2/6.jpg', category: 'dota2', label: 'Dota 2' },
   // { src: 'Cawird.github.io/images/dota2/2.jpg', category: 'dota2', label: 'Dota 2' },
 ];
 
