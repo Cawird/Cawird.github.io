@@ -3,54 +3,54 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="AbyssalBlade — Game Developer, Dark Fantasy Creator"/>
-<title>AbyssalBlade</title>
+<meta name="description" content="Abysswyrm — Game Developer, Dark Fantasy Creator"/>
+<title>Abysswyrm</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
 <style>
-/* ─── TOKENS ─────────────────────────────── */
+/* ═══ TOKENS ═══════════════════════════════════════════════════ */
 :root{
-  --bg:#07050a;--bg2:#0d0914;--bg3:#160d1e;
-  --gl:rgba(255,255,255,.032);--gl2:rgba(255,255,255,.06);
-  --a1:#c8310a;--a2:#c09040;
-  --t1:#f0ece4;--t2:#a09080;--t3:#504540;
-  --gw:rgba(200,49,10,.28);--gw2:rgba(192,144,64,.22);
-  --b1:rgba(200,49,10,.16);--b2:rgba(192,144,64,.14);
+  --bg:#040208;--bg2:#080512;--bg3:#0e0918;
+  --gl:rgba(255,255,255,.025);--gl2:rgba(255,255,255,.05);
+  --a1:#b02808;--a2:#b08030;
+  --t1:#ede8e0;--t2:#9a9080;--t3:#4a4240;
+  --gw:rgba(176,40,8,.26);--gw2:rgba(176,128,48,.2);
+  --b1:rgba(176,40,8,.14);--b2:rgba(176,128,48,.12);
   --fh:'Cinzel',serif;--fb:'Crimson Pro',serif;
-  --r:3px;--nav:66px;
+  --r:2px;--nav:64px;
   --ez:cubic-bezier(.16,1,.3,1);
   --bs:0;--bg-gv:0;
 }
 [data-theme=light]{
-  --bg:#f4ead8;--bg2:#ece0cc;--bg3:#ddd2b8;
-  --gl:rgba(0,0,0,.03);--gl2:rgba(0,0,0,.055);
-  --a1:#8a1e00;--a2:#7a5000;
-  --t1:#160a04;--t2:#4a3020;--t3:#8a7060;
-  --gw:rgba(138,30,0,.2);--gw2:rgba(122,80,0,.18);
-  --b1:rgba(138,30,0,.18);--b2:rgba(122,80,0,.14);
+  --bg:#f2e8d4;--bg2:#e8dcc4;--bg3:#ddd0b0;
+  --gl:rgba(0,0,0,.028);--gl2:rgba(0,0,0,.05);
+  --a1:#7a1800;--a2:#6a4400;
+  --t1:#120804;--t2:#48301c;--t3:#887060;
+  --gw:rgba(122,24,0,.18);--gw2:rgba(106,68,0,.16);
+  --b1:rgba(122,24,0,.16);--b2:rgba(106,68,0,.12);
 }
 [data-theme=purple]{
-  --bg:#060311;--bg2:#0b061e;--bg3:#120a2e;
-  --gl:rgba(255,255,255,.04);--gl2:rgba(255,255,255,.07);
-  --a1:#7c1ee0;--a2:#ae60ff;
-  --t1:#ede0ff;--t2:#9080c0;--t3:#503f90;
-  --gw:rgba(124,30,224,.3);--gw2:rgba(174,96,255,.22);
-  --b1:rgba(124,30,224,.18);--b2:rgba(174,96,255,.14);
+  --bg:#040210;--bg2:#08051c;--bg3:#0e092c;
+  --gl:rgba(255,255,255,.032);--gl2:rgba(255,255,255,.06);
+  --a1:#6c18d0;--a2:#a050f0;
+  --t1:#eae0ff;--t2:#9080c0;--t3:#504090;
+  --gw:rgba(108,24,208,.28);--gw2:rgba(160,80,240,.2);
+  --b1:rgba(108,24,208,.16);--b2:rgba(160,80,240,.12);
 }
 [data-theme=green]{
-  --bg:#030905;--bg2:#050e08;--bg3:#08140a;
-  --gl:rgba(255,255,255,.03);--gl2:rgba(255,255,255,.055);
-  --a1:#009040;--a2:#40c060;
-  --t1:#d4f0dc;--t2:#6a9870;--t3:#3a5840;
-  --gw:rgba(0,144,64,.26);--gw2:rgba(64,192,96,.18);
-  --b1:rgba(0,144,64,.18);--b2:rgba(64,192,96,.12);
+  --bg:#020806;--bg2:#040e08;--bg3:#08140a;
+  --gl:rgba(255,255,255,.025);--gl2:rgba(255,255,255,.05);
+  --a1:#007830;--a2:#30a850;
+  --t1:#d0eed8;--t2:#609870;--t3:#305840;
+  --gw:rgba(0,120,48,.24);--gw2:rgba(48,168,80,.16);
+  --b1:rgba(0,120,48,.16);--b2:rgba(48,168,80,.1);
 }
 
-/* ─── RESET ──────────────────────────────── */
+/* ═══ RESET ════════════════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-body{background:var(--bg);color:var(--t1);font-family:var(--fb);overflow-x:hidden;cursor:none;transition:background .55s,color .35s}
+body{background:var(--bg);color:var(--t1);font-family:var(--fb);overflow-x:hidden;cursor:none;transition:background .6s,color .35s}
 ::selection{background:var(--a1);color:#fff}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%;height:auto}
@@ -58,270 +58,347 @@ button{border:none;background:none;cursor:none;font-family:inherit;color:inherit
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-thumb{background:var(--a1);border-radius:2px}
 
-/* ─── CURSOR ─────────────────────────────── */
+/* ═══ INTRO SCREEN ══════════════════════════════════════════════ */
+#intro{
+  position:fixed;inset:0;z-index:1000;
+  background:#000;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:0;
+  pointer-events:none;
+}
+#intro.done{animation:intro-out .9s var(--ez) forwards}
+@keyframes intro-out{to{opacity:0;pointer-events:none}}
+
+#intro-logo{
+  font-family:var(--fh);font-size:clamp(2rem,7vw,4.5rem);
+  letter-spacing:.18em;color:#fff;
+  opacity:0;transform:scale(.88);
+  animation:logo-in .9s .3s var(--ez) forwards;
+  text-align:center;line-height:1.2;
+}
+#intro-logo .wyr{color:var(--a2)}
+@keyframes logo-in{to{opacity:1;transform:scale(1)}}
+
+#intro-bar{
+  width:0;height:1px;background:linear-gradient(90deg,transparent,var(--a2),transparent);
+  margin-top:28px;
+  animation:bar-grow 1.1s .7s var(--ez) forwards;
+}
+@keyframes bar-grow{to{width:min(320px,60vw)}}
+
+#intro-sub{
+  font-family:var(--fh);font-size:.6rem;letter-spacing:.45em;text-transform:uppercase;
+  color:var(--t3);margin-top:18px;
+  opacity:0;animation:fade-in .7s 1.2s ease forwards;
+}
+@keyframes fade-in{to{opacity:1}}
+
+/* Cinematic scanline sweep */
+#intro::after{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(to bottom,rgba(255,255,255,.015) 0px,rgba(255,255,255,.015) 1px,transparent 1px,transparent 3px);
+  pointer-events:none;opacity:.6;
+}
+#intro-scan{
+  position:absolute;top:-100%;left:0;right:0;height:40%;
+  background:linear-gradient(to bottom,transparent,rgba(176,128,48,.04),transparent);
+  animation:scan 2s .4s ease-in-out infinite;
+}
+@keyframes scan{0%{top:-40%}100%{top:120%}}
+
+/* ═══ CURSOR ════════════════════════════════════════════════════ */
 #cur{position:fixed;z-index:9999;pointer-events:none;
-  width:7px;height:7px;background:var(--a2);border-radius:50%;
+  width:6px;height:6px;background:var(--a2);border-radius:50%;
   transform:translate(-50%,-50%);will-change:left,top;
   transition:width .2s,height .2s,background .2s;mix-blend-mode:screen}
 #cur-r{position:fixed;z-index:9998;pointer-events:none;
-  width:30px;height:30px;border:1px solid var(--a1);border-radius:50%;
-  transform:translate(-50%,-50%);opacity:.55;will-change:left,top;
+  width:28px;height:28px;border:1px solid var(--a1);border-radius:50%;
+  transform:translate(-50%,-50%);opacity:.5;will-change:left,top;
   transition:width .28s,height .28s,opacity .25s}
-body.hov #cur{width:14px;height:14px;background:var(--a1)}
-body.hov #cur-r{width:44px;height:44px;opacity:.25}
+body.hov #cur{width:13px;height:13px;background:var(--a1)}
+body.hov #cur-r{width:42px;height:42px;opacity:.22}
 
-/* ─── BG glow ────────────────────────────── */
+/* ═══ AMBIENT ═══════════════════════════════════════════════════ */
 #bg-gw{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:radial-gradient(ellipse 65% 45% at 50% 28%,rgba(200,49,10,.065) 0%,transparent 70%);
-  animation:breathe 9s ease-in-out infinite alternate}
-@keyframes breathe{from{opacity:.55}to{opacity:1}}
+  background:radial-gradient(ellipse 60% 40% at 50% 25%,rgba(176,40,8,.055) 0%,transparent 68%);
+  animation:breathe 10s ease-in-out infinite alternate}
+@keyframes breathe{from{opacity:.5}to{opacity:1}}
 
-/* ─── NAV ────────────────────────────────── */
+/* ═══ NAV ════════════════════════════════════════════════════════ */
 nav{position:fixed;top:0;inset-inline:0;height:var(--nav);z-index:200;
-  display:flex;align-items:center;justify-content:space-between;padding:0 44px;
-  transition:background .45s,backdrop-filter .45s,border-color .45s;border-bottom:1px solid transparent}
-nav.sc{background:rgba(7,5,10,.82);backdrop-filter:blur(22px) saturate(160%);border-color:var(--b1)}
-.nl{font-family:var(--fh);font-size:.92rem;letter-spacing:.16em;color:var(--a2);
-  text-shadow:0 0 22px var(--gw2);white-space:nowrap}
-.nlinks{display:flex;gap:28px}
-.nlinks a{font-family:var(--fh);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--t2);position:relative;padding:4px 0;transition:color .28s}
+  display:flex;align-items:center;justify-content:space-between;padding:0 48px;
+  transition:background .45s,border-color .45s;border-bottom:1px solid transparent}
+nav.sc{background:rgba(4,2,8,.88);backdrop-filter:blur(24px) saturate(140%);border-color:var(--b1)}
+.nl{font-family:var(--fh);font-size:.88rem;letter-spacing:.2em;color:var(--a2);
+  text-shadow:0 0 24px var(--gw2);opacity:0;animation:fade-in .6s 2.4s ease forwards}
+.nlinks{display:flex;gap:30px}
+.nlinks a{font-family:var(--fh);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--t2);position:relative;padding:4px 0;transition:color .28s;
+  opacity:0;animation:fade-in .6s calc(2.5s + var(--di,.0s)) ease forwards}
+.nlinks a:nth-child(1){--di:.0s}.nlinks a:nth-child(2){--di:.06s}
+.nlinks a:nth-child(3){--di:.12s}.nlinks a:nth-child(4){--di:.18s}.nlinks a:nth-child(5){--di:.24s}
 .nlinks a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;
   background:var(--a2);transition:width .32s var(--ez)}
 .nlinks a:hover{color:var(--a2)}.nlinks a:hover::after{width:100%}
-.nc{display:flex;align-items:center;gap:5px;flex-wrap:nowrap}
-.cb{font-family:var(--fh);font-size:.54rem;letter-spacing:.12em;padding:4px 9px;
-  border:1px solid var(--b1);color:var(--t3);border-radius:18px;transition:all .25s;white-space:nowrap}
-.cb:hover,.cb.on{border-color:var(--a2);color:var(--a2);background:rgba(192,144,64,.07)}
-.nsep{color:var(--t3);font-size:.72rem;user-select:none;padding:0 2px}
+.nc{display:flex;align-items:center;gap:4px;opacity:0;animation:fade-in .6s 2.6s ease forwards}
+.cb{font-family:var(--fh);font-size:.52rem;letter-spacing:.12em;padding:4px 9px;
+  border:1px solid var(--b1);color:var(--t3);border-radius:16px;transition:all .25s}
+.cb:hover,.cb.on{border-color:var(--a2);color:var(--a2);background:rgba(176,128,48,.06)}
+.nsep{color:var(--t3);font-size:.7rem;user-select:none;padding:0 1px}
 @media(max-width:880px){.nlinks{display:none}}
 
-/* ─── HERO ───────────────────────────────── */
+/* ═══ HERO ════════════════════════════════════════════════════════ */
 #hero{position:relative;z-index:2;min-height:100vh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:var(--nav) 24px 80px;overflow:hidden}
 canvas#hc{position:absolute;inset:0;z-index:0;pointer-events:none}
-.h-ey{font-family:var(--fh);font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;
-  color:var(--a2);opacity:.75;margin-bottom:20px;z-index:1;
-  animation:rise .9s var(--ez) both}
-.h-nm{font-family:var(--fh);font-size:clamp(2.8rem,8vw,5.8rem);letter-spacing:.06em;
-  color:var(--t1);line-height:1.06;z-index:1;animation:rise .9s .14s var(--ez) both}
-.h-nm .bl{color:var(--a2)}
-.h-ln{width:1px;height:52px;background:linear-gradient(to bottom,var(--a2),transparent);
-  margin:38px auto 0;z-index:1;animation:rise .9s .38s var(--ez) both,lpulse 3s 1.4s ease-in-out infinite}
-@keyframes lpulse{0%,100%{opacity:.25;transform:scaleY(.7)}50%{opacity:.75;transform:scaleY(1)}}
-@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
-/* ─── SECTIONS ───────────────────────────── */
-section{position:relative;z-index:2;padding:104px 0}
+/* Vignette */
+#hero::before{
+  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse 80% 80% at 50% 50%,transparent 40%,rgba(4,2,8,.7) 100%);
+}
+
+.h-ey{font-family:var(--fh);font-size:.56rem;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--a2);opacity:0;margin-bottom:22px;z-index:2;
+  animation:rise .9s 2.2s var(--ez) forwards}
+.h-nm{font-family:var(--fh);font-size:clamp(3rem,9vw,6.5rem);letter-spacing:.04em;
+  color:var(--t1);line-height:1.04;z-index:2;opacity:0;
+  animation:rise .9s 2.35s var(--ez) forwards;
+  text-shadow:0 0 80px rgba(176,40,8,.3)}
+.h-nm .wyr{color:var(--a2);text-shadow:0 0 40px var(--gw2)}
+.h-divbar{width:0;height:1px;background:linear-gradient(90deg,transparent,var(--a2),transparent);
+  margin:32px auto;z-index:2;opacity:0;
+  animation:bar-grow-h .8s 2.55s var(--ez) forwards,fade-in .5s 2.55s ease forwards}
+@keyframes bar-grow-h{to{width:min(280px,55vw)}}
+.h-quote{
+  font-size:clamp(.85rem,1.4vw,1rem);color:var(--t3);font-style:italic;
+  max-width:440px;line-height:1.7;z-index:2;opacity:0;
+  animation:rise .8s 2.7s var(--ez) forwards;
+}
+.h-scroll{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-family:var(--fh);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--t3);
+  opacity:0;animation:fade-in .8s 3.1s ease forwards;
+}
+.h-scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,var(--a2),transparent);
+  animation:lpulse 2.8s 3.2s ease-in-out infinite}
+@keyframes lpulse{0%,100%{opacity:.2;transform:scaleY(.65)}50%{opacity:.7;transform:scaleY(1)}}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══ SECTIONS ════════════════════════════════════════════════════ */
+section{position:relative;z-index:2;padding:108px 0}
 .wrap{max-width:1040px;margin:0 auto;padding:0 28px}
-.s-ey{display:block;font-family:var(--fh);font-size:.55rem;letter-spacing:.35em;
-  text-transform:uppercase;color:var(--a1);margin-bottom:9px;opacity:.85}
-.s-ttl{font-family:var(--fh);font-size:clamp(1.55rem,3.2vw,2.3rem);color:var(--t1)}
-.s-hd{margin-bottom:60px}
-hr.dv{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--b1),transparent)}
+.s-ey{display:block;font-family:var(--fh);font-size:.54rem;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--a1);margin-bottom:9px;opacity:.8}
+.s-ttl{font-family:var(--fh);font-size:clamp(1.5rem,3vw,2.25rem);color:var(--t1)}
+.s-hd{margin-bottom:58px}
+hr.dv{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--b1) 30%,var(--b1) 70%,transparent)}
 
-/* ─── ABOUT ──────────────────────────────── */
-.ab-g{display:grid;grid-template-columns:260px 1fr;gap:68px;align-items:start}
+/* ═══ ABOUT ════════════════════════════════════════════════════════ */
+.ab-g{display:grid;grid-template-columns:252px 1fr;gap:72px;align-items:start}
 @media(max-width:760px){.ab-g{grid-template-columns:1fr;gap:36px}}
-.av{position:relative;width:224px}
+.av{position:relative;width:216px}
 .av img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:var(--r);
-  border:1px solid var(--b2);filter:contrast(1.08) sepia(.1);transition:filter .5s,transform .45s var(--ez)}
-.av img:hover{filter:contrast(1.14) sepia(0);transform:scale(1.018)}
-.av-gw{position:absolute;inset:-22px;border-radius:50%;
-  background:radial-gradient(ellipse,var(--gw) 0%,transparent 68%);z-index:-1;
-  animation:breathe 5s ease-in-out infinite alternate}
-.av-rg{position:absolute;inset:-9px;border:1px solid var(--a1);border-radius:var(--r);
-  opacity:.28;animation:rp 4s ease-in-out infinite}
-@keyframes rp{0%,100%{opacity:.12;transform:scale(1)}50%{opacity:.38;transform:scale(1.013)}}
-.ab-sts{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px;width:224px}
+  border:1px solid var(--b2);filter:contrast(1.1) sepia(.14) brightness(.92);
+  transition:filter .5s,transform .45s var(--ez)}
+.av img:hover{filter:contrast(1.15) sepia(0) brightness(1);transform:scale(1.02)}
+.av-gw{position:absolute;inset:-20px;border-radius:50%;
+  background:radial-gradient(ellipse,var(--gw) 0%,transparent 66%);z-index:-1;
+  animation:breathe 6s ease-in-out infinite alternate}
+.av-rg{position:absolute;inset:-8px;border:1px solid var(--a1);border-radius:var(--r);
+  opacity:.25;animation:rp 5s ease-in-out infinite}
+@keyframes rp{0%,100%{opacity:.1;transform:scale(1)}50%{opacity:.35;transform:scale(1.012)}}
+.ab-sts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;width:216px}
 .st{background:var(--gl);border:1px solid var(--b1);border-radius:var(--r);
-  padding:13px 10px;text-align:center;transition:border-color .28s,box-shadow .28s}
+  padding:12px 10px;text-align:center;transition:border-color .28s,box-shadow .28s}
 .st:hover{border-color:var(--b2);box-shadow:0 4px 20px rgba(0,0,0,.5)}
-.st-n{display:block;font-family:var(--fh);font-size:1.15rem;color:var(--a2)}
-.st-l{display:block;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);font-family:var(--fh)}
-.ab-tx h3{font-family:var(--fh);font-size:1.25rem;color:var(--a2);
+.st-n{display:block;font-family:var(--fh);font-size:1.1rem;color:var(--a2)}
+.st-l{display:block;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);font-family:var(--fh)}
+.ab-tx h3{font-family:var(--fh);font-size:1.22rem;color:var(--a2);
   margin-bottom:16px;text-shadow:0 0 22px var(--gw2)}
-.ab-tx p{color:var(--t2);margin-bottom:15px;font-size:1.03rem;line-height:1.76}
+.ab-tx p{color:var(--t2);margin-bottom:14px;font-size:1.02rem;line-height:1.78}
 .ab-tx strong{color:var(--t1)}
 .apill{display:inline-flex;align-items:center;gap:7px;
   background:var(--gl);border:1px solid var(--b2);
-  padding:5px 15px;border-radius:18px;margin-bottom:17px;
-  font-family:var(--fh);font-size:.72rem;color:var(--a2)}
-.apill .an{font-size:.9rem;color:var(--a1)}
+  padding:5px 14px;border-radius:16px;margin-bottom:16px;
+  font-family:var(--fh);font-size:.7rem;color:var(--a2)}
+.apill .an{font-size:.88rem;color:var(--a1)}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
-.tag{font-family:var(--fh);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;
-  padding:4px 12px;border:1px solid var(--b1);color:var(--t3);border-radius:18px;transition:all .25s}
+.tag{font-family:var(--fh);font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 11px;border:1px solid var(--b1);color:var(--t3);border-radius:16px;transition:all .25s}
 .tag:hover{border-color:var(--b2);color:var(--a2)}
 
-/* ─── PROJECTS ───────────────────────────── */
-#projects{background:linear-gradient(to bottom,var(--bg),var(--bg2) 50%,var(--bg))}
-.pj-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+/* ═══ PROJECTS ════════════════════════════════════════════════════ */
+#projects{background:linear-gradient(to bottom,var(--bg),var(--bg2) 55%,var(--bg))}
+.pj-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
 .pc{background:var(--gl);border:1px solid var(--b1);border-radius:var(--r);
   overflow:hidden;transition:border-color .38s,transform .38s var(--ez),box-shadow .38s;will-change:transform}
 .pc:hover{border-color:var(--b2);transform:translateY(-5px);
-  box-shadow:0 22px 56px rgba(0,0,0,.68),0 0 22px var(--gw)}
-.pc-im{position:relative;height:185px;overflow:hidden}
+  box-shadow:0 24px 60px rgba(0,0,0,.75),0 0 24px var(--gw)}
+.pc-im{position:relative;height:182px;overflow:hidden}
 .pc-im img{width:100%;height:100%;object-fit:cover;
-  transition:transform .65s var(--ez),filter .38s;filter:brightness(.84) sepia(.08)}
+  transition:transform .7s var(--ez),filter .38s;filter:brightness(.8) sepia(.12)}
 .pc:hover .pc-im img{transform:scale(1.05);filter:brightness(1) sepia(0)}
-.pc-fd{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 38%,var(--bg) 100%);pointer-events:none}
-.pc-bg{position:absolute;top:11px;right:11px;font-family:var(--fh);font-size:.52rem;
+.pc-fd{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 35%,var(--bg) 100%);pointer-events:none}
+.pc-bg{position:absolute;top:10px;right:10px;font-family:var(--fh);font-size:.5rem;
   letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;
   background:var(--a1);color:#fff;border-radius:2px;box-shadow:0 0 14px var(--gw)}
-.pc-bd{padding:20px 22px 24px}
-.pc-ti{font-family:var(--fh);font-size:1rem;color:var(--t1);margin-bottom:7px}
-.pc-ts{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:11px}
-.pc-tg{font-family:var(--fh);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;
+.pc-bd{padding:18px 22px 22px}
+.pc-ti{font-family:var(--fh);font-size:.98rem;color:var(--t1);margin-bottom:7px}
+.pc-ts{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.pc-tg{font-family:var(--fh);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;
   padding:2px 7px;border:1px solid var(--b1);color:var(--t3);border-radius:2px}
-.pc-ds{font-size:.9rem;color:var(--t2);line-height:1.64}
-.pc-lk{display:inline-flex;align-items:center;gap:6px;margin-top:14px;
-  font-family:var(--fh);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--a2);border-bottom:1px solid var(--b2);padding-bottom:1px;transition:gap .28s,color .28s,border-color .28s}
+.pc-ds{font-size:.9rem;color:var(--t2);line-height:1.65}
+.pc-lk{display:inline-flex;align-items:center;gap:6px;margin-top:13px;
+  font-family:var(--fh);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--a2);border-bottom:1px solid var(--b2);padding-bottom:1px;
+  transition:gap .28s,color .28s,border-color .28s}
 .pc-lk:hover{color:var(--a1);border-color:var(--a1);gap:10px}
-.fl{animation:flame 2.5s ease-in-out infinite alternate;font-size:.72rem!important}
-@keyframes flame{from{text-shadow:0 0 6px var(--gw2)}to{text-shadow:0 0 18px var(--gw2),0 0 36px rgba(192,144,64,.18)}}
+.fl{animation:flame 2.5s ease-in-out infinite alternate;font-size:.68rem!important}
+@keyframes flame{from{text-shadow:0 0 6px var(--gw2)}to{text-shadow:0 0 18px var(--gw2),0 0 36px rgba(176,128,48,.18)}}
 
-/* ─── MUSIC ──────────────────────────────── */
-.mu-g{display:grid;grid-template-columns:210px 1fr;gap:32px;align-items:start}
+/* ═══ MUSIC ════════════════════════════════════════════════════════ */
+.mu-g{display:grid;grid-template-columns:205px 1fr;gap:30px;align-items:start}
 @media(max-width:740px){.mu-g{grid-template-columns:1fr}}
-.pl-ls{display:flex;flex-direction:column;gap:7px}
-.pl-it{display:flex;align-items:center;gap:10px;padding:11px 15px;
+.pl-ls{display:flex;flex-direction:column;gap:6px}
+.pl-it{display:flex;align-items:center;gap:10px;padding:11px 14px;
   background:var(--gl);border:1px solid var(--b1);border-radius:var(--r);
-  cursor:none;transition:all .25s;font-family:var(--fh);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t2)}
-.pl-it:hover,.pl-it.on{border-color:var(--b2);color:var(--a2);background:rgba(192,144,64,.05)}
-.pl-ic{font-size:.95rem}
+  cursor:none;transition:all .25s;font-family:var(--fh);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t2)}
+.pl-it:hover,.pl-it.on{border-color:var(--b2);color:var(--a2);background:rgba(176,128,48,.045)}
+.pl-ic{font-size:.9rem}
 .pl-ht{margin-top:14px;padding:13px;background:var(--gl);border:1px solid var(--b1);border-radius:var(--r)}
-.pl-ht-t{font-family:var(--fh);font-size:.54rem;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.pl-ht-t{font-family:var(--fh);font-size:.52rem;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
 .pl-ht p{font-size:.78rem;color:var(--t3);line-height:1.5}
 code{font-size:.78em;color:var(--a2);background:var(--bg3);padding:1px 4px;border-radius:2px}
 .player{background:var(--gl);border:1px solid var(--b1);border-radius:var(--r);
-  padding:26px;position:relative;overflow:hidden}
+  padding:24px;position:relative;overflow:hidden}
 .player::before{content:'';position:absolute;inset:0;border-radius:var(--r);
-  background:radial-gradient(ellipse at 50% 110%,var(--gw) 0%,transparent 55%);
-  opacity:calc(.07 + var(--bg-gv)*.22);pointer-events:none}
-.np{font-family:var(--fh);font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:var(--a1);margin-bottom:5px}
-.p-ti{font-family:var(--fh);font-size:1rem;color:var(--t1);
+  background:radial-gradient(ellipse at 50% 115%,var(--gw) 0%,transparent 52%);
+  opacity:calc(.06 + var(--bg-gv)*.22);pointer-events:none}
+.np{font-family:var(--fh);font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;color:var(--a1);margin-bottom:5px}
+.p-ti{font-family:var(--fh);font-size:.96rem;color:var(--t1);
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px}
-.p-ar{font-size:.85rem;color:var(--t3);font-style:italic;margin-bottom:18px}
-#wc{display:block;width:100%;height:76px;border-radius:var(--r);
-  background:var(--bg);border:1px solid var(--b1);margin-bottom:16px}
-.p-pb{height:2px;background:var(--bg3);border-radius:2px;cursor:none;margin-bottom:11px;position:relative}
-.p-pf{height:100%;background:linear-gradient(90deg,var(--a1),var(--a2));
-  border-radius:2px;width:0%;transition:width .1s linear;position:relative}
-.p-pf::after{content:'';position:absolute;right:-3px;top:-3px;
-  width:8px;height:8px;background:var(--a2);border-radius:50%;box-shadow:0 0 7px var(--gw2)}
-.p-tm{display:flex;justify-content:space-between;
-  font-family:var(--fh);font-size:.58rem;color:var(--t3);margin-bottom:16px}
-.p-ct{display:flex;align-items:center;gap:11px;margin-bottom:16px}
-.p-bt{width:38px;height:38px;border-radius:50%;border:1px solid var(--b1);background:var(--gl2);
-  color:var(--t2);font-size:.88rem;display:flex;align-items:center;justify-content:center;transition:all .25s}
+.p-ar{font-size:.84rem;color:var(--t3);font-style:italic;margin-bottom:16px}
+#wc{display:block;width:100%;height:74px;border-radius:var(--r);
+  background:rgba(0,0,0,.4);border:1px solid var(--b1);margin-bottom:14px}
+.p-pb{height:2px;background:var(--bg3);border-radius:2px;cursor:none;margin-bottom:10px;position:relative}
+.p-pf{height:100%;background:linear-gradient(90deg,var(--a1),var(--a2));border-radius:2px;width:0%;transition:width .1s linear;position:relative}
+.p-pf::after{content:'';position:absolute;right:-3px;top:-3px;width:8px;height:8px;background:var(--a2);border-radius:50%;box-shadow:0 0 7px var(--gw2)}
+.p-tm{display:flex;justify-content:space-between;font-family:var(--fh);font-size:.57rem;color:var(--t3);margin-bottom:14px}
+.p-ct{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.p-bt{width:36px;height:36px;border-radius:50%;border:1px solid var(--b1);background:var(--gl2);
+  color:var(--t2);font-size:.85rem;display:flex;align-items:center;justify-content:center;transition:all .25s}
 .p-bt:hover{border-color:var(--b2);color:var(--a2);box-shadow:0 0 12px var(--gw2)}
-.p-pl{width:48px;height:48px;font-size:1rem;background:var(--a1);border-color:var(--a1);color:#fff;
-  box-shadow:0 0 18px var(--gw);
-  transform:scale(calc(1 + var(--bs)*.07));transition:transform .05s,box-shadow .28s,background .28s}
-.p-pl:hover{background:var(--a2);border-color:var(--a2);box-shadow:0 0 26px var(--gw2)}
+.p-pl{width:46px;height:46px;font-size:.96rem;background:var(--a1);border-color:var(--a1);color:#fff;
+  box-shadow:0 0 16px var(--gw);
+  transform:scale(calc(1 + var(--bs)*.065));transition:transform .05s,box-shadow .28s,background .28s}
+.p-pl:hover{background:var(--a2);border-color:var(--a2);box-shadow:0 0 24px var(--gw2)}
 .p-vl{flex:1;-webkit-appearance:none;height:2px;background:var(--b1);border-radius:2px;accent-color:var(--a2);cursor:none}
-.t-ls{display:flex;flex-direction:column;gap:1px;max-height:200px;overflow-y:auto}
-.t-rw{display:flex;align-items:center;gap:9px;padding:8px 11px;border-radius:var(--r);cursor:none;transition:background .22s}
-.t-rw:hover{background:var(--gl2)}.t-rw.on{background:rgba(192,144,64,.07)}
-.t-nx{font-family:var(--fh);font-size:.58rem;color:var(--t3);width:16px;text-align:right;flex-shrink:0}
+.t-ls{display:flex;flex-direction:column;gap:1px;max-height:210px;overflow-y:auto}
+.t-rw{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r);cursor:none;transition:background .22s}
+.t-rw:hover{background:var(--gl2)}.t-rw.on{background:rgba(176,128,48,.07)}
+.t-nx{font-family:var(--fh);font-size:.57rem;color:var(--t3);width:16px;text-align:right;flex-shrink:0}
 .t-rw.on .t-nx{color:var(--a2)}
-.t-nm{flex:1;min-width:0;font-size:.86rem;color:var(--t2);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.t-nm{flex:1;min-width:0;font-size:.86rem;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .t-rw.on .t-nm{color:var(--a2)}
-.t-dl{color:var(--t3);font-size:.78rem;padding:3px;transition:color .22s;flex-shrink:0}
+.t-dl{color:var(--t3);font-size:.76rem;padding:3px;transition:color .22s;flex-shrink:0}
 .t-dl:hover{color:var(--a2)}
 
-/* ─── GALLERY ────────────────────────────── */
-.g-tb{display:flex;gap:7px;justify-content:center;margin-bottom:26px;flex-wrap:wrap}
-.g-t{font-family:var(--fh);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;
-  padding:6px 17px;border:1px solid var(--b1);color:var(--t2);background:var(--gl);
-  border-radius:18px;transition:all .25s}
-.g-t:hover,.g-t.on{border-color:var(--b2);color:var(--a2);background:rgba(192,144,64,.055);box-shadow:0 0 12px var(--gw2)}
-.g-gd{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+/* ═══ GALLERY ══════════════════════════════════════════════════════ */
+.g-tb{display:flex;gap:7px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+.g-t{font-family:var(--fh);font-size:.56rem;letter-spacing:.17em;text-transform:uppercase;
+  padding:6px 16px;border:1px solid var(--b1);color:var(--t2);background:var(--gl);
+  border-radius:16px;transition:all .25s}
+.g-t:hover,.g-t.on{border-color:var(--b2);color:var(--a2);background:rgba(176,128,48,.05);box-shadow:0 0 12px var(--gw2)}
+.g-gd{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:11px}
 .gi{position:relative;overflow:hidden;border-radius:var(--r);
-  border:1px solid var(--b1);cursor:none;aspect-ratio:4/3;transition:border-color .35s,box-shadow .35s}
-.gi:hover{border-color:var(--b2);box-shadow:0 8px 32px rgba(0,0,0,.7)}
+  border:1px solid var(--b1);cursor:none;aspect-ratio:4/3;transition:border-color .34s,box-shadow .34s}
+.gi:hover{border-color:var(--b2);box-shadow:0 8px 32px rgba(0,0,0,.75)}
 .gi img{width:100%;height:100%;object-fit:cover;
-  transition:transform .58s var(--ez),filter .35s;filter:brightness(.87)}
-.gi:hover img{transform:scale(1.06);filter:brightness(1)}
-.gi-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.68) 0%,transparent 52%);
+  transition:transform .58s var(--ez),filter .34s;filter:brightness(.84) sepia(.06)}
+.gi:hover img{transform:scale(1.07);filter:brightness(1) sepia(0)}
+.gi-ov{position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.72) 0%,transparent 50%);
   opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:10px}
 .gi:hover .gi-ov{opacity:1}
 .gi-ac{display:flex;gap:5px}
-.gi-a{width:30px;height:30px;background:rgba(0,0,0,.58);border:1px solid var(--b2);
-  color:var(--a2);border-radius:var(--r);font-size:.76rem;
+.gi-a{width:29px;height:29px;background:rgba(0,0,0,.6);border:1px solid var(--b2);
+  color:var(--a2);border-radius:var(--r);font-size:.74rem;
   display:flex;align-items:center;justify-content:center;transition:all .22s}
 .gi-a:hover{background:var(--a2);color:#000;border-color:var(--a2)}
 
-/* ─── LIGHTBOX ───────────────────────────── */
-#lb{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.96);
+/* ═══ LIGHTBOX ════════════════════════════════════════════════════ */
+#lb{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.97);
   display:none;align-items:center;justify-content:center;
-  backdrop-filter:blur(26px) saturate(130%);perspective:1400px}
-#lb.op{display:flex;animation:lb-in .3s var(--ez)}
-@keyframes lb-in{from{opacity:0}to{opacity:1}}
+  backdrop-filter:blur(28px) saturate(120%);perspective:1400px}
+#lb.op{display:flex;animation:lbin .32s var(--ez)}
+@keyframes lbin{from{opacity:0}to{opacity:1}}
 .lb-stg{position:relative;display:flex;align-items:center;justify-content:center}
-.lb-crd{position:relative;border-radius:5px;overflow:hidden;
-  box-shadow:0 48px 110px rgba(0,0,0,.92),0 0 60px var(--gw);
-  transition:transform .06s linear;will-change:transform;cursor:none}
+.lb-crd{position:relative;border-radius:4px;overflow:hidden;
+  box-shadow:0 48px 120px rgba(0,0,0,.95),0 0 60px var(--gw);
+  transition:box-shadow .28s;will-change:transform;cursor:none}
 .lb-crd img{display:block;max-width:90vw;max-height:80vh;object-fit:contain;
-  border-radius:5px;user-select:none;pointer-events:none;
-  transition:transform .06s linear}
-/* Moving sheen */
-.lb-sh{position:absolute;inset:0;border-radius:5px;pointer-events:none;
-  opacity:0;transition:opacity .28s;
+  border-radius:4px;user-select:none;pointer-events:none}
+.lb-sh{position:absolute;inset:0;border-radius:4px;pointer-events:none;
+  opacity:0;transition:opacity .26s;
   background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.18) 0%,rgba(255,255,255,0) 52%)}
-.lb-crd:hover .lb-sh{opacity:1}
-/* Rim light */
-.lb-rl{position:absolute;inset:-1px;border-radius:5px;pointer-events:none;
-  border:1px solid rgba(255,255,255,.1);opacity:0;transition:opacity .28s}
-.lb-crd:hover .lb-rl{opacity:1}
+.lb-rl{position:absolute;inset:-1px;border-radius:4px;pointer-events:none;
+  border:1px solid rgba(255,255,255,.08);opacity:0;transition:opacity .26s}
+.lb-crd:hover .lb-sh,.lb-crd:hover .lb-rl{opacity:1}
 .lb-br{position:absolute;bottom:-52px;left:50%;transform:translateX(-50%);
   display:flex;gap:6px;align-items:center}
-.lbb{width:34px;height:34px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);
-  color:rgba(255,255,255,.65);border-radius:var(--r);font-size:.82rem;
+.lbb{width:34px;height:34px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.65);border-radius:var(--r);font-size:.8rem;
   display:flex;align-items:center;justify-content:center;transition:all .22s}
-.lbb:hover{background:rgba(255,255,255,.12);color:#fff}
+.lbb:hover{background:rgba(255,255,255,.11);color:#fff}
 #lb-cl{position:absolute;top:-50px;right:0}
-#lb-sp{font-family:var(--fh);font-size:.58rem;color:rgba(255,255,255,.35);letter-spacing:.1em;width:38px;text-align:center}
+#lb-sp{font-family:var(--fh);font-size:.56rem;color:rgba(255,255,255,.32);letter-spacing:.1em;width:36px;text-align:center}
 
-/* ─── CONTACTS ───────────────────────────── */
+/* ═══ CONTACTS ════════════════════════════════════════════════════ */
 .co-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(188px,1fr));
-  gap:16px;max-width:620px;margin:0 auto}
+  gap:15px;max-width:620px;margin:0 auto}
 .co{display:block;background:var(--gl);border:1px solid var(--b1);border-radius:var(--r);
   padding:26px 20px;text-align:center;transition:all .38s var(--ez);position:relative;overflow:hidden}
 .co::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent,var(--a2),transparent);
   transform:scaleX(0);transition:transform .38s var(--ez)}
-.co:hover{border-color:var(--b2);transform:translateY(-5px);
-  box-shadow:0 18px 44px rgba(0,0,0,.6);color:var(--t1)}
+.co:hover{border-color:var(--b2);transform:translateY(-5px);box-shadow:0 18px 44px rgba(0,0,0,.6)}
 .co:hover::after{transform:scaleX(1)}
 .co-ic{font-size:1.65rem;margin-bottom:11px;display:block}
-.co-nm{font-family:var(--fh);font-size:.64rem;letter-spacing:.15em;text-transform:uppercase;
+.co-nm{font-family:var(--fh);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
   color:var(--t2);margin-bottom:4px;transition:color .28s}
 .co:hover .co-nm{color:var(--a2)}
 .co-hn{font-size:.8rem;color:var(--t3);font-style:italic}
 
-/* ─── FOOTER ─────────────────────────────── */
-footer{position:relative;z-index:2;padding:34px 28px;text-align:center;
+/* ═══ FOOTER ══════════════════════════════════════════════════════ */
+footer{position:relative;z-index:2;padding:32px 28px;text-align:center;
   border-top:1px solid var(--b1);background:var(--bg2)}
-footer p{font-size:.76rem;color:var(--t3);font-style:italic}
+footer p{font-size:.74rem;color:var(--t3);font-style:italic}
 .fn{color:var(--a2);font-family:var(--fh)}
 
-/* ─── REVEAL ─────────────────────────────── */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .72s var(--ez),transform .72s var(--ez)}
+/* ═══ REVEAL ══════════════════════════════════════════════════════ */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .72s var(--ez),transform .72s var(--ez)}
 .rv.vs{opacity:1;transform:none}
-.d1{transition-delay:.09s}.d2{transition-delay:.17s}.d3{transition-delay:.25s}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
 </style>
 </head>
 <body>
+
+<!-- ═══ INTRO ═══════════════════════════════════════════════════════ -->
+<div id="intro">
+  <div id="intro-scan"></div>
+  <div id="intro-logo">Abyss<span class="wyr">wyrm</span></div>
+  <div id="intro-bar"></div>
+  <div id="intro-sub" data-k="hero_ey">Game Developer · Dark Fantasy Creator</div>
+</div>
 
 <div id="cur"></div>
 <div id="cur-r"></div>
 <div id="bg-gw"></div>
 
-<!-- NAV -->
+<!-- ═══ NAV ══════════════════════════════════════════════════════════ -->
 <nav id="nav">
   <div class="nl">Abysswyrm</div>
   <div class="nlinks">
@@ -345,15 +422,20 @@ footer p{font-size:.76rem;color:var(--t3);font-style:italic}
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ═══ HERO ══════════════════════════════════════════════════════════ -->
 <section id="hero">
   <canvas id="hc"></canvas>
   <p class="h-ey" data-k="hero_ey">Game Developer · Dark Fantasy Creator</p>
-  <h1 class="h-nm">Abyss<span class="bl">al</span>Blade</h1>
-  <div class="h-ln"></div>
+  <h1 class="h-nm">Abyss<span class="wyr">wyrm</span></h1>
+  <div class="h-divbar"></div>
+  <p class="h-quote" data-k="hero_q">«Тот, кто не помнит своего прошлого — обречён открывать его снова»</p>
+  <div class="h-scroll">
+    <div class="h-scroll-line"></div>
+    <span data-k="h_scroll">scroll</span>
+  </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ═══ ABOUT ══════════════════════════════════════════════════════════ -->
 <section id="about">
   <div class="wrap">
     <div class="s-hd rv"><span class="s-ey" data-k="ab_ey">Who I Am</span><h2 class="s-ttl" data-k="nav_about">Обо мне</h2></div>
@@ -361,8 +443,8 @@ footer p{font-size:.76rem;color:var(--t3);font-style:italic}
       <div class="rv d1" style="display:flex;flex-direction:column;align-items:flex-start">
         <div class="av">
           <div class="av-gw"></div><div class="av-rg"></div>
-          <img src="images/avatar.jpg" alt="AbyssalBlade"
-            onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22224%22 height=%22224%22%3E%3Crect width=%22224%22 height=%22224%22 fill=%22%23120810%22/%3E%3Ctext x=%22112%22 y=%22126%22 text-anchor=%22middle%22 font-size=%2268%22 fill=%22%23b30000%22%3E⚔%3C/text%3E%3C/svg%3E'"/>
+          <img src="images/avatar.jpg" alt="Abysswyrm"
+            onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22216%22 height=%22216%22%3E%3Crect width=%22216%22 height=%22216%22 fill=%22%230e0612%22/%3E%3Ctext x=%22108%22 y=%22122%22 text-anchor=%22middle%22 font-size=%2264%22 fill=%22%23b02808%22%3E🐉%3C/text%3E%3C/svg%3E'"/>
         </div>
         <div class="ab-sts">
           <div class="st"><span class="st-n" id="a1">—</span><span class="st-l" data-k="s_age">лет</span></div>
@@ -372,11 +454,11 @@ footer p{font-size:.76rem;color:var(--t3);font-style:italic}
         </div>
       </div>
       <div class="ab-tx rv d2">
-        <div class="apill">🗡 <span data-k="age_lb">Возраст:</span> <span class="an" id="a2">—</span> <span data-k="s_age">лет</span></div>
-        <h3 data-k="ab_tl">Добро пожаловать в бездну</h3>
-        <p data-k="ab_p1">Меня зовут <strong>AbyssalBlade</strong> — это не просто никнейм. Это предмет из Dota 2, который отражает мой стиль игры: <strong>агрессивный, расчётливый, с ударом в самый неожиданный момент</strong>.</p>
-        <p data-k="ab_p2">Я создаю игры на <strong>Unity / C#</strong>, занимаюсь дизайном в <strong>Blender</strong> и монтажом в <strong>After Effects</strong> и <strong>Premiere Pro</strong>. Тёмное фэнтези — это не стиль, это мировоззрение.</p>
-        <p data-k="ab_p3">Моя первая игра <strong>Murkveil</strong> — целый мир с опасными биомами, магической системой прокачки и тайной, которую предстоит раскрыть.</p>
+        <div class="apill">🐉 <span data-k="age_lb">Возраст:</span> <span class="an" id="a2">—</span> <span data-k="s_age">лет</span></div>
+        <h3 data-k="ab_tl">Из тьмы рождаются миры</h3>
+        <p data-k="ab_p1">Меня зовут <strong>Abysswyrm</strong>. Ник отражает суть — дракон из бездны, нечто древнее, затаившееся в глубине. Это не просто образ: это подход к созданию игр и миров с тёмной, непредсказуемой природой.</p>
+        <p data-k="ab_p2">Разрабатываю игры на <strong>Unity / C#</strong>: от механик выживания и 3D-боёвки до магических систем прокачки. Создаю визуал в <strong>Blender</strong>, монтирую в <strong>After Effects</strong> и <strong>Premiere Pro</strong>. Тёмное фэнтези — не эстетика, это язык, на котором я думаю.</p>
+        <p data-k="ab_p3">Сейчас в работе <strong>Murkveil</strong> — мрачный экшен-RPG о путнике с меткой, очнувшемся в мире, который он не помнит. Каждый биом враждебен. Каждый ответ порождает новый вопрос.</p>
         <div class="tags">
           <span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Blender</span>
           <span class="tag">After Effects</span><span class="tag">Premiere Pro</span>
@@ -389,32 +471,44 @@ footer p{font-size:.76rem;color:var(--t3);font-style:italic}
 </section>
 <hr class="dv"/>
 
-<!-- PROJECTS -->
+<!-- ═══ PROJECTS ════════════════════════════════════════════════════════ -->
 <section id="projects">
   <div class="wrap">
     <div class="s-hd rv"><span class="s-ey" data-k="pr_ey">My Work</span><h2 class="s-ttl" data-k="nav_projects">Проекты</h2></div>
     <div class="pj-g">
+      <!-- Murkveil -->
       <div class="pc rv">
         <div class="pc-im">
           <img loading="lazy" src="images/murkveil.png" alt="Murkveil"
-            onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22185%22%3E%3Crect width=%22400%22 height=%22185%22 fill=%22%230a0408%22/%3E%3Ctext x=%22200%22 y=%2298%22 text-anchor=%22middle%22 font-size=%2228%22 fill=%22%23b30000%22%3E🌑 MURKVEIL%3C/text%3E%3C/svg%3E'"/>
-          <div class="pc-fd"></div><span class="pc-bg" data-k="wip">В разработке</span>
+            onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22182%22%3E%3Crect width=%22400%22 height=%22182%22 fill=%22%230a0508%22/%3E%3Ctext x=%22200%22 y=%2296%22 text-anchor=%22middle%22 font-size=%2226%22 fill=%22%23b02808%22%3E🌑 MURKVEIL%3C/text%3E%3C/svg%3E'"/>
+          <div class="pc-fd"></div>
+          <span class="pc-bg" data-k="wip">В разработке</span>
         </div>
         <div class="pc-bd">
           <div class="pc-ti">Murkveil</div>
-          <div class="pc-ts"><span class="pc-tg">Unity</span><span class="pc-tg">C#</span><span class="pc-tg">3D FPS</span><span class="pc-tg">Dark Fantasy</span></div>
-          <p class="pc-ds" data-k="mv_ds">Evil Strafe - Мрачная, Dark Fantasy игра в жанре "Выживание" и "roguelike" с процедурно генерируемым миром, где мир был сломан людьми, которые нашли в недрах земли тёмную насыщенную субстанцию, будто живую, материю жизни. Её промышленная добыча привела к экологическим катострофам и к ужасным последствиям.  Мир местами потерял прежний облик и мутировал. Задача игрока - попытаться жить в этом мире, принимая его странные условности и законы./p>
+          <div class="pc-ts">
+            <span class="pc-tg">Unity</span><span class="pc-tg">C#</span>
+            <span class="pc-tg">3D FPS</span><span class="pc-tg">Action RPG</span>
+            <span class="pc-tg">Dark Fantasy</span>
+          </div>
+          <p class="pc-ds" data-k="mv_ds">Путник с меткой на руке очнулся в мире, который он не помнит. Враждебные биомы, крафт, магическая система прокачки. Выживание — первая задача. Понять, кто ты — настоящая.</p>
         </div>
       </div>
+      <!-- Donkey Potions -->
       <div class="pc rv d1">
-        <div class="pc-im" style="background:linear-gradient(135deg,#180e00,#3a2a00);min-height:185px;display:flex;align-items:center;justify-content:center;font-size:4.5rem">🫏⚗️
+        <div class="pc-im" style="background:linear-gradient(135deg,#150c00,#2e2000);min-height:182px;display:flex;align-items:center;justify-content:center;font-size:4rem">
+          🫏⚗️
           <div class="pc-fd"></div>
-          <span class="pc-bg" style="background:linear-gradient(90deg,var(--a2),#7a5000);box-shadow:0 0 12px var(--gw2)" data-k="sat">Сатира</span>
+          <span class="pc-bg" style="background:linear-gradient(90deg,var(--a2),#5a3800);box-shadow:0 0 12px var(--gw2)" data-k="sat">Сатира</span>
         </div>
         <div class="pc-bd">
           <div class="pc-ti" data-k="dp_ti">Donkey Potions</div>
-          <div class="pc-ts"><span class="pc-tg" data-k="ct_web">Веб-сайт</span><span class="pc-tg" data-k="sat">Сатира</span><span class="pc-tg">Bio-Tech</span></div>
-          <p class="pc-ds" data-k="dp_ds">Сатирический корпоративный сайт «Осёл-БиоТех» — производителя инновационных ослиных снадобий. Тонкая ирония и сомнительная наука.</p>
+          <div class="pc-ts">
+            <span class="pc-tg" data-k="ct_web">Веб-сайт</span>
+            <span class="pc-tg" data-k="sat">Сатира</span>
+            <span class="pc-tg">Bio-Tech</span>
+          </div>
+          <p class="pc-ds" data-k="dp_ds">Сатирический корпоративный сайт «Осёл-БиоТех» — производителя инновационных ослиных снадобий. Тонкая ирония, громкие заявления, сомнительная наука.</p>
           <a href="https://cawird.github.io/DonkeyPotions/" target="_blank" class="pc-lk fl">🔥 <span data-k="vis">Посетить</span> →</a>
         </div>
       </div>
@@ -423,17 +517,19 @@ footer p{font-size:.76rem;color:var(--t3);font-style:italic}
 </section>
 <hr class="dv"/>
 
-<!-- MUSIC -->
+<!-- ═══ MUSIC ══════════════════════════════════════════════════════════ -->
 <section id="music">
   <div class="wrap">
     <div class="s-hd rv"><span class="s-ey" data-k="mu_ey">Soundscapes</span><h2 class="s-ttl" data-k="nav_music">Музыка</h2></div>
     <div class="mu-g">
       <div class="rv">
-        <div style="font-family:var(--fh);font-size:.52rem;letter-spacing:.32em;text-transform:uppercase;color:var(--a1);margin-bottom:11px" data-k="mu_pl">Плейлисты</div>
+        <div style="font-family:var(--fh);font-size:.5rem;letter-spacing:.34em;text-transform:uppercase;color:var(--a1);margin-bottom:10px" data-k="mu_pl">Плейлисты</div>
         <div class="pl-ls">
           <div class="pl-it on" id="pl0" onclick="swPl(0)"><span class="pl-ic">🚗</span><span data-k="pl_ms">Автоспорт</span></div>
           <div class="pl-it"    id="pl1" onclick="swPl(1)"><span class="pl-ic">🎵</span>C418</div>
           <div class="pl-it"    id="pl2" onclick="swPl(2)"><span class="pl-ic">🎲</span><span data-k="pl_mi">Разное</span></div>
+        </div>
+        <div class="pl-ht">
         </div>
       </div>
       <div class="rv d1">
@@ -459,7 +555,7 @@ footer p{font-size:.76rem;color:var(--t3);font-style:italic}
 </section>
 <hr class="dv"/>
 
-<!-- GALLERY -->
+<!-- ═══ GALLERY ════════════════════════════════════════════════════════ -->
 <section id="gallery">
   <div class="wrap">
     <div class="s-hd rv"><span class="s-ey" data-k="ga_ey">Visual Archive</span><h2 class="s-ttl" data-k="nav_gallery">Галерея</h2></div>
@@ -495,61 +591,91 @@ footer p{font-size:.76rem;color:var(--t3);font-style:italic}
 </div>
 <hr class="dv"/>
 
-<!-- CONTACTS -->
+<!-- ═══ CONTACTS ════════════════════════════════════════════════════════ -->
 <section id="contacts">
   <div class="wrap">
-    <div class="s-hd rv" style="text-align:center"><span class="s-ey" data-k="co_ey">Find Me</span><h2 class="s-ttl" data-k="nav_contacts">Контакты</h2></div>
+    <div class="s-hd rv" style="text-align:center">
+      <span class="s-ey" data-k="co_ey">Find Me</span>
+      <h2 class="s-ttl" data-k="nav_contacts">Контакты</h2>
+    </div>
     <div class="co-g">
-      <a href="https://steamcommunity.com/id/Sheepstick12/" target="_blank" class="co rv"><span class="co-ic">🎮</span><div class="co-nm">Steam</div><div class="co-hn">Sheepstick12</div></a>
-      <a href="https://t.me/Proj115" target="_blank" class="co rv d1"><span class="co-ic">✈️</span><div class="co-nm">Telegram</div><div class="co-hn">@Proj115</div></a>
-      <a href="https://ru.pinterest.com/cawird/" target="_blank" class="co rv d2"><span class="co-ic">📌</span><div class="co-nm">Pinterest</div><div class="co-hn">cawird</div></a>
+      <a href="https://steamcommunity.com/id/Sheepstick12/" target="_blank" class="co rv">
+        <span class="co-ic">🎮</span><div class="co-nm">Steam</div><div class="co-hn">Sheepstick12</div>
+      </a>
+      <a href="https://t.me/Proj115" target="_blank" class="co rv d1">
+        <span class="co-ic">✈️</span><div class="co-nm">Telegram</div><div class="co-hn">@Proj115</div>
+      </a>
+      <a href="https://ru.pinterest.com/cawird/" target="_blank" class="co rv d2">
+        <span class="co-ic">📌</span><div class="co-nm">Pinterest</div><div class="co-hn">cawird</div>
+      </a>
     </div>
   </div>
 </section>
 
 <footer>
-  <p><span class="fn">AbyssalBlade</span> &nbsp;·&nbsp; <span data-k="foot">Создано с тьмой и кодом</span> &nbsp;·&nbsp; <span id="fy"></span></p>
+  <p><span class="fn">Abysswyrm</span> &nbsp;·&nbsp; <span data-k="foot">Создано с тьмой и кодом</span> &nbsp;·&nbsp; <span id="fy"></span></p>
 </footer>
 
 <script>
 'use strict';
-/* ══ i18n ══════════════════════════════════════ */
+
+/* ══ INTRO ══════════════════════════════════════════════════════ */
+const introEl=document.getElementById('intro');
+// Intro lasts ~2.1s then fades out
+setTimeout(()=>{
+  introEl.classList.add('done');
+  setTimeout(()=>introEl.style.display='none',900);
+},2100);
+
+/* ══ i18n ════════════════════════════════════════════════════════ */
 const T={
 ru:{nav_about:'Обо мне',nav_projects:'Проекты',nav_music:'Музыка',nav_gallery:'Галерея',nav_contacts:'Контакты',
-  hero_ey:'Разработчик игр · Создатель Dark Fantasy',ab_ey:'Кто я',ab_tl:'Добро пожаловать в бездну',age_lb:'Возраст:',
-  ab_p1:'Меня зовут <strong>AbyssalBlade</strong> — это не просто никнейм. Это предмет из Dota 2, отражающий мой стиль игры: <strong>агрессивный, расчётливый, с ударом в самый неожиданный момент</strong>.',
-  ab_p2:'Создаю игры на <strong>Unity / C#</strong>, занимаюсь дизайном в <strong>Blender</strong> и монтажом в <strong>After Effects</strong> и <strong>Premiere Pro</strong>. Тёмное фэнтези — это мировоззрение.',
-  ab_p3:'Моя первая игра <strong>Murkveil</strong> — целый мир с опасными биомами, магической системой прокачки и тайной, которую предстоит раскрыть.',
+  hero_ey:'Разработчик игр · Создатель Dark Fantasy',
+  hero_q:'«Тот, кто не помнит своего прошлого — обречён открывать его снова»',
+  h_scroll:'scroll',
+  ab_ey:'Кто я',ab_tl:'Из тьмы рождаются миры',age_lb:'Возраст:',
+  ab_p1:'Меня зовут <strong>Abysswyrm</strong>. Ник отражает суть — дракон из бездны, нечто древнее, затаившееся в глубине. Это не просто образ: это подход к созданию игр и миров с тёмной, непредсказуемой природой.',
+  ab_p2:'Разрабатываю игры на <strong>Unity / C#</strong>: от механик выживания и 3D-боёвки до магических систем прокачки. Создаю визуал в <strong>Blender</strong>, монтирую в <strong>After Effects</strong> и <strong>Premiere Pro</strong>. Тёмное фэнтези — не эстетика, это язык, на котором я думаю.',
+  ab_p3:'Сейчас в работе <strong>Murkveil</strong> — мрачный экшен-RPG о путнике с меткой, очнувшемся в мире, который он не помнит. Каждый биом враждебен. Каждый ответ порождает новый вопрос.',
   s_age:'лет',s_game:'игра',s_tl:'инструмента',s_id:'идей',
   pr_ey:'Моя работа',wip:'В разработке',sat:'Сатира',dp_ti:'Donkey Potions',ct_web:'Веб-сайт',
-  mv_ds:'Игра о путнике с меткой на руке, очнувшемся в мире, который он не помнит. Выживание, опасные биомы, крафт, магическая система прокачки.',
-  dp_ds:'Сатирический корпоративный сайт «Осёл-БиоТех» — производителя инновационных ослиных снадобий. Тонкая ирония и сомнительная наука.',
+  mv_ds:'Путник с меткой на руке очнулся в мире, который он не помнит. Враждебные биомы, крафт, магическая система прокачки. Выживание — первая задача. Понять, кто ты — настоящая.',
+  dp_ds:'Сатирический корпоративный сайт «Осёл-БиоТех» — производителя инновационных ослиных снадобий. Тонкая ирония, громкие заявления, сомнительная наука.',
   vis:'Посетить',mu_ey:'Саундскейпы',mu_pl:'Плейлисты',mu_np:'▶ Сейчас играет',
-  pl_ms:'Автоспорт',pl_mi:'Разное',ht_t:'💡 Добавить треки',ht_p:'Найди массив playlists в JS и добавь объект: {name, artist, src}',
+  pl_ms:'Автоспорт',pl_mi:'Разное',ht_t:'💡 Добавить треки',
+  ht_p:'Найди массив <code>playlists</code> в JS и добавь объект: <code>{name, artist, src}</code>',
   ga_ey:'Визуальный архив',ga_all:'Все',co_ey:'Найди меня',foot:'Создано с тьмой и кодом'},
 en:{nav_about:'About',nav_projects:'Projects',nav_music:'Music',nav_gallery:'Gallery',nav_contacts:'Contacts',
-  hero_ey:'Game Developer · Dark Fantasy Creator',ab_ey:'Who I Am',ab_tl:'Welcome to the Abyss',age_lb:'Age:',
-  ab_p1:'My name is <strong>AbyssalBlade</strong> — more than a nickname. A Dota 2 item mirroring my playstyle: <strong>aggressive, calculated, striking at the most unexpected moment</strong>.',
-  ab_p2:'I build games in <strong>Unity / C#</strong>, design in <strong>Blender</strong>, and edit in <strong>After Effects</strong> & <strong>Premiere Pro</strong>. Dark Fantasy is a worldview.',
-  ab_p3:'My first game <strong>Murkveil</strong> — an entire world: dangerous biomes, magic progression, and a mystery to uncover.',
+  hero_ey:'Game Developer · Dark Fantasy Creator',
+  hero_q:'"Those who forget their past are doomed to rediscover it"',
+  h_scroll:'scroll',
+  ab_ey:'Who I Am',ab_tl:'Worlds Are Born From Darkness',age_lb:'Age:',
+  ab_p1:'I\'m <strong>Abysswyrm</strong> — a dragon of the abyss, ancient and lurking in the deep. Not just an image: an approach to building games and worlds with a dark, unpredictable nature.',
+  ab_p2:'I build games in <strong>Unity / C#</strong>: from survival mechanics and 3D combat to magical progression systems. Visual work in <strong>Blender</strong>, editing in <strong>After Effects</strong> & <strong>Premiere Pro</strong>. Dark Fantasy isn\'t an aesthetic — it\'s my language.',
+  ab_p3:'Currently building <strong>Murkveil</strong> — a dark action-RPG about a wanderer with a mark, waking in a world they don\'t remember. Every biome is hostile. Every answer spawns a new question.',
   s_age:'years',s_game:'game',s_tl:'tools',s_id:'ideas',
   pr_ey:'My Work',wip:'In Dev',sat:'Satire',dp_ti:'Donkey Potions',ct_web:'Website',
-  mv_ds:'A wanderer with a mark awakens in a forgotten world. Survival, dangerous biomes, crafting, and a magical progression system.',
-  dp_ds:'Satirical corporate site for "Donkey BioTech" — innovative donkey elixir manufacturer. Subtle irony, questionable science.',
+  mv_ds:'A wanderer with a mark awakens in a forgotten world. Hostile biomes, crafting, magical progression. Survival is the first task. Knowing who you are — the real one.',
+  dp_ds:'Satirical corporate site for "Donkey BioTech" — manufacturer of innovative donkey elixirs. Subtle irony, bold claims, questionable science.',
   vis:'Visit Site',mu_ey:'Soundscapes',mu_pl:'Playlists',mu_np:'▶ Now Playing',
-  pl_ms:'Motorsport',pl_mi:'Misc',ht_t:'💡 Add Tracks',ht_p:'Find the playlists array in JS and add: {name, artist, src}',
+  pl_ms:'Motorsport',pl_mi:'Misc',ht_t:'💡 Add Tracks',
+  ht_p:'Find the <code>playlists</code> array in JS and add: <code>{name, artist, src}</code>',
   ga_ey:'Visual Archive',ga_all:'All',co_ey:'Find Me',foot:'Crafted with darkness and code'},
 fr:{nav_about:'À propos',nav_projects:'Projets',nav_music:'Musique',nav_gallery:'Galerie',nav_contacts:'Contacts',
-  hero_ey:'Développeur de jeux · Créateur Dark Fantasy',ab_ey:'Qui suis-je',ab_tl:"Bienvenue dans l'Abîme",age_lb:'Âge :',
-  ab_p1:"Je m'appelle <strong>AbyssalBlade</strong> — un objet Dota 2 reflétant mon style : <strong>agressif, calculé, frappant au moment le plus inattendu</strong>.",
-  ab_p2:'Jeux en <strong>Unity / C#</strong>, design en <strong>Blender</strong>, montage en <strong>After Effects</strong> & <strong>Premiere Pro</strong>. Le Dark Fantasy est une vision du monde.',
-  ab_p3:'Mon premier jeu <strong>Murkveil</strong> — un monde entier : biomes dangereux, magie et mystère.',
+  hero_ey:'Développeur de jeux · Créateur Dark Fantasy',
+  hero_q:'« Celui qui oublie son passé est condamné à le redécouvrir »',
+  h_scroll:'défiler',
+  ab_ey:'Qui suis-je',ab_tl:'Les mondes naissent des ténèbres',age_lb:'Âge :',
+  ab_p1:'Je suis <strong>Abysswyrm</strong> — un dragon de l\'abîsse, ancien et tapi dans les profondeurs. Pas seulement une image : une approche de la création de jeux et de mondes à la nature sombre et imprévisible.',
+  ab_p2:'Je crée des jeux en <strong>Unity / C#</strong>, conçois en <strong>Blender</strong>, monte en <strong>After Effects</strong> & <strong>Premiere Pro</strong>. Le Dark Fantasy est ma langue de pensée.',
+  ab_p3:'En cours : <strong>Murkveil</strong> — un action-RPG sombre sur un voyageur marqué se réveillant dans un monde oublié. Chaque biome est hostile. Chaque réponse soulève une question.',
   s_age:'ans',s_game:'jeu',s_tl:'outils',s_id:'idées',
   pr_ey:'Mon Travail',wip:'En dev',sat:'Satire',dp_ti:'Donkey Potions',ct_web:'Site web',
-  mv_ds:"Un voyageur marqué se réveille dans un monde oublié. Survie, exploration, artisanat et magie.",
-  dp_ds:"Site satirique pour « Donkey BioTech ». Ironie subtile, science douteuse.",
+  mv_ds:'Un voyageur marqué se réveille dans un monde oublié. Biomes hostiles, artisanat, magie. Survivre est le premier défi. Comprendre qui l\'on est — le vrai.',
+  dp_ds:'Site satirique pour « Donkey BioTech ». Ironie subtile, science douteuse.',
   vis:'Visiter',mu_ey:'Paysages sonores',mu_pl:'Playlists',mu_np:'▶ En cours',
-  pl_ms:'Motorsport',pl_mi:'Divers',ht_t:'💡 Ajouter pistes',ht_p:'Trouve le tableau playlists dans le JS et ajoute : {name, artist, src}',
+  pl_ms:'Motorsport',pl_mi:'Divers',ht_t:'💡 Ajouter des pistes',
+  ht_p:'Trouve le tableau <code>playlists</code> dans le JS et ajoute : <code>{name, artist, src}</code>',
   ga_ey:'Archives visuelles',ga_all:'Tout',co_ey:'Me trouver',foot:'Créé avec ténèbres et code'}
 };
 let lang='ru';
@@ -565,7 +691,7 @@ function setTheme(t){
   ['dark','light','purple','green'].forEach(x=>document.getElementById('t-'+x).classList.toggle('on',x===t));
 }
 
-/* ══ Age ══════════════════════════════════════ */
+/* ══ Age ════════════════════════════════════════════════════════ */
 function calcAge(){
   const b=new Date(2005,9,28),n=new Date();
   let a=n.getFullYear()-b.getFullYear();
@@ -574,7 +700,7 @@ function calcAge(){
   document.getElementById('a2').textContent=a;
 }
 
-/* ══ Cursor ═══════════════════════════════════ */
+/* ══ Cursor ════════════════════════════════════════════════════ */
 const cur=document.getElementById('cur'),curR=document.getElementById('cur-r');
 let mx=0,my=0,rx=0,ry=0;
 addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY},{passive:true});
@@ -586,81 +712,68 @@ addEventListener('mouseover',e=>{document.body.classList.toggle('hov',!!e.target
   requestAnimationFrame(tc);
 })();
 
-/* ══ Hero ambient sparks ══════════════════════ */
+/* ══ Hero ambient sparks ════════════════════════════════════════ */
 (function(){
   const c=document.getElementById('hc'),ctx=c.getContext('2d');
   let W,H,sp=[];
   const ro=new ResizeObserver(()=>{W=c.width=c.offsetWidth;H=c.height=c.offsetHeight});
-  ro.observe(c);W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;
+  ro.observe(c);W=c.width=c.offsetWidth;H=c.height=c.offsetHeight||600;
   class S{
     constructor(){this.rs(true)}
     rs(i){this.x=Math.random()*W;this.y=i?Math.random()*H:H+5;
-      this.vy=-(Math.random()*.45+.12);this.vx=(Math.random()-.5)*.18;
-      this.l=0;this.ml=120+Math.random()*200;this.r=Math.random()*1.4+.3}
+      this.vy=-(Math.random()*.42+.1);this.vx=(Math.random()-.5)*.16;
+      this.l=0;this.ml=110+Math.random()*220;this.r=Math.random()*1.3+.3}
     step(){this.x+=this.vx;this.y+=this.vy;this.l++;if(this.l>=this.ml)this.rs()}
     draw(){const p=this.l/this.ml,a=p<.2?p/.2:1-(p-.2)/.8;
       ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,6.28);
       const cs=getComputedStyle(document.documentElement);
-      ctx.fillStyle=Math.random()>.55?cs.getPropertyValue('--a1').trim():cs.getPropertyValue('--a2').trim();
-      ctx.globalAlpha=a*.5;ctx.fill()}
+      ctx.fillStyle=Math.random()>.5?cs.getPropertyValue('--a1').trim():cs.getPropertyValue('--a2').trim();
+      ctx.globalAlpha=a*.48;ctx.fill()}
   }
-  for(let i=0;i<44;i++){const s=new S();s.l=Math.random()*s.ml;sp.push(s)}
+  for(let i=0;i<40;i++){const s=new S();s.l=Math.random()*s.ml;sp.push(s)}
   (function fr(){ctx.clearRect(0,0,W,H);ctx.globalAlpha=1;sp.forEach(s=>{s.step();s.draw()});requestAnimationFrame(fr)})();
 })();
 
-/* ══ Nav scroll ═══════════════════════════════ */
+/* ══ Nav ════════════════════════════════════════════════════════ */
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('sc',scrollY>55),{passive:true});
 
-/* ══ Reveal ═══════════════════════════════════ */
+/* ══ Reveal ═════════════════════════════════════════════════════ */
 const ro2=new IntersectionObserver(ee=>{ee.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vs');ro2.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -36px 0px'});
 document.querySelectorAll('.rv').forEach(el=>ro2.observe(el));
 
-/* ══ 3D card tilt ═════════════════════════════ */
+/* ══ Card tilt ══════════════════════════════════════════════════ */
 document.querySelectorAll('.pc').forEach(c=>{
   c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(860px) rotateY(${x*8}deg) rotateX(${-y*8}deg) translateY(-5px)`},{passive:true});
   c.addEventListener('mouseleave',()=>{c.style.transform=''});
 });
 
-/* ══ Music ════════════════════════════════════ */
-// ★ ADD TRACKS: insert { name, artist, src } objects into each tracks array
-const playlists = [
-  { // 0 - Автоспорт
-    name: 'Автоспорт',
-    tracks: [
-      { name: 'Пожалуйста, только не домой', artist: 'Автоспорт', src: '/music/motorsport/Пожалуйста, только не домой.mp3' },
-      { name: 'Автоспорт Береги себя', artist: 'Автоспорт', src: '/music/motorsport/Автоспорт Береги себя.mp3' },
-      { name: 'Автоспорт песня о привязанности', artist: 'Автоспорт', src: '/music/motorsport/Автоспорт песня о привязанности.mp3' },
-      { name: 'Автоспорт пятый день недели', artist: 'Автоспорт', src: '/music/motorsport/Автоспорт пятый день недели.mp3' },
-      { name: 'Автоспорт я не буду спать', artist: 'Автоспорт', src: '/music/motorsport/Автоспорт я не буду спать.mp3' },
-      { name: 'Стой', artist: 'Автоспорт', src: '/music/motorsport/Стой.mp3' },
-      // { name: 'Ещё трек', artist: 'Автоспорт', src: 'путь к файлу' },
-    ]
-  },
-  { // 1 - C418
-    name: 'C418',
-    tracks: [
-      { name: 'Moog City', artist: 'C418', src: 'music/c418/C418 Moog City.mp3' },
-      { name: 'C418 Dry Hands', artist: 'C418', src: 'music/c418/C418 Dry Hands.mp3' },
-      { name: 'C418 Haggstrom', artist: 'C418', src: 'music/c418/C418 Haggstrom.mp3' },
-      { name: 'C418 Mice On Venus', artist: 'C418', src: 'music/c418/C418 Mice On Venus.mp3' },
-      { name: 'C418 Subwoofer Lullaby', artist: 'C418', src: 'music/c418/C418 Subwoofer Lullaby.mp3' },
-      { name: 'C418 Sweden', artist: 'C418', src: 'music/c418/C418 Sweden.mp3' },
-      { name: 'C418 Wet Hands', artist: 'C418', src: 'music/c418/C418 Wet Hands.mp3' },
-      // { name: 'Sweden', artist: 'C418', src: 'путь к файлу' },
-    ]
-  },
-  { // 2 - Разное
-    name: 'Разное',
-    tracks: [
-      { name: 'shinra untitled', artist: 'semmmyq', src: 'music/misc/semmmyq shinra untitled.mp3' },
-      { name: 'Unknown_artist_superswag', artist: 'semmmyq', src: 'music/misc/Unknown_artist_superswag.mp3' },
-      { name: 'You Could Be The One', artist: 'semmmyq', src: 'music/misc/You Could Be The One.mp3' },
-
-      // { name: 'Ещё трек', artist: '...', src: 'путь к файлу' },
-    ]
-  }
+/* ══ Music ══════════════════════════════════════════════════════ */
+const playlists=[
+  {name:'Автоспорт',tracks:[
+    {name:'Пожалуйста, только не домой',   artist:'Автоспорт', src:'music/motorsport/Пожалуйста, только не домой.mp3'},
+    {name:'Береги себя',                   artist:'Автоспорт', src:'music/motorsport/Автоспорт Береги себя.mp3'},
+    {name:'Песня о привязанности',         artist:'Автоспорт', src:'music/motorsport/Автоспорт песня о привязанности.mp3'},
+    {name:'Пятый день недели',             artist:'Автоспорт', src:'music/motorsport/Автоспорт пятый день недели.mp3'},
+    {name:'Я не буду спать',               artist:'Автоспорт', src:'music/motorsport/Автоспорт я не буду спать.mp3'},
+    {name:'Стой',                          artist:'Автоспорт', src:'music/motorsport/Стой.mp3'},
+  ]},
+  {name:'C418',tracks:[
+    {name:'Moog City',         artist:'C418', src:'music/c418/C418 Moog City.mp3'},
+    {name:'Dry Hands',         artist:'C418', src:'music/c418/C418 Dry Hands.mp3'},
+    {name:'Haggstrom',         artist:'C418', src:'music/c418/C418 Haggstrom.mp3'},
+    {name:'Mice On Venus',     artist:'C418', src:'music/c418/C418 Mice On Venus.mp3'},
+    {name:'Subwoofer Lullaby', artist:'C418', src:'music/c418/C418 Subwoofer Lullaby.mp3'},
+    {name:'Sweden',            artist:'C418', src:'music/c418/C418 Sweden.mp3'},
+    {name:'Wet Hands',         artist:'C418', src:'music/c418/C418 Wet Hands.mp3'},
+  ]},
+  {name:'Разное',tracks:[
+    {name:'shinra untitled',        artist:'semmmyq', src:'music/misc/semmmyq shinra untitled.mp3'},
+    {name:'superswag',              artist:'Unknown', src:'music/misc/Unknown_artist_superswag.mp3'},
+    {name:'You Could Be The One',   artist:'Unknown', src:'music/misc/You Could Be The One.mp3'},
+  ]}
 ];
+
 const aud=document.getElementById('aud');
 let cPl=0,cTr=0,playing=false,actx,anlsr,asrc,ardy=false;
 
@@ -675,10 +788,15 @@ function initAudio(){
 }
 function ldTr(pi,ti){
   cPl=pi;cTr=ti;const t=playlists[pi].tracks[ti];
-  aud.src=t.src;document.getElementById('p-ti').textContent=t.name;document.getElementById('p-ar').textContent=t.artist;
+  aud.src=t.src;
+  document.getElementById('p-ti').textContent=t.name;
+  document.getElementById('p-ar').textContent=t.artist;
   rnTracks();
 }
-function swPl(i){document.querySelectorAll('.pl-it').forEach((e,j)=>e.classList.toggle('on',j===i));ldTr(i,0);if(playing)aud.play()}
+function swPl(i){
+  document.querySelectorAll('.pl-it').forEach((e,j)=>e.classList.toggle('on',j===i));
+  ldTr(i,0);if(playing)aud.play();
+}
 function togPlay(){
   initAudio();if(actx&&actx.state==='suspended')actx.resume();
   if(aud.paused){aud.play().catch(()=>{});playing=true}else{aud.pause();playing=false}
@@ -701,24 +819,29 @@ aud.addEventListener('ended',nextT);
 aud.addEventListener('play',updBtn);aud.addEventListener('pause',updBtn);
 function rnTracks(){
   const ts=playlists[cPl].tracks;
-  document.getElementById('t-ls').innerHTML=ts.map((t,i)=>`<div class="t-rw${i===cTr?' on':''}" onclick="selTr(${i})"><span class="t-nx">${i===cTr?'♪':i+1}</span><div class="t-nm">${t.name}</div><a href="${t.src}" download class="t-dl" onclick="event.stopPropagation()">⬇</a></div>`).join('');
+  document.getElementById('t-ls').innerHTML=ts.map((t,i)=>`
+    <div class="t-rw${i===cTr?' on':''}" onclick="selTr(${i})">
+      <span class="t-nx">${i===cTr?'♪':i+1}</span>
+      <div class="t-nm">${t.name}</div>
+      <a href="${t.src}" download class="t-dl" onclick="event.stopPropagation()">⬇</a>
+    </div>`).join('');
 }
 function selTr(i){ldTr(cPl,i);initAudio();if(actx&&actx.state==='suspended')actx.resume();aud.play().then(()=>{playing=true;updBtn()}).catch(()=>{})}
 
-/* ── Wave + Droplet visualiser ─────────────── */
+/* ── Wave + Droplet visualiser ──────────────────────────────── */
 const wc=document.getElementById('wc'),wctx=wc.getContext('2d');
 let drops=[],prevBass=0;
-const wcRo=new ResizeObserver(()=>{wc.width=wc.offsetWidth;wc.height=76});
-wcRo.observe(wc);wc.width=wc.offsetWidth||400;wc.height=76;
+const wcRo=new ResizeObserver(()=>{wc.width=wc.offsetWidth;wc.height=74});
+wcRo.observe(wc);wc.width=wc.offsetWidth||400;wc.height=74;
 
 class Drop{
   constructor(x,str){
-    this.x=x;this.y=wc.height*.68;
-    this.vy=-(str*2.8+1.4);this.vx=(Math.random()-.5)*1.1;
-    this.r=Math.random()*2.8+.8;this.a=.95;this.g=.16;
-    this.col=Math.random()>.45?'a1':'a2';
+    this.x=x;this.y=wc.height*.65;
+    this.vy=-(str*2.6+1.3);this.vx=(Math.random()-.5)*1.1;
+    this.r=Math.random()*2.6+.7;this.a=.9;this.g=.15;
+    this.col=Math.random()>.42?'a1':'a2';
   }
-  step(){this.vy+=this.g;this.x+=this.vx;this.y+=this.vy;this.a-=.028}
+  step(){this.vy+=this.g;this.x+=this.vx;this.y+=this.vy;this.a-=.027}
   draw(cs){
     wctx.beginPath();wctx.arc(this.x,this.y,this.r,0,6.28);
     wctx.fillStyle=cs.getPropertyValue('--'+this.col).trim();
@@ -736,116 +859,113 @@ function animWave(){
   anlsr.getByteFrequencyData(fd);anlsr.getFloatTimeDomainData(td);
   wctx.clearRect(0,0,W,H);
   const cs=getComputedStyle(document.documentElement);
-  const c1=cs.getPropertyValue('--a1').trim()||'#c8310a';
-  const c2=cs.getPropertyValue('--a2').trim()||'#c09040';
+  const c1=cs.getPropertyValue('--a1').trim()||'#b02808';
+  const c2=cs.getPropertyValue('--a2').trim()||'#b08030';
 
-  // Bass
-  const bArr=fd.slice(0,14);
-  const bass=bArr.reduce((s,v)=>s+v,0)/(14*255);
+  const bArr=fd.slice(0,12);
+  const bass=bArr.reduce((s,v)=>s+v,0)/(12*255);
   const beat=bass>.42&&prevBass<.34;
   prevBass=bass;
 
   if(beat){const cnt=~~(bass*14)+4;for(let i=0;i<cnt;i++)drops.push(new Drop(Math.random()*W,bass))}
-  if(Math.random()<bass*.45)drops.push(new Drop(Math.random()*W,bass*.38));
+  if(Math.random()<bass*.42)drops.push(new Drop(Math.random()*W,bass*.36));
 
   const step=Math.max(1,~~(td.length/W));
-  const midY=H*.65,amp=H*.36;
-
-  // Build smooth wave path
+  const midY=H*.64,amp=H*.35;
   const pts=[];
   for(let x=0;x<W;x++){
     const idx=Math.min(~~(x*step),td.length-1);
-    pts.push({x,y:midY+td[idx]*amp*(1+bass*1.4)});
+    pts.push({x,y:midY+td[idx]*amp*(1+bass*1.5)});
   }
 
-  // Shadow glow wave
+  // Glow shadow
   wctx.save();
-  wctx.shadowColor=c1;wctx.shadowBlur=bass*24+5;
-  wctx.globalAlpha=.3+bass*.2;wctx.strokeStyle=c1;wctx.lineWidth=1.2;
-  wctx.beginPath();
-  pts.forEach((p,i)=>i===0?wctx.moveTo(p.x,p.y):wctx.lineTo(p.x,p.y));
+  wctx.shadowColor=c1;wctx.shadowBlur=bass*22+4;
+  wctx.globalAlpha=.28+bass*.18;wctx.strokeStyle=c1;wctx.lineWidth=1.1;
+  wctx.beginPath();pts.forEach((p,i)=>i===0?wctx.moveTo(p.x,p.y):wctx.lineTo(p.x,p.y));
   wctx.stroke();wctx.restore();
 
-  // Main wave (smooth bezier)
+  // Main smooth wave
   wctx.save();
   const lg=wctx.createLinearGradient(0,0,W,0);
   lg.addColorStop(0,c1);lg.addColorStop(.5,c2);lg.addColorStop(1,c1);
-  wctx.strokeStyle=lg;wctx.lineWidth=1.6+bass*2.2;
-  wctx.shadowColor=c2;wctx.shadowBlur=bass*12+3;wctx.globalAlpha=.92;
-  wctx.beginPath();
-  wctx.moveTo(pts[0].x,pts[0].y);
+  wctx.strokeStyle=lg;wctx.lineWidth=1.5+bass*2.2;
+  wctx.shadowColor=c2;wctx.shadowBlur=bass*10+2;wctx.globalAlpha=.9;
+  wctx.beginPath();wctx.moveTo(pts[0].x,pts[0].y);
   for(let i=1;i<pts.length-1;i++){
-    const mx=(pts[i].x+pts[i+1].x)/2,my=(pts[i].y+pts[i+1].y)/2;
-    wctx.quadraticCurveTo(pts[i].x,pts[i].y,mx,my);
+    const qx=(pts[i].x+pts[i+1].x)/2,qy=(pts[i].y+pts[i+1].y)/2;
+    wctx.quadraticCurveTo(pts[i].x,pts[i].y,qx,qy);
   }
   wctx.stroke();wctx.restore();
 
-  // Filled area under wave
+  // Fill under wave
   wctx.save();
   const fg=wctx.createLinearGradient(0,midY-amp,0,H);
-  fg.addColorStop(0,c1.replace(')',', .18)').replace('rgb','rgba'));
-  fg.addColorStop(1,'transparent');
-  wctx.fillStyle=fg;wctx.globalAlpha=.6+bass*.25;
-  wctx.beginPath();
-  wctx.moveTo(0,H);
+  // parse hex to rgba manually for gradient
+  fg.addColorStop(0,hexAlpha(c1,.16+bass*.1));
+  fg.addColorStop(1,'rgba(0,0,0,0)');
+  wctx.fillStyle=fg;wctx.globalAlpha=1;
+  wctx.beginPath();wctx.moveTo(0,H);
   pts.forEach(p=>wctx.lineTo(p.x,p.y));
   wctx.lineTo(W,H);wctx.closePath();wctx.fill();wctx.restore();
 
-  // Spectrum bar (very subtle)
-  wctx.save();wctx.globalAlpha=.14+bass*.1;
+  // Subtle spectrum
+  wctx.save();wctx.globalAlpha=.12+bass*.08;
   const bw=W/fd.length;
   for(let i=0;i<fd.length;i++){
-    const hh=(fd[i]/255)*H*.42;
+    const hh=(fd[i]/255)*H*.4;
     wctx.fillStyle=i%2===0?c1:c2;
     wctx.fillRect(i*bw,H-hh,bw-1,hh);
   }
   wctx.restore();
 
-  // Drops
   wctx.globalAlpha=1;
   drops=drops.filter(d=>{d.step();d.draw(cs);return!d.dead()});
 
-  // CSS beat vars
-  const bv=Math.max(0,(bass-.18)*1.6);
+  const bv=Math.max(0,(bass-.16)*1.7);
   document.documentElement.style.setProperty('--bs',bv.toFixed(3));
   document.documentElement.style.setProperty('--bg-gv',bv.toFixed(3));
 }
 
-/* ══ Gallery ══════════════════════════════════ */
-// ★ ADD IMAGES: push objects { src, cat, lbl } below
+function hexAlpha(hex,a){
+  hex=hex.trim();
+  if(hex.startsWith('rgb')){return hex.replace('rgb(','rgba(').replace(')',`,${a})`)}
+  const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  return isNaN(r)?`rgba(176,40,8,${a})`:`rgba(${r},${g},${b},${a})`;
+}
+
+/* ══ Gallery ════════════════════════════════════════════════════ */
 const IMGS=[
-  {src:'images/minecraft/1.png', cat:'mc',lbl:'Minecraft'},
-  {src:'images/minecraft/2.png', cat:'mc',lbl:'Minecraft'},
-  {src:'images/minecraft/3.png', cat:'mc',lbl:'Minecraft'},
-  {src:'images/minecraft/4.png', cat:'mc',lbl:'Minecraft'},
-  {src:'images/minecraft/5.png', cat:'mc',lbl:'Minecraft'},
-  {src:'images/minecraft/6.png', cat:'mc',lbl:'Minecraft'},
-  // {src:'Cawird.github.io/images/minecraft/2.png',cat:'mc',lbl:'Minecraft'},
-  {src:'images/spore/Spore.png', cat:'sp',lbl:'Spore'},
-  // {src:'Cawird.github.io/images/spore/2.png',    cat:'sp',lbl:'Spore'},
-  {src:'images/dota2/1.jpg',    cat:'d2',lbl:'Dota 2'},
-  {src:'images/dota2/2.jpg',    cat:'d2',lbl:'Dota 2'},
-  {src:'images/dota2/3.png',    cat:'d2',lbl:'Dota 2'},
-  {src:'images/dota2/4.jpg',    cat:'d2',lbl:'Dota 2'},
-  {src:'images/dota2/5.jpg',    cat:'d2',lbl:'Dota 2'},
-  {src:'images/dota2/6.jpg',    cat:'d2',lbl:'Dota 2'},
-  // {src:'Cawird.github.io/images/dota2/2.jpg',   cat:'d2',lbl:'Dota 2'},
+  {src:'images/minecraft/1.png',cat:'mc',lbl:'Minecraft'},
+  {src:'images/minecraft/2.png',cat:'mc',lbl:'Minecraft'},
+  {src:'images/minecraft/3.png',cat:'mc',lbl:'Minecraft'},
+  {src:'images/minecraft/4.png',cat:'mc',lbl:'Minecraft'},
+  {src:'images/minecraft/5.png',cat:'mc',lbl:'Minecraft'},
+  {src:'images/minecraft/6.png',cat:'mc',lbl:'Minecraft'},
+  {src:'images/spore/Spore.png',cat:'sp',lbl:'Spore'},
+  {src:'images/dota2/1.jpg',   cat:'d2',lbl:'Dota 2'},
+  {src:'images/dota2/2.jpg',   cat:'d2',lbl:'Dota 2'},
+  {src:'images/dota2/3.png',   cat:'d2',lbl:'Dota 2'},
+  {src:'images/dota2/4.jpg',   cat:'d2',lbl:'Dota 2'},
+  {src:'images/dota2/5.jpg',   cat:'d2',lbl:'Dota 2'},
+  {src:'images/dota2/6.jpg',   cat:'d2',lbl:'Dota 2'},
 ];
 let gF='all';
-const FB=l=>`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%230a0608'/%3E%3Ctext x='200' y='155' text-anchor='middle' font-size='24' fill='%23443040'%3E${encodeURIComponent(l)}%3C/text%3E%3C/svg%3E`;
+const FB=l=>`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%230a0508'/%3E%3Ctext x='200' y='155' text-anchor='middle' font-size='22' fill='%23443040'%3E${encodeURIComponent(l)}%3C/text%3E%3C/svg%3E`;
 
 function filtG(f){
   gF=f;
   const lbls={mc:'Minecraft',sp:'Spore',d2:'Dota 2'};
   document.querySelectorAll('.g-t').forEach(b=>{
-    const k=b.dataset.k;b.classList.toggle('on',f==='all'?k==='ga_all':b.textContent.trim()===lbls[f]);
+    const k=b.dataset.k;
+    b.classList.toggle('on',f==='all'?k==='ga_all':b.textContent.trim()===lbls[f]);
   });
   rnG();
 }
 function rnG(){
   const it=gF==='all'?IMGS:IMGS.filter(i=>i.cat===gF);
   document.getElementById('g-gd').innerHTML=it.map((im,i)=>`
-    <div class="gi" style="animation-delay:${i*.055}s" onclick="lbOp('${im.src}')">
+    <div class="gi" style="animation-delay:${i*.05}s" onclick="lbOp('${im.src}')">
       <img loading="lazy" src="${im.src}" alt="${im.lbl}" onerror="this.src='${FB(im.lbl)}'"/>
       <div class="gi-ov"><div class="gi-ac">
         <button class="gi-a" onclick="event.stopPropagation();lbOp('${im.src}')">🔍</button>
@@ -854,7 +974,7 @@ function rnG(){
     </div>`).join('');
 }
 
-/* ══ Lightbox ═════════════════════════════════ */
+/* ══ Lightbox ═══════════════════════════════════════════════════ */
 const lb=document.getElementById('lb'),lbCrd=document.getElementById('lb-crd'),
       lbIm=document.getElementById('lb-im'),lbSh=document.getElementById('lb-sh');
 let lbRd=0,lbSc=1,lbSr='',lbPch=null;
@@ -867,18 +987,12 @@ function lbCl(){lb.classList.remove('op');document.body.style.overflow=''}
 function lbRo(d){lbRd+=d;appLb()}
 function lbZm(d){lbSc=Math.min(4,Math.max(.3,lbSc+d));appLb()}
 function lbRs(){lbRd=0;lbSc=1;appLb()}
-function appLb(){
-  lbCrd.style.transform=`rotate(${lbRd}deg) scale(${lbSc})`;
-  document.getElementById('lb-sp').textContent=~~(lbSc*100)+'%';
-}
+function appLb(){lbCrd.style.transform=`rotate(${lbRd}deg) scale(${lbSc})`;document.getElementById('lb-sp').textContent=~~(lbSc*100)+'%'}
 function lbDl(){const a=document.createElement('a');a.href=lbSr;a.download=lbSr.split('/').pop();a.click()}
 
-// Cursor tilt + sheen
 lb.addEventListener('mousemove',e=>{
-  const r=lbCrd.getBoundingClientRect();
-  if(!r.width)return;
-  const cx=(e.clientX-r.left)/r.width-.5;
-  const cy=(e.clientY-r.top)/r.height-.5;
+  const r=lbCrd.getBoundingClientRect();if(!r.width)return;
+  const cx=(e.clientX-r.left)/r.width-.5,cy=(e.clientY-r.top)/r.height-.5;
   lbCrd.style.transform=`perspective(1000px) rotateX(${-cy*16}deg) rotateY(${cx*16}deg) rotate(${lbRd}deg) scale(${lbSc})`;
   lbSh.style.background=`radial-gradient(circle at ${(cx+.5)*100}% ${(cy+.5)*100}%,rgba(255,255,255,.2) 0%,rgba(255,255,255,0) 52%)`;
   lbSh.style.opacity='1';
@@ -896,7 +1010,7 @@ addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft')lbRo(-90);if(e.key==='ArrowRight')lbRo(90);
 });
 
-/* ══ Init ══════════════════════════════════════ */
+/* ══ Init ═══════════════════════════════════════════════════════ */
 calcAge();ldTr(0,0);rnTracks();rnG();
 document.getElementById('fy').textContent=new Date().getFullYear();
 </script>
