@@ -2,7 +2,7 @@
 <html lang="ru" data-theme="dark">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"/>
 <meta name="description" content="Abysswyrm — Game Developer, Dark Fantasy Creator"/>
 <title>Abysswyrm</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -42,7 +42,7 @@ button{border:none;background:none;cursor:none;font-family:inherit;color:inherit
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-thumb{background:var(--a2);border-radius:4px}
 
-/* ═══ INTRO ════════════════════════════════════════════════════════ */
+/* ═══ INTRO & LOADER ═══════════════════════════════════════════ */
 #intro{position:fixed;inset:0;z-index:1000;background:#000;display:flex;align-items:center;justify-content:center;flex-direction:column;pointer-events:none;overflow:hidden}
 #intro.done{animation:intro-out 1.5s var(--ez) forwards}
 @keyframes intro-out{to{opacity:0;pointer-events:none}}
@@ -53,13 +53,15 @@ button{border:none;background:none;cursor:none;font-family:inherit;color:inherit
 #intro-rune span{display:inline-block;opacity:0;animation:rune-appear .5s ease forwards}
 @keyframes rune-appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fade-in{to{opacity:1}}
+#loader-bar-container { width: 200px; height: 4px; background: rgba(255,255,255,0.1); margin-top: 40px; border-radius: 4px; overflow: hidden; opacity: 0; animation: fade-in 1s 0.5s ease forwards; }
+#loader-bar { width: 0%; height: 100%; background: linear-gradient(90deg, var(--a1), var(--a2)); transition: width 0.1s linear; box-shadow: 0 0 10px var(--gw2); }
 
 /* ═══ CURSOR ════════════════════════════════════════════════════ */
 #cur{position:fixed;z-index:9999;pointer-events:none;width:8px;height:8px;background:var(--a2);border-radius:50%;transform:translate(-50%,-50%);will-change:left,top;transition:width .2s,height .2s,background .2s,box-shadow .2s;mix-blend-mode:difference;box-shadow:0 0 10px var(--gw2)}
 #cur-r{position:fixed;z-index:9998;pointer-events:none;width:28px;height:28px;border:1px solid var(--a1);border-radius:50%;transform:translate(-50%,-50%);opacity:.5;will-change:left,top;transition:width .28s,height .28s,opacity .25s}
 body.hov #cur{width:14px;height:14px;background:var(--a1);box-shadow:0 0 20px var(--a2)}
 body.hov #cur-r{width:42px;height:42px;opacity:.22}
-@media(pointer:coarse){body,button,a,input{cursor:auto}#cur,#cur-r{display:none!important}}
+@media(pointer:coarse){body,button,a,input{cursor:auto!important}#cur,#cur-r{display:none!important}}
 
 /* ═══ BACKGROUND BEAT ORBS ══════════════════════════════════════════ */
 .beat-orb { position: fixed; pointer-events: none; border-radius: 50%; filter: blur(80px); z-index: 0; will-change: transform, opacity; transform: translate(calc(var(--px) * 1px), calc(var(--py) * 1px)) scale(var(--orb-scale)); opacity: var(--orb-opacity); transition: transform 0.08s ease-out, opacity 0.1s; }
@@ -88,14 +90,14 @@ body.shaking { animation: screen-shake 0.6s ease-in-out; }
 nav{position:fixed;top:0;inset-inline:0;height:var(--nav);z-index:200;display:flex;align-items:center;justify-content:center;padding:0 24px;background:rgba(3,0,0,.95);backdrop-filter:blur(24px);border-bottom:1px solid var(--b1);box-shadow:0 4px 30px rgba(0,0,0,.9), 0 0 calc(var(--bass) * 60px) var(--gw); transition: box-shadow 0.1s; transform: scale(calc(1 + var(--bass) * 0.02)); will-change: transform;}
 .nl{position:absolute;left:28px;font-family:var(--fh);font-size:1.1rem;letter-spacing:.2em;color:var(--a2);text-shadow:0 0 24px var(--gw2);display:flex;align-items:center;gap:8px}
 .nlinks{display:flex;gap:0;height:100%}
-.nlinks a{font-family:var(--fh);font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--t2);padding:0 24px;height:100%;display:flex;align-items:center;border-right:1px solid var(--b1);position:relative;transition:color .2s, background .2s, transform .2s}
+.nlinks a{font-family:var(--fh);font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--t2);padding:0 24px;height:100%;display:flex;align-items:center;border-right:1px solid var(--b1);position:relative;transition:color .2s, background .2s}
 .nlinks a:first-child{border-left:1px solid var(--b1)}
-.nlinks a:hover,.nlinks a.active{color:var(--a2);background:rgba(155,27,48,.1); transform: skewX(-10deg) scale(1.05);}
+.nlinks a:hover,.nlinks a.active{color:var(--a2);background:rgba(155,27,48,.1)}
 .nlinks a::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:var(--a2);transform:scaleX(0);transition:transform .3s var(--ez);box-shadow:0 0 10px var(--gw2)}
 .nlinks a:hover::after,.nlinks a.active::after{transform:scaleX(1)}
 .nc{position:absolute;right:28px;display:flex;align-items:center;gap:8px}
 .cb{font-family:var(--fh);font-size:.7rem;letter-spacing:.12em;padding:8px 14px;border:1px solid var(--b1);color:var(--t2);border-radius:6px;transition:all .25s;display:flex;align-items:center;gap:8px}
-.cb:hover,.cb.on{border-color:var(--a2);color:var(--a2);background:rgba(155,27,48,.1);box-shadow:0 0 8px var(--gw); transform: translateY(-2px) rotate(5deg);}
+.cb:hover,.cb.on{border-color:var(--a2);color:var(--a2);background:rgba(155,27,48,.1);box-shadow:0 0 8px var(--gw)}
 .nsep{color:var(--t3);font-size:.9rem;user-select:none;padding:0 4px}
 .mob-toggle{display:none;font-size:1.6rem;color:var(--a2);padding:8px;position:absolute;left:50%;transform:translateX(-50%)}
 .icon-img { width: 32px; height: 32px; object-fit: contain; filter: brightness(0.6) sepia(1) hue-rotate(-30deg) saturate(3); transition: filter 0.3s, transform 0.3s; vertical-align: middle; }
@@ -269,24 +271,39 @@ footer p{font-size:.9rem;color:var(--t2);font-style:italic}
 /* ═══ MOBILE TERMINAL TOGGLE ═══════════════════════════════════ */
 #mobile-term-btn { display: none; position: fixed; bottom: 20px; left: 20px; z-index: 800; width: 50px; height: 50px; background: var(--bg2); border: 1px solid var(--b1); border-radius: 50%; color: var(--a2); font-size: 1.5rem; align-items: center; justify-content: center; box-shadow: 0 0 20px var(--gw); }
 
-/* ═══ MOBILE ADAPTATIONS ═══════════════════════════════════════ */
-@media(max-width:880px){ 
+/* ═══ MOBILE OPTIMIZATIONS ═══════════════════════════════════════ */
+@media(pointer:coarse), (max-width: 768px) {
+  /* Navigation */
   .nl{display:none}
   .mob-toggle{display:block}
-  .nlinks{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(3,0,0,.98);flex-direction:column;align-items:center;justify-content:center;gap:0;transform:translateY(-100%);transition:transform .5s var(--ez);border:none;z-index: 999;} 
+  .nlinks{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(3,0,0,.98);flex-direction:column;align-items:center;justify-content:center;gap:0;transform:translateY(-100%);transition:transform .5s var(--ez);border:none;z-index:999;} 
   .nlinks.open{transform:translateY(0)} 
   .nlinks a{border:none;border-bottom:1px solid var(--b1);padding:24px 0;width:100%;justify-content:center} 
   #mobile-term-btn { display: flex; }
-}
-@media(max-width:760px){
+  
+  /* Disable heavy effects on mobile */
+  .beat-orb { display: none; }
+  #fog-canvas { display: none; }
+  #wc { display: none; } /* Hide visualizer on mobile */
+  .pc:hover, .st:hover, .co:hover, .g-page:hover img, .apill:hover, .tag:hover { transform: none !important; box-shadow: var(--heavy-shadow) !important; } /* Disable heavy hover transforms */
+  .pc:hover .pc-im img { transform: none !important; }
+  
+  /* Terminal Mobile Fullscreen */
+  #terminal-overlay { height: 100vh; bottom: 0; border-top: none; border-radius: 0; }
+  
+  /* Layouts Mobile */
   .ab-g{grid-template-columns:1fr;gap:40px;justify-items:center}
+  .av { width: 180px; }
+  .ab-sts { width: 180px; }
   .mu-g{grid-template-columns:1fr}
-  .grimoire{flex-direction: column; min-height: auto;}
+  .grimoire{flex-direction: column; min-height: auto; box-shadow: var(--heavy-shadow);}
   .g-page.left{border-right: none; border-bottom: 1px solid var(--b1); border-radius: 12px 12px 0 0;}
   .g-page.right{border-radius: 0 0 12px 12px;}
   .g-page img { max-height: 300px; }
-}
-@media(max-width:600px){
+  .pj-g { grid-template-columns: 1fr; }
+  .co-g { grid-template-columns: 1fr; }
+  
+  /* Spacing & Fonts Mobile */
   body { font-size: 16px; }
   .wrap { padding: 40px 15px; }
   .s-hd { margin-bottom: 40px; }
@@ -297,8 +314,10 @@ footer p{font-size:.9rem;color:var(--t2);font-style:italic}
   .p-ct { gap: 10px; }
   .p-bt { width: 40px; height: 40px; }
   .p-pl { width: 50px; height: 50px; }
-  .co-g { grid-template-columns: 1fr; }
-  #terminal-overlay { height: 60%; bottom: 0; }
+  
+  /* Remove complex shadows for performance */
+  :root { --heavy-shadow: 0 10px 20px rgba(0,0,0,.5); }
+  nav { backdrop-filter: none; background: rgba(3,0,0,.98); }
 }
 </style>
 </head>
@@ -327,6 +346,7 @@ footer p{font-size:.9rem;color:var(--t2);font-style:italic}
     <span style="animation-delay:2.1s">ᚨ</span>
     <span style="animation-delay:2.3s">ᚱ</span>
   </div>
+  <div id="loader-bar-container"><div id="loader-bar"></div></div>
 </div>
 
 <!-- ═══ NAV ══════════════════════════════════════════════════════════ -->
@@ -567,7 +587,7 @@ footer p{font-size:.9rem;color:var(--t2);font-style:italic}
 'use strict';
 
 // ═══ DEVICE & PERFORMANCE DETECTION ═════════════════════════════
-const isMobile = window.innerWidth <= 768 || ('ontouchstart' in document.documentElement);
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
 let isPageHidden = false;
 document.addEventListener('visibilitychange', () => { isPageHidden = document.hidden; });
 
@@ -597,7 +617,19 @@ document.addEventListener('click', (e) => { if (e.target.closest('button, a, .pl
 
 /* ═══ INTRO ════════════════════════════════════════════════════════ */
 const introEl=document.getElementById('intro');
-setTimeout(()=>{introEl.classList.add('done');setTimeout(()=>introEl.style.display='none',1500);},3000);
+const loaderBar = document.getElementById('loader-bar');
+let loadProgress = 0;
+const loadInterval = setInterval(() => {
+    loadProgress += Math.random() * 15 + 5;
+    if (loadProgress > 95) loadProgress = 95;
+    loaderBar.style.width = loadProgress + '%';
+}, 200);
+
+window.addEventListener('load', () => {
+    clearInterval(loadInterval);
+    loaderBar.style.width = '100%';
+    setTimeout(()=>{introEl.classList.add('done');setTimeout(()=>introEl.style.display='none',1500);}, 1500);
+});
 
 /* ═══ i18n & Theme & Age ═══════════════════════════════════════ */
 const T={ru:{nav_about:'Обо мне',nav_projects:'Проекты',nav_music:'Музыка',nav_gallery:'Галерея',nav_contacts:'Контакты',hero_ey:'Разработчик игр · Создатель Dark Fantasy',hero_q:'«Тот, кто не помнит своего прошлого — обречён открывать его снова»',ab_ey:'Кто я',ab_tl:'Из тьмы рождаются миры',age_lb:'Возраст:',ab_p1:'Меня зовут <strong>Abysswyrm</strong>. Ник отражает суть — дракон из бездны, нечто древнее, затаившееся в глубине. Это не просто образ: это подход к созданию игр и миров с тёмной, непредсказуемой природой.',ab_p2:'Разрабатываю игры на <strong>Unity / C#</strong>: от механик выживания и 3D-боёвки до магических систем прокачки. Создаю визуал в <strong>Blender</strong>, монтирую в <strong>After Effects</strong> и <strong>Premiere Pro</strong>. Тёмное фэнтези — не эстетика, это язык, на котором я думаю.',ab_p3:'В бездне нет дна — лишь бесконечное падение, в котором рождаются шепоты забытых богов. Я не создаю миры, я лишь высекаю искры из тьмы, чтобы осветить путь оступившимся. Истина сокрыта в пепле.',s_age:'лет',s_game:'игра',s_tl:'инструмента',s_id:'идей',pr_ey:'Моя работа',wip:'В разработке',sat:'Сатира',dp_ti:'Donkey Potions',ct_web:'Веб-сайт',mv_ds:'Путник с меткой на руке очнулся в мире, который он не помнит. Враждебные биомы, крафт, магическая система прокачки. Выживание — первая задача. Понять, кто ты — настоящая.',dp_ds:'Сатирический корпоративный сайт «Осёл-БиоТех» — производителя инновационных ослиных снадобий. Тонкая ирония, громкие заявления, сомнительная наука.',vis:'Посетить',mu_ey:'Саундскейпы',mu_pl:'Плейлисты',mu_np:'▶ Сейчас играет',pl_ms:'Автоспорт',pl_mi:'Разное',ga_ey:'Визуальный архив',ga_all:'Все',co_ey:'Найди меня',foot:'Создано с тьмой и кодом'},en:{nav_about:'About',nav_projects:'Projects',nav_music:'Music',nav_gallery:'Gallery',nav_contacts:'Contacts',hero_ey:'Game Developer · Dark Fantasy Creator',hero_q:'"Those who forget their past are doomed to rediscover it"',ab_ey:'Who I Am',ab_tl:'Worlds Are Born From Darkness',age_lb:'Age:',ab_p1:'I\'m <strong>Abysswyrm</strong> — a dragon of the abyss, ancient and lurking in the deep. Not just an image: an approach to building games and worlds with a dark, unpredictable nature.',ab_p2:'I build games in <strong>Unity / C#</strong>: from survival mechanics and 3D combat to magical progression systems. Visual work in <strong>Blender</strong>, editing in <strong>After Effects</strong> & <strong>Premiere Pro</strong>. Dark Fantasy isn\'t an aesthetic — it\'s my language.',ab_p3:'The abyss has no bottom — only an endless fall where whispers of forgotten gods are born. I do not create worlds, I merely strike sparks from the darkness to illuminate the path for the fallen. Truth is hidden in the ashes.',s_age:'years',s_game:'game',s_tl:'tools',s_id:'ideas',pr_ey:'My Work',wip:'In Dev',sat:'Satire',dp_ti:'Donkey Potions',ct_web:'Website',mv_ds:'A wanderer with a mark awakens in a forgotten world. Hostile biomes, crafting, magical progression. Survival is the first task. Knowing who you are — the real one.',dp_ds:'Satirical corporate site for "Donkey BioTech" — manufacturer of innovative donkey elixirs. Subtle irony, bold claims, questionable science.',vis:'Visit Site',mu_ey:'Soundscapes',mu_pl:'Playlists',mu_np:'▶ Now Playing',pl_ms:'Motorsport',pl_mi:'Misc',ga_ey:'Visual Archive',ga_all:'All',co_ey:'Find Me',foot:'Crafted with darkness and code'},fr:{nav_about:'À propos',nav_projects:'Projets',nav_music:'Musique',nav_gallery:'Galerie',nav_contacts:'Contacts',hero_ey:'Développeur de jeux · Créateur Dark Fantasy',hero_q:'« Celui qui oublie son passé est condamné à le redécouvrir »',ab_ey:'Qui suis-je',ab_tl:'Les mondes naissent des ténèbres',age_lb:'Âge :',ab_p1:'Je suis <strong>Abysswyrm</strong> — un dragon de l\'abîsse, ancien et tapi dans les profondeurs. Pas seulement une image : une approche de la création de jeux et de mondes à la nature sombre et imprévisible.',ab_p2:'Je crée des jeux en <strong>Unity / C#</strong>, conçois en <strong>Blender</strong>, monte en <strong>After Effects</strong> & <strong>Premiere Pro</strong>. Le Dark Fantasy est ma langue de pensée.',ab_p3:'L\'abîme n\'a pas de fond — seulement une chute infinie où naissent les murmures des dieux oubliés. Je ne crée pas de mondes, je ne fais que frapper des étincelles depuis l\'obscurité pour éclairer le chemin de ceux qui ont trébuché. La vérité est cachée dans les cendres.',s_age:'ans',s_game:'jeu',s_tl:'outils',s_id:'idées',pr_ey:'Mon Travail',wip:'En dev',sat:'Satire',dp_ti:'Donkey Potions',ct_web:'Site web',mv_ds:'Un voyageur marqué se réveille dans un monde oublié. Biomes hostiles, artisanat, magie. Survivre est le premier défi. Comprendre qui l\'on est — le vrai.',dp_ds:'Site satirique pour « Donkey BioTech ». Ironie subtile, science douteuse.',vis:'Visiter',mu_ey:'Paysages sonores',mu_pl:'Playlists',mu_np:'▶ En cours',pl_ms:'Motorsport',pl_mi:'Divers',ga_ey:'Archives visuelles',ga_all:'Tout',co_ey:'Me trouver',foot:'Créé avec ténèbres et code'}};
@@ -611,23 +643,18 @@ function calcAge(){const b=new Date(2005,9,28),n=new Date();let a=n.getFullYear(
 /* ═══ CURSOR & PARALLAX ═════════════════════════════════════════ */
 const cur=document.getElementById('cur'), curR=document.getElementById('cur-r');
 let mx=0, my=0, rx=0, ry=0;
-let mouseThrottle = false;
-addEventListener('mousemove',e=>{
-    if (mouseThrottle) return;
-    mouseThrottle = true;
-    mx=e.clientX; my=e.clientY;
-    const cx = window.innerWidth / 2; const cy = window.innerHeight / 2;
-    document.documentElement.style.setProperty('--px', (-(mx - cx) / 30).toFixed(2));
-    document.documentElement.style.setProperty('--py', (-(my - cy) / 30).toFixed(2));
-    setTimeout(() => mouseThrottle = false, 50);
-},{passive:true});
-addEventListener('mouseover',e=>{document.body.classList.toggle('hov',!!e.target.closest('a,button,.pc,.t-rw,.pl-it,.co,.g-btn,.g-t,.g-page,.tag,.st,.lbb'))},{passive:true});
 if (!isMobile) {
+    let mouseThrottle = false;
+    addEventListener('mousemove',e=>{
+        if (mouseThrottle) return; mouseThrottle = true; mx=e.clientX; my=e.clientY;
+        const cx = window.innerWidth / 2; const cy = window.innerHeight / 2;
+        document.documentElement.style.setProperty('--px', (-(mx - cx) / 30).toFixed(2));
+        document.documentElement.style.setProperty('--py', (-(my - cy) / 30).toFixed(2));
+        setTimeout(() => mouseThrottle = false, 50);
+    },{passive:true});
+    addEventListener('mouseover',e=>{document.body.classList.toggle('hov',!!e.target.closest('a,button,.pc,.t-rw,.pl-it,.co,.g-btn,.g-t,.g-page,.tag,.st,.lbb'))},{passive:true});
     (function tc(){
-        cur.style.left=mx+'px';cur.style.top=my+'px';
-        rx+=(mx-rx)*.14;ry+=(my-ry)*.14;
-        curR.style.left=rx+'px';curR.style.top=ry+'px';
-        requestAnimationFrame(tc);
+        cur.style.left=mx+'px';cur.style.top=my+'px'; rx+=(mx-rx)*.14;ry+=(my-ry)*.14; curR.style.left=rx+'px';curR.style.top=ry+'px'; requestAnimationFrame(tc);
     })();
 }
 
@@ -635,11 +662,7 @@ if (!isMobile) {
 let easterBuffer = '';
 const easterOverlay = document.getElementById('easter-egg-overlay');
 const wyrmOverlay = document.getElementById('wyrm-overlay');
-window.addEventListener('keydown', (e) => {
-    easterBuffer += e.key.toUpperCase();
-    if (easterBuffer.length > 10) easterBuffer = easterBuffer.slice(-10);
-    if (easterBuffer.endsWith('EVILSTRAFE')) { triggerEasterEgg(); easterBuffer = ''; }
-});
+window.addEventListener('keydown', (e) => { easterBuffer += e.key.toUpperCase(); if (easterBuffer.length > 10) easterBuffer = easterBuffer.slice(-10); if (easterBuffer.endsWith('EVILSTRAFE')) { triggerEasterEgg(); easterBuffer = ''; } });
 function triggerEasterEgg() { easterOverlay.classList.remove('active'); void easterOverlay.offsetWidth; easterOverlay.classList.add('active'); setTimeout(() => easterOverlay.classList.remove('active'), 1800); }
 function summonWyrm() { document.body.classList.add('shaking'); wyrmOverlay.classList.remove('active'); void wyrmOverlay.offsetWidth; wyrmOverlay.classList.add('active'); setTimeout(() => { document.body.classList.remove('shaking'); wyrmOverlay.classList.remove('active'); }, 2500); }
 
@@ -651,83 +674,27 @@ function closeMob(){const nlinks=document.getElementById('nlinks'),btn=document.
 function initSparks() { const c=document.getElementById('hc'),ctx=c.getContext('2d');let W,H,sp=[];const ro=new ResizeObserver(()=>{W=c.width=c.offsetWidth;H=c.height=c.offsetHeight});ro.observe(c);W=c.width=c.offsetWidth||window.innerWidth;H=c.height=c.offsetHeight||window.innerHeight; class S{constructor(){this.rs(true)}rs(i){this.x=Math.random()*W;this.y=i?Math.random()*H:H+5;this.vy=-(Math.random()*.42+.1);this.vx=(Math.random()-.5)*.16;this.l=0;this.ml=110+Math.random()*220;this.r=Math.random()*1.3+.3}step(){this.x+=this.vx;this.y+=this.vy;this.l++;if(this.l>=this.ml)this.rs()}draw(){const p=this.l/this.ml,a=p<.2?p/.2:1-(p-.2)/.8;ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,6.28);ctx.fillStyle=Math.random()>.5?cachedTheme.a1:cachedTheme.a2;ctx.globalAlpha=a*.48;ctx.fill();}} for(let i=0;i<50;i++){const s=new S();s.l=Math.random()*s.ml;sp.push(s)} (function fr(){ if(isPageHidden) return requestAnimationFrame(fr); ctx.clearRect(0,0,W,H);ctx.globalAlpha=1;sp.forEach(s=>{s.step();s.draw()});requestAnimationFrame(fr)})(); }
 
 /* ═══ 3D PORTAL OF THE ABYSS (THREE.JS) ════════════════════════════ */
-let portalScene, portalCamera, portalRenderer, portalParticles, portalGeo;
-let portalMouseX = 0, portalMouseY = 0;
+let portalScene, portalCamera, portalRenderer, portalParticles, portalGeo; let portalMouseX = 0, portalMouseY = 0;
 function initPortal() {
-    const canvas = document.getElementById('hc');
-    portalScene = new THREE.Scene();
-    portalCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    portalCamera.position.z = 3;
-    portalRenderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    portalRenderer.setSize(window.innerWidth, window.innerHeight);
-    portalRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    const particleCount = 8000;
-    portalGeo = new THREE.BufferGeometry();
-    const positions = new Float32Array(particleCount * 3);
-    const velocities = new Float32Array(particleCount * 3);
-    const colors = new Float32Array(particleCount * 3);
-    const c1 = new THREE.Color(cachedTheme.a1);
-    const c2 = new THREE.Color(cachedTheme.a2);
-    for (let i = 0; i < particleCount; i++) {
-        const i3 = i * 3; const theta = Math.random() * Math.PI * 2; const phi = Math.acos((Math.random() * 2) - 1); const r = 1.5 + Math.random() * 1.5;
-        positions[i3] = r * Math.sin(phi) * Math.cos(theta); positions[i3 + 1] = r * Math.sin(phi) * Math.sin(theta); positions[i3 + 2] = r * Math.cos(phi);
-        velocities[i3] = (Math.random() - 0.5) * 0.02; velocities[i3 + 1] = (Math.random() - 0.5) * 0.02; velocities[i3 + 2] = -0.01 - Math.random() * 0.02;
-        const mix = Math.random(); const col = c1.clone().lerp(c2, mix); colors[i3] = col.r; colors[i3+1] = col.g; colors[i3+2] = col.b;
-    }
-    portalGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    portalGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    portalGeo.userData = { velocities };
-    const mat = new THREE.PointsMaterial({ size: 0.06, vertexColors: true, transparent: true, opacity: 1.0, blending: THREE.AdditiveBlending });
-    portalParticles = new THREE.Points(portalGeo, mat);
-    portalScene.add(portalParticles);
+    const canvas = document.getElementById('hc'); portalScene = new THREE.Scene(); portalCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000); portalCamera.position.z = 3; portalRenderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true }); portalRenderer.setSize(window.innerWidth, window.innerHeight); portalRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    const particleCount = 8000; portalGeo = new THREE.BufferGeometry(); const positions = new Float32Array(particleCount * 3); const velocities = new Float32Array(particleCount * 3); const colors = new Float32Array(particleCount * 3); const c1 = new THREE.Color(cachedTheme.a1); const c2 = new THREE.Color(cachedTheme.a2);
+    for (let i = 0; i < particleCount; i++) { const i3 = i * 3; const theta = Math.random() * Math.PI * 2; const phi = Math.acos((Math.random() * 2) - 1); const r = 1.5 + Math.random() * 1.5; positions[i3] = r * Math.sin(phi) * Math.cos(theta); positions[i3 + 1] = r * Math.sin(phi) * Math.sin(theta); positions[i3 + 2] = r * Math.cos(phi); velocities[i3] = (Math.random() - 0.5) * 0.02; velocities[i3 + 1] = (Math.random() - 0.5) * 0.02; velocities[i3 + 2] = -0.01 - Math.random() * 0.02; const mix = Math.random(); const col = c1.clone().lerp(c2, mix); colors[i3] = col.r; colors[i3+1] = col.g; colors[i3+2] = col.b; }
+    portalGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3)); portalGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3)); portalGeo.userData = { velocities };
+    const mat = new THREE.PointsMaterial({ size: 0.06, vertexColors: true, transparent: true, opacity: 1.0, blending: THREE.AdditiveBlending }); portalParticles = new THREE.Points(portalGeo, mat); portalScene.add(portalParticles);
     window.addEventListener('resize', () => { portalCamera.aspect = window.innerWidth / window.innerHeight; portalCamera.updateProjectionMatrix(); portalRenderer.setSize(window.innerWidth, window.innerHeight); });
-    window.addEventListener('mousemove', (e) => { portalMouseX = (e.clientX / window.innerWidth) * 2 - 1; portalMouseY = -(e.clientY / window.innerHeight) * 2 + 1; });
-    animatePortal();
+    window.addEventListener('mousemove', (e) => { portalMouseX = (e.clientX / window.innerWidth) * 2 - 1; portalMouseY = -(e.clientY / window.innerHeight) * 2 + 1; }); animatePortal();
 }
-function animatePortal() {
-    requestAnimationFrame(animatePortal);
-    if (isPageHidden) return;
-    const pos = portalGeo.attributes.position.array; const vel = portalGeo.userData.velocities.array;
-    const bass = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bass')) || 0;
-    for (let i = 0; i < pos.length; i += 3) {
-        const x = pos[i], y = pos[i+1], z = pos[i+2]; const angle = Math.atan2(y, x) + (0.02 + bass * 0.08); const radius = Math.sqrt(x*x + y*y);
-        pos[i] = Math.cos(angle) * radius + vel[i]; pos[i+1] = Math.sin(angle) * radius + vel[i+1]; pos[i+2] += vel[i+2] + bass * 0.02;
-        pos[i] += portalMouseX * 0.002; pos[i+1] += portalMouseY * 0.002;
-        if (pos[i+2] < -3 || Math.sqrt(pos[i]*pos[i] + pos[i+1]*pos[i+1]) < 0.1) { const theta = Math.random() * Math.PI * 2; pos[i] = Math.cos(theta) * (1.5 + Math.random()); pos[i+1] = Math.sin(theta) * (1.5 + Math.random()); pos[i+2] = 2.0 + Math.random(); }
-    }
-    portalGeo.attributes.position.needsUpdate = true; portalParticles.rotation.z += 0.002 + bass * 0.02; portalRenderer.render(portalScene, portalCamera);
-}
+function animatePortal() { requestAnimationFrame(animatePortal); if (isPageHidden) return; const pos = portalGeo.attributes.position.array; const vel = portalGeo.userData.velocities.array; const bass = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bass')) || 0; for (let i = 0; i < pos.length; i += 3) { const x = pos[i], y = pos[i+1], z = pos[i+2]; const angle = Math.atan2(y, x) + (0.02 + bass * 0.08); const radius = Math.sqrt(x*x + y*y); pos[i] = Math.cos(angle) * radius + vel[i]; pos[i+1] = Math.sin(angle) * radius + vel[i+1]; pos[i+2] += vel[i+2] + bass * 0.02; pos[i] += portalMouseX * 0.002; pos[i+1] += portalMouseY * 0.002; if (pos[i+2] < -3 || Math.sqrt(pos[i]*pos[i] + pos[i+1]*pos[i+1]) < 0.1) { const theta = Math.random() * Math.PI * 2; pos[i] = Math.cos(theta) * (1.5 + Math.random()); pos[i+1] = Math.sin(theta) * (1.5 + Math.random()); pos[i+2] = 2.0 + Math.random(); } } portalGeo.attributes.position.needsUpdate = true; portalParticles.rotation.z += 0.002 + bass * 0.02; portalRenderer.render(portalScene, portalCamera); }
 
 /* ═══ FOG CANVAS ═══════════════════════════════════════════════ */
-const fogCanvas = document.getElementById('fog-canvas');
-const fogCtx = fogCanvas.getContext('2d');
-let fogW, fogH;
-const fogParticles = [];
-function initFog() {
-    const ro = new ResizeObserver(() => { fogW = fogCanvas.width = window.innerWidth; fogH = fogCanvas.height = window.innerHeight; });
-    ro.observe(fogCanvas); fogW = fogCanvas.width = window.innerWidth; fogH = fogCanvas.height = window.innerHeight;
-    for(let i=0; i<25; i++) { fogParticles.push({ x: Math.random() * fogW, y: Math.random() * fogH, vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5, r: 200 + Math.random() * 250, a: 0.06 + Math.random() * 0.05 }); }
-    animateFog();
-}
-function animateFog() {
-    requestAnimationFrame(animateFog);
-    if (isPageHidden) return;
-    fogCtx.clearRect(0, 0, fogW, fogH);
-    const bass = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bass')) || 0;
-    fogParticles.forEach(p => {
-        p.x += p.vx + (mx - fogW/2) * 0.0002; p.y += p.vy + (my - fogH/2) * 0.0002;
-        if(p.x < -p.r) p.x = fogW + p.r; if(p.x > fogW + p.r) p.x = -p.r; if(p.y < -p.r) p.y = fogH + p.r; if(p.y > fogH + p.r) p.y = -p.r;
-        const currentR = p.r + bass * 100; const currentA = p.a + bass * 0.1;
-        const grad = fogCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, currentR);
-        grad.addColorStop(0, `rgba(155, 27, 48, ${currentA})`); grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-        fogCtx.fillStyle = grad; fogCtx.beginPath(); fogCtx.arc(p.x, p.y, currentR, 0, Math.PI*2); fogCtx.fill();
-    });
-}
+const fogCanvas = document.getElementById('fog-canvas'); const fogCtx = fogCanvas.getContext('2d'); let fogW, fogH; const fogParticles = [];
+function initFog() { const ro = new ResizeObserver(() => { fogW = fogCanvas.width = window.innerWidth; fogH = fogCanvas.height = window.innerHeight; }); ro.observe(fogCanvas); fogW = fogCanvas.width = window.innerWidth; fogH = fogCanvas.height = window.innerHeight; for(let i=0; i<25; i++) { fogParticles.push({ x: Math.random() * fogW, y: Math.random() * fogH, vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5, r: 200 + Math.random() * 250, a: 0.06 + Math.random() * 0.05 }); } animateFog(); }
+function animateFog() { requestAnimationFrame(animateFog); if (isPageHidden) return; fogCtx.clearRect(0, 0, fogW, fogH); const bass = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bass')) || 0; fogParticles.forEach(p => { p.x += p.vx + (mx - fogW/2) * 0.0002; p.y += p.vy + (my - fogH/2) * 0.0002; if(p.x < -p.r) p.x = fogW + p.r; if(p.x > fogW + p.r) p.x = -p.r; if(p.y < -p.r) p.y = fogH + p.r; if(p.y > fogH + p.r) p.y = -p.r; const currentR = p.r + bass * 100; const currentA = p.a + bass * 0.1; const grad = fogCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, currentR); grad.addColorStop(0, `rgba(155, 27, 48, ${currentA})`); grad.addColorStop(1, 'rgba(0, 0, 0, 0)'); fogCtx.fillStyle = grad; fogCtx.beginPath(); fogCtx.arc(p.x, p.y, currentR, 0, Math.PI*2); fogCtx.fill(); }); }
 
 /* ═══ Music & Audio Reactivity ══════════════════════════════════ */
 const playlists=[{name:'Автоспорт',tracks:[{name:'Пожалуйста, только не домой',artist:'Автоспорт',src:'music/motorsport/Пожалуйста, только не домой.mp3'},{name:'Береги себя',artist:'Автоспорт',src:'music/motorsport/Автоспорт Береги себя.mp3'},{name:'Песня о привязанности',artist:'Автоспорт',src:'music/motorsport/Автоспорт песня о привязанности.mp3'},{name:'Пятый день недели',artist:'Автоспорт',src:'music/motorsport/Автоспорт пятый день недели.mp3'},{name:'Я не буду спать',artist:'Автоспорт',src:'music/motorsport/Автоспорт я не буду спать.mp3'},{name:'Стой',artist:'Автоспорт',src:'music/motorsport/Стой.mp3'}]},{name:'C418',tracks:[{name:'Moog City',artist:'C418',src:'music/c418/C418 Moog City.mp3'},{name:'Dry Hands',artist:'C418',src:'music/c418/C418 Dry Hands.mp3'},{name:'Haggstrom',artist:'C418',src:'music/c418/C418 Haggstrom.mp3'},{name:'Mice On Venus',artist:'C418',src:'music/c418/C418 Mice On Venus.mp3'},{name:'Subwoofer Lullaby',artist:'C418',src:'music/c418/C418 Subwoofer Lullaby.mp3'},{name:'Sweden',artist:'C418',src:'music/c418/C418 Sweden.mp3'},{name:'Wet Hands',artist:'C418',src:'music/c418/C418 Wet Hands.mp3'}]},{name:'Разное',tracks:[{name:'shinra untitled',artist:'semmmyq',src:'music/misc/semmmyq shinra untitled.mp3'},{name:'superswag',artist:'Unknown',src:'music/misc/Unknown_artist_superswag.mp3'},{name:'You Could Be The One',artist:'Unknown',src:'music/misc/You Could Be The One.mp3'}]}];
 const aud=document.getElementById('aud');let cPl=0,cTr=0,playing=false,actx,anlsr,asrc,ardy=false;
-function initAudio(){if(ardy)return;try{actx=new(window.AudioContext||window.webkitAudioContext)();anlsr=actx.createAnalyser();anlsr.fftSize=1024;anlsr.smoothingTimeConstant=.82;asrc=actx.createMediaElementSource(aud);asrc.connect(anlsr);anlsr.connect(actx.destination);ardy=true;animWave();}catch(e){}}
+function initAudio(){if(ardy)return;try{actx=new(window.AudioContext||window.webkitAudioContext)();anlsr=actx.createAnalyser();anlsr.fftSize=1024;anlsr.smoothingTimeConstant=.82;asrc=actx.createMediaElementSource(aud);asrc.connect(anlsr);anlsr.connect(actx.destination);ardy=true;if(!isMobile) animWave();}catch(e){}}
 function ldTr(pi,ti){cPl=pi;cTr=ti;const t=playlists[pi].tracks[ti];aud.src=t.src;document.getElementById('p-ti').textContent=t.name;document.getElementById('p-ar').textContent=t.artist;rnTracks();}
 function swPl(i){document.querySelectorAll('.pl-it').forEach((e,j)=>e.classList.toggle('on',j===i));ldTr(i,0);if(playing)aud.play();}
 function togPlay(){initAudio();if(actx&&actx.state==='suspended')actx.resume();if(aud.paused){aud.play().catch(()=>{});playing=true}else{aud.pause();playing=false}updBtn();}
@@ -735,41 +702,16 @@ function updBtn(){document.getElementById('p-pl').textContent=aud.paused?'▶':'
 function prevT(){const n=(cTr-1+playlists[cPl].tracks.length)%playlists[cPl].tracks.length;ldTr(cPl,n);if(playing)aud.play().catch(()=>{})}
 function nextT(){const n=(cTr+1)%playlists[cPl].tracks.length;ldTr(cPl,n);if(playing)aud.play().catch(()=>{})}
 function seekAud(e){if(!aud.duration)return;const r=document.getElementById('p-pb').getBoundingClientRect();aud.currentTime=((e.clientX-r.left)/r.width)*aud.duration}
-function setVol(v){aud.volume=v}
-function fmt(s){const m=~~(s/60);return m+':'+(~~(s%60)+'').padStart(2,'0')}
+function setVol(v){aud.volume=v} function fmt(s){const m=~~(s/60);return m+':'+(~~(s%60)+'').padStart(2,'0')}
 aud.addEventListener('timeupdate',()=>{if(!aud.duration)return;const p=aud.currentTime/aud.duration;document.getElementById('p-pf').style.width=p*100+'%';document.getElementById('p-c').textContent=fmt(aud.currentTime);document.getElementById('p-d').textContent=fmt(aud.duration);},{passive:true});
 aud.addEventListener('ended',nextT);aud.addEventListener('play',updBtn);aud.addEventListener('pause',updBtn);
 function rnTracks(){const ts=playlists[cPl].tracks;document.getElementById('t-ls').innerHTML=ts.map((t,i)=>`<div class="t-rw${i===cTr?' on':''}" onclick="selTr(${i})"><span class="t-nx">${i===cTr?'ᛟ':i+1}</span><div class="t-nm">${t.name}</div><a href="${t.src}" download class="t-dl" onclick="event.stopPropagation()">⬇</a></div>`).join('');}
 function selTr(i){ldTr(cPl,i);initAudio();if(actx&&actx.state==='suspended')actx.resume();aud.play().then(()=>{playing=true;updBtn()}).catch(()=>{})}
 
-/* ── ORGANIC WAVE EQUALIZER & GLOBAL AUDIO VARIABLES ══════════════ */
-const wc=document.getElementById('wc'),wctx=wc.getContext('2d');
-const wcRo=new ResizeObserver(()=>{wc.width=wc.offsetWidth;wc.height=100});wcRo.observe(wc);wc.width=wc.offsetWidth||400;wc.height=100;
+/* ── ORGANIC WAVE EQUALIZER & GLOBAL AUDIO VARIABLES (PC ONLY) ═══ */
+const wc=document.getElementById('wc'),wctx=wc.getContext('2d'); const wcRo=new ResizeObserver(()=>{wc.width=wc.offsetWidth;wc.height=100});wcRo.observe(wc);wc.width=wc.offsetWidth||400;wc.height=100;
 let rawBass = 0, rawTreble = 0;
-function animWave(){
-  if(!anlsr){requestAnimationFrame(animWave);return}
-  requestAnimationFrame(animWave);
-  if (isPageHidden) return;
-  const W=wc.width,H=wc.height; const fd=new Uint8Array(anlsr.frequencyBinCount); const td=new Float32Array(anlsr.fftSize);
-  anlsr.getByteFrequencyData(fd);anlsr.getFloatTimeDomainData(td); wctx.clearRect(0,0,W,H); const c1=cachedTheme.a1, c2=cachedTheme.a2;
-  const bArr=fd.slice(0,12); const bass=bArr.reduce((s,v)=>s+v,0)/(12*255); rawBass += (bass - rawBass) * 0.2;
-  const tArr=fd.slice(100, 200); const treble=tArr.reduce((s,v)=>s+v,0)/(100*255); rawTreble += (treble - rawTreble) * 0.2;
-  document.documentElement.style.setProperty('--bass', rawBass.toFixed(3)); document.documentElement.style.setProperty('--treble', rawTreble.toFixed(3));
-  const step=Math.max(1,~~(td.length/W)); const midY=H*.5,amp=H*.4; const pts=[];
-  for(let x=0;x<W;x++){const idx=Math.min(~~(x*step),td.length-1);pts.push({x,y:midY+td[idx]*amp*(1+bass*1.5)});}
-  wctx.save(); const lg=wctx.createLinearGradient(0,0,W,0); lg.addColorStop(0,c1);lg.addColorStop(.5,c2);lg.addColorStop(1,c1);
-  wctx.strokeStyle=lg;wctx.lineWidth=3+bass*6; wctx.lineCap='round';wctx.lineJoin='round'; wctx.shadowColor=c2;wctx.shadowBlur=15+bass*25;wctx.globalAlpha=.9;
-  wctx.beginPath();wctx.moveTo(pts[0].x,pts[0].y);
-  for(let i=1;i<pts.length;i++){const xc=(pts[i].x+pts[i-1].x)/2,yc=(pts[i].y+pts[i-1].y)/2;wctx.quadraticCurveTo(pts[i-1].x,pts[i-1].y,xc,yc);}
-  wctx.stroke();wctx.restore();
-  wctx.save(); wctx.globalAlpha = 0.3 + bass*0.3; wctx.fillStyle = c1; wctx.shadowColor = c1; wctx.shadowBlur = 10;
-  const bars = 32; const barW = W / bars;
-  for(let i=0; i<bars; i++){ const freqIdx = Math.floor(i * (fd.length/bars)); const barH = (fd[freqIdx]/255) * H * 0.8; const x = i * barW; const y = H - barH; const radius = 4;
-      wctx.beginPath(); wctx.moveTo(x + radius, y); wctx.lineTo(x + barW - radius, y); wctx.quadraticCurveTo(x + barW, y, x + barW, y + radius); wctx.lineTo(x + barW, H); wctx.lineTo(x, H); wctx.lineTo(x, y + radius); wctx.quadraticCurveTo(x, y, x + radius, y); wctx.fill(); }
-  wctx.restore(); const bv=Math.max(0,(bass-.16)*1.7); document.documentElement.style.setProperty('--bs',bv.toFixed(3)); document.documentElement.style.setProperty('--bg-gv',bv.toFixed(3));
-  const beatScale = 1 + rawBass * 0.8; const beatOpacity = 0.1 + rawBass * 0.6;
-  document.documentElement.style.setProperty('--orb-scale', beatScale.toFixed(3)); document.documentElement.style.setProperty('--orb-opacity', beatOpacity.toFixed(3));
-}
+function animWave(){ if(!anlsr){requestAnimationFrame(animWave);return} requestAnimationFrame(animWave); if (isPageHidden) return; const W=wc.width,H=wc.height; const fd=new Uint8Array(anlsr.frequencyBinCount); const td=new Float32Array(anlsr.fftSize); anlsr.getByteFrequencyData(fd);anlsr.getFloatTimeDomainData(td); wctx.clearRect(0,0,W,H); const c1=cachedTheme.a1, c2=cachedTheme.a2; const bArr=fd.slice(0,12); const bass=bArr.reduce((s,v)=>s+v,0)/(12*255); rawBass += (bass - rawBass) * 0.2; const tArr=fd.slice(100, 200); const treble=tArr.reduce((s,v)=>s+v,0)/(100*255); rawTreble += (treble - rawTreble) * 0.2; document.documentElement.style.setProperty('--bass', rawBass.toFixed(3)); document.documentElement.style.setProperty('--treble', rawTreble.toFixed(3)); const step=Math.max(1,~~(td.length/W)); const midY=H*.5,amp=H*.4; const pts=[]; for(let x=0;x<W;x++){const idx=Math.min(~~(x*step),td.length-1);pts.push({x,y:midY+td[idx]*amp*(1+bass*1.5)});} wctx.save(); const lg=wctx.createLinearGradient(0,0,W,0); lg.addColorStop(0,c1);lg.addColorStop(.5,c2);lg.addColorStop(1,c1); wctx.strokeStyle=lg;wctx.lineWidth=3+bass*6; wctx.lineCap='round';wctx.lineJoin='round'; wctx.shadowColor=c2;wctx.shadowBlur=15+bass*25;wctx.globalAlpha=.9; wctx.beginPath();wctx.moveTo(pts[0].x,pts[0].y); for(let i=1;i<pts.length;i++){const xc=(pts[i].x+pts[i-1].x)/2,yc=(pts[i].y+pts[i-1].y)/2;wctx.quadraticCurveTo(pts[i-1].x,pts[i-1].y,xc,yc);} wctx.stroke();wctx.restore(); wctx.save(); wctx.globalAlpha = 0.3 + bass*0.3; wctx.fillStyle = c1; wctx.shadowColor = c1; wctx.shadowBlur = 10; const bars = 32; const barW = W / bars; for(let i=0; i<bars; i++){ const freqIdx = Math.floor(i * (fd.length/bars)); const barH = (fd[freqIdx]/255) * H * 0.8; const x = i * barW; const y = H - barH; const radius = 4; wctx.beginPath(); wctx.moveTo(x + radius, y); wctx.lineTo(x + barW - radius, y); wctx.quadraticCurveTo(x + barW, y, x + barW, y + radius); wctx.lineTo(x + barW, H); wctx.lineTo(x, H); wctx.lineTo(x, y + radius); wctx.quadraticCurveTo(x, y, x + radius, y); wctx.fill(); } wctx.restore(); const bv=Math.max(0,(bass-.16)*1.7); document.documentElement.style.setProperty('--bs',bv.toFixed(3)); document.documentElement.style.setProperty('--bg-gv',bv.toFixed(3)); const beatScale = 1 + rawBass * 0.8; const beatOpacity = 0.1 + rawBass * 0.6; document.documentElement.style.setProperty('--orb-scale', beatScale.toFixed(3)); document.documentElement.style.setProperty('--orb-opacity', beatOpacity.toFixed(3)); }
 
 /* ═══ GALLERY ════════════════════════════════════════════════════ */
 const IMGS=[{src:'images/minecraft/1.png',cat:'mc',lbl:'Minecraft'},{src:'images/minecraft/2.png',cat:'mc',lbl:'Minecraft'},{src:'images/minecraft/3.png',cat:'mc',lbl:'Minecraft'},{src:'images/minecraft/4.png',cat:'mc',lbl:'Minecraft'},{src:'images/minecraft/5.png',cat:'mc',lbl:'Minecraft'},{src:'images/minecraft/6.png',cat:'mc',lbl:'Minecraft'},{src:'images/spore/Spore.png',cat:'sp',lbl:'Spore'},{src:'images/dota2/1.jpg',cat:'d2',lbl:'Dota 2'},{src:'images/dota2/2.jpg',cat:'d2',lbl:'Dota 2'},{src:'images/dota2/3.png',cat:'d2',lbl:'Dota 2'},{src:'images/dota2/4.jpg',cat:'d2',lbl:'Dota 2'},{src:'images/dota2/5.jpg',cat:'d2',lbl:'Dota 2'},{src:'images/dota2/6.jpg',cat:'d2',lbl:'Dota 2'}];
@@ -780,64 +722,25 @@ function bookFlip(dir){const newIndex=bookIndex+(dir*2);if(newIndex>=0&&newIndex
 
 /* ═══ LIGHTBOX ════════════════════════════════════════════════════ */
 const lb=document.getElementById('lb'),lbCrd=document.getElementById('lb-crd'),lbIm=document.getElementById('lb-im'),lbSh=document.getElementById('lb-sh');let lbRd=0,lbSc=1;
-function lbOp(src){if(!src)return;lbIm.src=src;lbRd=0;lbSc=1;appLb();lb.classList.add('op');document.body.style.overflow='hidden';}
-function lbCl(){lb.classList.remove('op');document.body.style.overflow=''}
-function lbRo(d){lbRd+=d;appLb()} function lbZm(d){lbSc=Math.min(4,Math.max(.3,lbSc+d));appLb()} function lbRs(){lbRd=0;lbSc=1;appLb()}
+function lbOp(src){if(!src)return;lbIm.src=src;lbRd=0;lbSc=1;appLb();lb.classList.add('op');document.body.style.overflow='hidden';} function lbCl(){lb.classList.remove('op');document.body.style.overflow=''} function lbRo(d){lbRd+=d;appLb()} function lbZm(d){lbSc=Math.min(4,Math.max(.3,lbSc+d));appLb()} function lbRs(){lbRd=0;lbSc=1;appLb()}
 function appLb(){lbCrd.style.transform=`perspective(1000px) rotateY(0deg) rotate(${lbRd}deg) scale(${lbSc})`;document.getElementById('lb-sp').textContent=~~(lbSc*100)+'%'}
-if (!isMobile) {
-    lb.addEventListener('mousemove',e=>{const r=lbCrd.getBoundingClientRect();if(!r.width)return;const cx=(e.clientX-r.left)/r.width-.5,cy=(e.clientY-r.top)/r.height-.5;lbCrd.style.transform=`perspective(1000px) rotateX(${-cy*18}deg) rotateY(${cx*18}deg) rotate(${lbRd}deg) scale(${lbSc})`;lbSh.style.background=`radial-gradient(circle at ${(cx+.5)*100}% ${(cy+.5)*100}%,rgba(255,255,255,.2) 0%,rgba(255,255,255,0) 55%)`;lbSh.style.opacity='1';},{passive:true});
-    lb.addEventListener('mouseleave',()=>{lbCrd.style.transform=`rotate(${lbRd}deg) scale(${lbSc})`;lbSh.style.opacity='0'});
-}
-lb.addEventListener('click',e=>{if(e.target===lb)lbCl()});
-addEventListener('keydown',e=>{if(!lb.classList.contains('op'))return;if(e.key==='Escape')lbCl();if(e.key==='+')lbZm(.2);if(e.key==='-')lbZm(-.2);if(e.key==='ArrowLeft')lbRo(-90);if(e.key==='ArrowRight')lbRo(90);});
+if (!isMobile) { lb.addEventListener('mousemove',e=>{const r=lbCrd.getBoundingClientRect();if(!r.width)return;const cx=(e.clientX-r.left)/r.width-.5,cy=(e.clientY-r.top)/r.height-.5;lbCrd.style.transform=`perspective(1000px) rotateX(${-cy*18}deg) rotateY(${cx*18}deg) rotate(${lbRd}deg) scale(${lbSc})`;lbSh.style.background=`radial-gradient(circle at ${(cx+.5)*100}% ${(cy+.5)*100}%,rgba(255,255,255,.2) 0%,rgba(255,255,255,0) 55%)`;lbSh.style.opacity='1';},{passive:true}); lb.addEventListener('mouseleave',()=>{lbCrd.style.transform=`rotate(${lbRd}deg) scale(${lbSc})`;lbSh.style.opacity='0'}); }
+lb.addEventListener('click',e=>{if(e.target===lb)lbCl()}); addEventListener('keydown',e=>{if(!lb.classList.contains('op'))return;if(e.key==='Escape')lbCl();if(e.key==='+')lbZm(.2);if(e.key==='-')lbZm(-.2);if(e.key==='ArrowLeft')lbRo(-90);if(e.key==='ArrowRight')lbRo(90);});
 
 /* ═══ WINGDINGS GLITCH EFFECT ════════════════════════════════════ */
-const wingdingsEls = document.querySelectorAll('.wingdings');
-const wChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+=[]{}|;:,.<>?/~`';
-function glitchWingdings() {
-    if (!wingdingsEls.length) return; const targetEl = wingdingsEls[Math.floor(Math.random() * wingdingsEls.length)]; const len = targetEl.textContent.length; let flickCount = 0;
-    const flickerInterval = setInterval(() => { let txt = ''; for (let i = 0; i < len; i++) { txt += wChars[Math.floor(Math.random() * wChars.length)]; } targetEl.textContent = txt; targetEl.style.opacity = (Math.random() * 0.5 + 0.1).toFixed(2); targetEl.style.transform = `translateX(${(Math.random() - 0.5) * 6}px) skewX(${(Math.random()-0.5)*10}deg)`; flickCount++; if (flickCount > 3 + Math.floor(Math.random() * 3)) { clearInterval(flickerInterval); targetEl.style.opacity = 0.4; targetEl.style.transform = 'translateX(0) skewX(0deg)'; } }, 60 + Math.random() * 40);
-}
-wingdingsEls.forEach(el => el.addEventListener('mouseenter', glitchWingdings));
-function startWingdingsGlitch() { if (!wingdingsEls.length) return; setInterval(() => { glitchWingdings(); }, 2000 + Math.random() * 3000); }
+const wingdingsEls = document.querySelectorAll('.wingdings'); const wChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+=[]{}|;:,.<>?/~`';
+function glitchWingdings() { if (!wingdingsEls.length) return; const targetEl = wingdingsEls[Math.floor(Math.random() * wingdingsEls.length)]; const len = targetEl.textContent.length; let flickCount = 0; const flickerInterval = setInterval(() => { let txt = ''; for (let i = 0; i < len; i++) { txt += wChars[Math.floor(Math.random() * wChars.length)]; } targetEl.textContent = txt; targetEl.style.opacity = (Math.random() * 0.5 + 0.1).toFixed(2); targetEl.style.transform = `translateX(${(Math.random() - 0.5) * 6}px) skewX(${(Math.random()-0.5)*10}deg)`; flickCount++; if (flickCount > 3 + Math.floor(Math.random() * 3)) { clearInterval(flickerInterval); targetEl.style.opacity = 0.4; targetEl.style.transform = 'translateX(0) skewX(0deg)'; } }, 60 + Math.random() * 40); }
+wingdingsEls.forEach(el => el.addEventListener('mouseenter', glitchWingdings)); function startWingdingsGlitch() { if (!wingdingsEls.length) return; setInterval(() => { glitchWingdings(); }, 2000 + Math.random() * 3000); }
 
 /* ═══ TERMINAL OF THE ANCIENTS ════════════════════════════════════ */
-const termOverlay = document.getElementById('terminal-overlay');
-const termOut = document.getElementById('term-out');
-const termIn = document.getElementById('term-in');
-let termOpen = false;
+const termOverlay = document.getElementById('terminal-overlay'); const termOut = document.getElementById('term-out'); const termIn = document.getElementById('term-in'); let termOpen = false;
 function toggleTerminal() { termOpen = !termOpen; termOverlay.classList.toggle('open', termOpen); if(termOpen) termIn.focus(); }
 window.addEventListener('keydown', (e) => { if (e.altKey && e.code === 'KeyT') { e.preventDefault(); toggleTerminal(); } if (e.key === 'Escape' && termOpen) { toggleTerminal(); } });
 termIn.addEventListener('keydown', (e) => { if (e.key === 'Enter') { const rawInput = termIn.value.trim(); termOut.innerHTML += `\n<span>abyss@wyrm:~$</span> ${rawInput}\n`; processCommand(rawInput.toLowerCase()); termIn.value = ''; termOut.scrollTop = termOut.scrollHeight; } });
 function termPrint(text, speed = 10) { let i = 0; const outStr = text; const span = document.createElement('span'); termOut.appendChild(span); const interval = setInterval(() => { if (i < outStr.length) { span.textContent += outStr[i]; i++; termOut.scrollTop = termOut.scrollHeight; } else clearInterval(interval); }, speed); }
-function processCommand(input) {
-    const parts = input.split(' '); const cmd = parts[0]; const arg = parts.slice(1).join(' ');
-    const cmds = {
-        'help': () => { termPrint("Available commands:\n  help      - Show this message\n  scan      - Scan the abyss\n  status    - System status\n  time      - Current cycle\n  about     - Who is the Wyrm\n  clear     - Purge terminal\n  whoami    - Identify yourself\n  ping      - Test connection\n  fortune   - Read the prophecy\n  hack      - Initiate hack sequence\n  music     - [play|stop] Control audio\n  theme     - [name] Change dimension\n  exit      - Close terminal", 5); },
-        'scan': () => { const coords = `${(Math.random()*180-90).toFixed(2)}°, ${(Math.random()*360-180).toFixed(2)}°`; termPrint(`Scanning... Signal found at [${coords}].\nWarning: Entity detected.`, 15); },
-        'status': () => { const theme = document.documentElement.dataset.theme || 'dark'; const musicStatus = playing ? 'Playing' : 'Silent'; termPrint(`Theme: ${theme}\nAudio: ${musicStatus}\nSystem Integrity: 98.4%`, 10); },
-        'time': () => { termPrint(`Abyss Cycle: ${new Date().toLocaleTimeString()}`, 10); },
-        'about': () => { termPrint('I am the Abysswyrm. I do not create worlds, I merely strike sparks from the darkness.', 15); },
-        'clear': () => { termOut.innerHTML = ''; },
-        'whoami': () => { termPrint("You are a lost soul wandering the edge of the abyss.\nID: SOUL-#" + Math.floor(Math.random()*9999), 15); },
-        'ping': () => { termPrint("Pinging 192.168.1.1...\nReply from 192.168.1.1: bytes=666 time=13ms TTL=6", 20); },
-        'fortune': () => { const fortunes = ["The dragon sleeps, but its shadow moves.", "Beware the silent code.", "Your next compile will fail.", "The void offers no refunds.", "In the darkness, only the cursor blinks."]; termPrint(fortunes[Math.floor(Math.random()*fortunes.length)], 25); },
-        'hack': () => { termPrint("Initiating hack sequence...", 30); setTimeout(() => termPrint("\n[####      ] 40% Bypassing firewall...", 30), 800); setTimeout(() => termPrint("\n[########  ] 80% Accessing mainframe...", 30), 2000); setTimeout(() => termPrint("\n[##########] 100% ACCESS GRANTED.\nDownloading soul... [ERROR 404: NOT FOUND]", 30), 3500); },
-        'music': () => { if(arg === 'play') { if(aud.paused) togPlay(); termPrint("Initiating audio sequence.", 10); } else if(arg === 'stop') { if(!aud.paused) togPlay(); termPrint("Audio terminated.", 10); } else termPrint("Usage: music [play|stop]", 10); },
-        'theme': () => { if(['dark','ash','crimson','toxic','soulless'].includes(arg)) { setTheme(arg); termPrint(`Dimension shifted to ${arg}.`, 15); } else termPrint("Unknown dimension. Available: dark, ash, crimson, toxic, soulless", 15); },
-        'exit': () => { if(termOpen) toggleTerminal(); },
-        'summon': () => { if(arg === 'wyrm') { summonWyrm(); termPrint("ᛊ WYRM AWAKENS ᛊ", 30); } else termPrint("Summon what?", 10); },
-        'evil': () => { if(arg === 'strafe') { triggerEasterEgg(); termPrint("EVIL STRAFE DETECTED", 30); } else termPrint("Evil what?", 10); },
-        'sudo': () => { if(arg.includes('make me a sandwich')) termPrint("Creating dark matter sandwich... Done.", 20); else if(arg.includes('rm -rf /')) { termPrint("Permission denied. The Abyss protects its own.", 20); document.body.classList.add('shaking'); setTimeout(()=>document.body.classList.remove('shaking'), 600); } else termPrint("Nice try.", 10); },
-        'follow': () => { if(arg === 'the compass') termPrint("The needle points to the heart of the abyss. You cannot escape.", 20); else termPrint("Follow what?", 10); },
-        'iamwyrm': () => { termPrint("Access granted. Welcome home, Dragon of the Deep.", 20); setTheme('crimson'); },
-        'decrypt': () => { termPrint("ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛇᛉᛊᛏᛒᛖᛗᛚᛝᛞᛟ -> THE VOID WATCHES BACK", 20); },
-        'exit the abyss': () => { termPrint("There is no exit. There is only deeper.", 20); },
-        'doom': () => { document.body.classList.add('shaking'); setTheme('crimson'); setTimeout(()=>document.body.classList.remove('shaking'), 1000); termPrint("DOOM MODE ACTIVATED.", 30); },
-        'matrix': () => { termPrint("Wake up, Neo...\nThe Abyss has you.\nFollow the white rabbit.", 25); setTheme('toxic'); },
-    };
-    if (cmds[cmd]) cmds[cmd](); else if (cmd) termPrint(`Command not found: ${cmd}. Type 'help' for available commands.`, 10);
-}
+function processCommand(input) { const parts = input.split(' '); const cmd = parts[0]; const arg = parts.slice(1).join(' ');
+    const cmds = { 'help': () => { termPrint("Available commands:\n  help      - Show this message\n  scan      - Scan the abyss\n  status    - System status\n  time      - Current cycle\n  about     - Who is the Wyrm\n  clear     - Purge terminal\n  whoami    - Identify yourself\n  ping      - Test connection\n  fortune   - Read the prophecy\n  hack      - Initiate hack sequence\n  music     - [play|stop] Control audio\n  theme     - [name] Change dimension\n  exit      - Close terminal", 5); }, 'scan': () => { const coords = `${(Math.random()*180-90).toFixed(2)}°, ${(Math.random()*360-180).toFixed(2)}°`; termPrint(`Scanning... Signal found at [${coords}].\nWarning: Entity detected.`, 15); }, 'status': () => { const theme = document.documentElement.dataset.theme || 'dark'; const musicStatus = playing ? 'Playing' : 'Silent'; termPrint(`Theme: ${theme}\nAudio: ${musicStatus}\nSystem Integrity: 98.4%`, 10); }, 'time': () => { termPrint(`Abyss Cycle: ${new Date().toLocaleTimeString()}`, 10); }, 'about': () => { termPrint('I am the Abysswyrm. I do not create worlds, I merely strike sparks from the darkness.', 15); }, 'clear': () => { termOut.innerHTML = ''; }, 'whoami': () => { termPrint("You are a lost soul wandering the edge of the abyss.\nID: SOUL-#" + Math.floor(Math.random()*9999), 15); }, 'ping': () => { termPrint("Pinging 192.168.1.1...\nReply from 192.168.1.1: bytes=666 time=13ms TTL=6", 20); }, 'fortune': () => { const fortunes = ["The dragon sleeps, but its shadow moves.", "Beware the silent code.", "Your next compile will fail.", "The void offers no refunds.", "In the darkness, only the cursor blinks."]; termPrint(fortunes[Math.floor(Math.random()*fortunes.length)], 25); }, 'hack': () => { termPrint("Initiating hack sequence...", 30); setTimeout(() => termPrint("\n[####      ] 40% Bypassing firewall...", 30), 800); setTimeout(() => termPrint("\n[########  ] 80% Accessing mainframe...", 30), 2000); setTimeout(() => termPrint("\n[##########] 100% ACCESS GRANTED.\nDownloading soul... [ERROR 404: NOT FOUND]", 30), 3500); }, 'music': () => { if(arg === 'play') { if(aud.paused) togPlay(); termPrint("Initiating audio sequence.", 10); } else if(arg === 'stop') { if(!aud.paused) togPlay(); termPrint("Audio terminated.", 10); } else termPrint("Usage: music [play|stop]", 10); }, 'theme': () => { if(['dark','ash','crimson','toxic','soulless'].includes(arg)) { setTheme(arg); termPrint(`Dimension shifted to ${arg}.`, 15); } else termPrint("Unknown dimension. Available: dark, ash, crimson, toxic, soulless", 15); }, 'exit': () => { if(termOpen) toggleTerminal(); }, 'summon': () => { if(arg === 'wyrm') { summonWyrm(); termPrint("ᛊ WYRM AWAKENS ᛊ", 30); } else termPrint("Summon what?", 10); }, 'evil': () => { if(arg === 'strafe') { triggerEasterEgg(); termPrint("EVIL STRAFE DETECTED", 30); } else termPrint("Evil what?", 10); }, 'sudo': () => { if(arg.includes('make me a sandwich')) termPrint("Creating dark matter sandwich... Done.", 20); else if(arg.includes('rm -rf /')) { termPrint("Permission denied. The Abyss protects its own.", 20); document.body.classList.add('shaking'); setTimeout(()=>document.body.classList.remove('shaking'), 600); } else termPrint("Nice try.", 10); }, 'follow': () => { if(arg === 'the compass') termPrint("The needle points to the heart of the abyss. You cannot escape.", 20); else termPrint("Follow what?", 10); }, 'iamwyrm': () => { termPrint("Access granted. Welcome home, Dragon of the Deep.", 20); setTheme('crimson'); }, 'decrypt': () => { termPrint("ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛇᛉᛊᛏᛒᛖᛗᛚᛝᛞᛟ -> THE VOID WATCHES BACK", 20); }, 'exit the abyss': () => { termPrint("There is no exit. There is only deeper.", 20); }, 'doom': () => { document.body.classList.add('shaking'); setTheme('crimson'); setTimeout(()=>document.body.classList.remove('shaking'), 1000); termPrint("DOOM MODE ACTIVATED.", 30); }, 'matrix': () => { termPrint("Wake up, Neo...\nThe Abyss has you.\nFollow the white rabbit.", 25); setTheme('toxic'); } };
+    if (cmds[cmd]) cmds[cmd](); else if (cmd) termPrint(`Command not found: ${cmd}. Type 'help' for available commands.`, 10); }
 
 /* ═══ Init ═══════════════════════════════════════════════════════ */
 updateCachedTheme();calcAge();ldTr(0,0);rnTracks();renderBook();document.getElementById('fy').textContent=new Date().getFullYear();
@@ -845,14 +748,13 @@ setTimeout(()=>{const hero=document.getElementById('page-hero');hero.classList.a
 
 startWingdingsGlitch();
 
-// Conditional initialization based on device performance
+// Performance-based initialization
 if (!isMobile) {
     try { initFog(); } catch(e) { console.error("Fog init error:", e); }
     if (typeof THREE !== 'undefined') { try { initPortal(); } catch(e) { console.error("Portal init error:", e); initSparks(); } } else { initSparks(); }
 } else {
-    // Mobile gets lightweight 2D sparks only for performance
+    // Mobile gets lightweight sparks only
     initSparks();
-    document.getElementById('fog-canvas').style.display = 'none'; // Disable fog canvas on mobile completely
 }
 
 // Force close terminal and scroll reset on load
