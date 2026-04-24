@@ -2,7 +2,7 @@
 <html lang="ru" data-theme="dark">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <meta name="description" content="Abysswyrm — Game Developer, Dark Fantasy Creator"/>
 <title>Abysswyrm</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -34,7 +34,7 @@
 /* ═══ RESET ════════════════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-body{background:var(--bg);color:var(--t1);font-family:var(--fb);overflow-x:hidden;cursor:none;transition:background .6s,color .35s;font-size: 18px;} /* УБРАНО will-change: transform */
+body{background:var(--bg);color:var(--t1);font-family:var(--fb);overflow-x:hidden;cursor:none;transition:background .6s,color .35s;font-size: 18px; -webkit-tap-highlight-color: transparent;}
 ::selection{background:var(--a1);color:#fff}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%;height:auto}
@@ -59,7 +59,7 @@ button{border:none;background:none;cursor:none;font-family:inherit;color:inherit
 #cur-r{position:fixed;z-index:9998;pointer-events:none;width:28px;height:28px;border:1px solid var(--a1);border-radius:50%;transform:translate(-50%,-50%);opacity:.5;will-change:left,top;transition:width .28s,height .28s,opacity .25s}
 body.hov #cur{width:14px;height:14px;background:var(--a1);box-shadow:0 0 20px var(--a2)}
 body.hov #cur-r{width:42px;height:42px;opacity:.22}
-@media(pointer:coarse){body,button,a{cursor:auto}#cur,#cur-r{display:none!important}}
+@media(pointer:coarse){body,button,a,input{cursor:auto}#cur,#cur-r{display:none!important}}
 
 /* ═══ BACKGROUND BEAT ORBS ══════════════════════════════════════════ */
 .beat-orb { position: fixed; pointer-events: none; border-radius: 50%; filter: blur(80px); z-index: 0; will-change: transform, opacity; transform: translate(calc(var(--px) * 1px), calc(var(--py) * 1px)) scale(var(--orb-scale)); opacity: var(--orb-opacity); transition: transform 0.08s ease-out, opacity 0.1s; }
@@ -98,7 +98,6 @@ nav{position:fixed;top:0;inset-inline:0;height:var(--nav);z-index:200;display:fl
 .cb:hover,.cb.on{border-color:var(--a2);color:var(--a2);background:rgba(155,27,48,.1);box-shadow:0 0 8px var(--gw); transform: translateY(-2px) rotate(5deg);}
 .nsep{color:var(--t3);font-size:.9rem;user-select:none;padding:0 4px}
 .mob-toggle{display:none;font-size:1.6rem;color:var(--a2);padding:8px;position:absolute;left:50%;transform:translateX(-50%)}
-@media(max-width:880px){ .nl{display:none}.mob-toggle{display:block} .nlinks{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(3,0,0,.98);flex-direction:column;align-items:center;justify-content:center;gap:0;transform:translateY(-100%);transition:transform .5s var(--ez);border:none} .nlinks.open{transform:translateY(0)} .nlinks a{border:none;border-bottom:1px solid var(--b1);padding:24px 0;width:100%;justify-content:center} }
 .icon-img { width: 32px; height: 32px; object-fit: contain; filter: brightness(0.6) sepia(1) hue-rotate(-30deg) saturate(3); transition: filter 0.3s, transform 0.3s; vertical-align: middle; }
 .pl-it .icon-img, .co .icon-img { width: 40px; height: 40px; margin-right: 6px; }
 .cb .icon-img { width: 22px; height: 22px; }
@@ -125,14 +124,13 @@ button:active, a.co:active { transform: scale(0.9) translateY(4px) !important; f
 .h-nm{font-family:var(--fh);font-size:clamp(3.5rem,11vw,8rem);letter-spacing:.06em;color:var(--t1);line-height:1.04;z-index:2;text-shadow:0 0 80px var(--gw); transform: scale(calc(1 + var(--bass)*0.15)); will-change: transform;}
 .h-nm .wyr{color:var(--a2);text-shadow:0 0 40px var(--gw2)}
 .h-divbar{width:350px;height:2px;background:linear-gradient(90deg,transparent,var(--a2),transparent);margin:40px auto;z-index:2;box-shadow:0 0 10px var(--gw2); transform: scaleX(calc(1 + var(--bass)*0.5)); will-change: transform;}
-.h-quote{font-size:clamp(1rem,1.8vw,1.3rem);color:var(--t2);font-style:italic;max-width:500px;line-height:1.7;z-index:2;text-align:center}
+.h-quote{font-size:clamp(1rem,1.8vw,1.3rem);color:var(--t2);font-style:italic;max-width:500px;line-height:1.7;z-index:2;text-align:center;padding: 0 20px;}
 .h-enter{margin-top:60px;z-index:2;display:flex;flex-direction:column;align-items:center;gap:16px}
 .h-btn{font-family:var(--fh);font-size:.85rem;letter-spacing:.3em;text-transform:uppercase;padding:18px 60px;border:1px solid var(--a1);color:var(--a2);background:rgba(155,27,48,.15);border-radius:8px;transition:all .3s;box-shadow:0 0 20px var(--gw)}
 .h-btn:hover{background:var(--a1);color:#fff;box-shadow:0 0 35px var(--gw2);transform:scale(1.05) translateY(-4px); letter-spacing: 0.4em;}
 
 /* ═══ ABOUT PAGE ════════════════════════════════════════════════════ */
 .ab-g{display:grid;grid-template-columns:300px 1fr;gap:90px;align-items:start}
-@media(max-width:760px){.ab-g{grid-template-columns:1fr;gap:40px;justify-items:center}}
 .av{position:relative;width:240px}
 .av img{width:100%;aspect-ratio:1;object-fit:cover;border:1px solid var(--b2);border-radius:8px;filter:contrast(1.2) brightness(.85);transition:filter .5s, transform .5s;box-shadow:var(--heavy-shadow)}
 .av img:hover{filter:contrast(1.3) brightness(1); transform: scale(1.05) rotate(2deg);}
@@ -154,10 +152,10 @@ button:active, a.co:active { transform: scale(0.9) translateY(4px) !important; f
 .tag:hover{border-color:var(--b2);color:var(--a2);box-shadow:0 0 12px var(--gw); transform: translateY(-4px) rotate(4deg) scale(1.1);}
 
 /* ═══ PROJECTS PAGE ════════════════════════════════════════════════════ */
-.pj-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:30px}
+.pj-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px}
 .pc{background:var(--gl);border:1px solid var(--b1);border-radius:8px;overflow:hidden;transition:border-color .38s,box-shadow .38s, transform .38s;position:relative;box-shadow:var(--heavy-shadow); transform: scale(calc(1 + var(--bass)*0.05)); will-change: transform;}
 .pc:hover{border-color:var(--a1);box-shadow:0 20px 50px rgba(0,0,0,.9), 0 0 60px var(--gw2); transform: translateY(-10px) scale(1.02) rotate(-1deg);}
-.pc-im{position:relative;height:260px;overflow:hidden}
+.pc-im{position:relative;height:220px;overflow:hidden}
 .pc-im img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ez),filter .38s;filter:brightness(.75) sepia(.2)}
 .pc:hover .pc-im img{transform:scale(1.1);filter:brightness(.9) sepia(0)}
 .pc-fd{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 35%,var(--bg) 100%);pointer-events:none}
@@ -174,7 +172,6 @@ button:active, a.co:active { transform: scale(0.9) translateY(4px) !important; f
 
 /* ═══ MUSIC PAGE ════════════════════════════════════════════════════ */
 .mu-g{display:grid;grid-template-columns:260px 1fr;gap:40px;align-items:start}
-@media(max-width:740px){.mu-g{grid-template-columns:1fr}}
 .pl-ls{display:flex;flex-direction:column;gap:12px}
 .pl-it{display:flex;align-items:center;gap:14px;padding:18px 20px;background:var(--gl);border:1px solid var(--b1);border-radius:8px;transition:all .25s;font-family:var(--fh);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t2);box-shadow:0 5px 15px rgba(0,0,0,.5)}
 .pl-it:hover,.pl-it.on{border-color:var(--a1);color:var(--a2);background:rgba(155,27,48,.1); transform: translateX(10px) scale(1.02);}
@@ -187,12 +184,12 @@ button:active, a.co:active { transform: scale(0.9) translateY(4px) !important; f
 .p-pf{height:100%;background:linear-gradient(90deg,var(--a1),var(--a2));border-radius:2px;width:0%;transition:width .1s linear;position:relative;box-shadow:0 0 8px var(--gw2)}
 .p-pf::after{content:'';position:absolute;right:-6px;top:-5px;width:14px;height:14px;background:var(--a2);border-radius:50%;box-shadow:0 0 10px var(--gw2)}
 .p-tm{display:flex;justify-content:space-between;font-family:var(--fh);font-size:.7rem;color:var(--t2);margin-bottom:20px}
-.p-ct{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.p-ct{display:flex;align-items:center;gap:16px;margin-bottom:24px; flex-wrap: wrap; justify-content: center;}
 .p-bt{width:46px;height:46px;border:1px solid var(--b1);background:var(--gl2);color:var(--t2);font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .25s;border-radius:8px}
 .p-bt:hover{border-color:var(--a2);color:var(--a2);box-shadow:0 0 15px var(--gw2); transform: rotate(10deg) scale(1.1);}
 .p-pl{width:58px;height:58px;font-size:1.1rem;background:var(--a1);border-color:var(--a1);color:#fff;box-shadow:0 0 20px var(--gw);transform:scale(calc(1 + var(--bs)*.065));transition:transform .05s,box-shadow .28s}
 .p-pl:hover{background:var(--a2);border-color:var(--a2);box-shadow:0 0 30px var(--gw2); transform: scale(1.2) rotate(5deg);}
-.p-vl{flex:1;-webkit-appearance:none;height:5px;background:var(--b1);outline:none;cursor:none;border-radius:2px}
+.p-vl{flex:1 1 100%;-webkit-appearance:none;height:5px;background:var(--b1);outline:none;cursor:none;border-radius:2px}
 .p-vl::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;background:var(--a2);border-radius:50%;cursor:pointer;box-shadow:0 0 5px var(--gw2)}
 .t-ls{display:flex;flex-direction:column;gap:2px;max-height:260px;overflow-y:auto}
 .t-rw{display:flex;align-items:center;gap:12px;padding:14px;border-radius:6px;transition:background .22s, box-shadow .22s, transform .22s}
@@ -260,7 +257,7 @@ footer p{font-size:.9rem;color:var(--t2);font-style:italic}
 .rv.vs{opacity:1;transform:translateY(0) scale(1);filter: blur(0)}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
 
-/* ═══ TERMINAL OF THE ANCIENTS ════════════════════════════════════ */
+/* ═══ TERMINAL ═══════════════════════════════════════════════════ */
 #terminal-overlay { position: fixed; bottom: 0; left: 0; right: 0; height: 300px; background: rgba(0,0,0,0.95); border-top: 2px solid var(--a1); z-index: 900; transform: translateY(100%); transition: transform 0.4s var(--ez); display: flex; flex-direction: column; box-shadow: 0 -10px 40px rgba(0,0,0,.9), 0 0 20px var(--gw); backdrop-filter: blur(10px); }
 #terminal-overlay.open { transform: translateY(0); }
 #term-out { flex: 1; padding: 20px; overflow-y: auto; font-family: 'Courier New', monospace; font-size: 14px; color: var(--a2); line-height: 1.5; white-space: pre-wrap; }
@@ -268,6 +265,41 @@ footer p{font-size:.9rem;color:var(--t2);font-style:italic}
 #term-in-wrap { display: flex; align-items: center; padding: 10px 20px; border-top: 1px solid var(--b1); background: rgba(0,0,0,0.5); }
 #term-prefix { color: var(--a1); font-family: 'Courier New', monospace; font-weight: bold; margin-right: 10px; }
 #term-in { flex: 1; background: none; border: none; color: var(--a2); font-family: 'Courier New', monospace; font-size: 14px; outline: none; caret-color: var(--a2); cursor: none; }
+
+/* ═══ MOBILE TERMINAL TOGGLE ═══════════════════════════════════ */
+#mobile-term-btn { display: none; position: fixed; bottom: 20px; left: 20px; z-index: 800; width: 50px; height: 50px; background: var(--bg2); border: 1px solid var(--b1); border-radius: 50%; color: var(--a2); font-size: 1.5rem; align-items: center; justify-content: center; box-shadow: 0 0 20px var(--gw); }
+
+/* ═══ MOBILE ADAPTATIONS ═══════════════════════════════════════ */
+@media(max-width:880px){ 
+  .nl{display:none}
+  .mob-toggle{display:block}
+  .nlinks{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(3,0,0,.98);flex-direction:column;align-items:center;justify-content:center;gap:0;transform:translateY(-100%);transition:transform .5s var(--ez);border:none;z-index: 999;} 
+  .nlinks.open{transform:translateY(0)} 
+  .nlinks a{border:none;border-bottom:1px solid var(--b1);padding:24px 0;width:100%;justify-content:center} 
+  #mobile-term-btn { display: flex; }
+}
+@media(max-width:760px){
+  .ab-g{grid-template-columns:1fr;gap:40px;justify-items:center}
+  .mu-g{grid-template-columns:1fr}
+  .grimoire{flex-direction: column; min-height: auto;}
+  .g-page.left{border-right: none; border-bottom: 1px solid var(--b1); border-radius: 12px 12px 0 0;}
+  .g-page.right{border-radius: 0 0 12px 12px;}
+  .g-page img { max-height: 300px; }
+}
+@media(max-width:600px){
+  body { font-size: 16px; }
+  .wrap { padding: 40px 15px; }
+  .s-hd { margin-bottom: 40px; }
+  .h-btn { padding: 16px 40px; letter-spacing: 0.2em; }
+  .h-divbar { width: 200px; }
+  .pc-im { height: 180px; }
+  .player { padding: 20px; }
+  .p-ct { gap: 10px; }
+  .p-bt { width: 40px; height: 40px; }
+  .p-pl { width: 50px; height: 50px; }
+  .co-g { grid-template-columns: 1fr; }
+  #terminal-overlay { height: 60%; bottom: 0; }
+}
 </style>
 </head>
 <body>
@@ -317,6 +349,8 @@ footer p{font-size:.9rem;color:var(--t2);font-style:italic}
     <button class="cb"    id="t-soulless" onclick="setTheme('soulless')"><img src="images/icons/sword.png" class="icon-img" alt="Soulless" style="filter: grayscale(1) brightness(1.2);"/></button>
   </div>
 </nav>
+
+<button id="mobile-term-btn" onclick="toggleTerminal()">ᚺ</button>
 
 <!-- ═══ TERMINAL ═══════════════════════════════════════════════════ -->
 <div id="terminal-overlay">
@@ -532,6 +566,11 @@ footer p{font-size:.9rem;color:var(--t2);font-style:italic}
 <script>
 'use strict';
 
+// ═══ DEVICE & PERFORMANCE DETECTION ═════════════════════════════
+const isMobile = window.innerWidth <= 768 || ('ontouchstart' in document.documentElement);
+let isPageHidden = false;
+document.addEventListener('visibilitychange', () => { isPageHidden = document.hidden; });
+
 /* ═══ SPA ROUTING & SFX ═════════════════════════════════════════════════ */
 const sfxClick = document.getElementById('sfx-click');
 const sfxSwitch = document.getElementById('sfx-switch');
@@ -572,19 +611,25 @@ function calcAge(){const b=new Date(2005,9,28),n=new Date();let a=n.getFullYear(
 /* ═══ CURSOR & PARALLAX ═════════════════════════════════════════ */
 const cur=document.getElementById('cur'), curR=document.getElementById('cur-r');
 let mx=0, my=0, rx=0, ry=0;
+let mouseThrottle = false;
 addEventListener('mousemove',e=>{
+    if (mouseThrottle) return;
+    mouseThrottle = true;
     mx=e.clientX; my=e.clientY;
     const cx = window.innerWidth / 2; const cy = window.innerHeight / 2;
     document.documentElement.style.setProperty('--px', (-(mx - cx) / 30).toFixed(2));
     document.documentElement.style.setProperty('--py', (-(my - cy) / 30).toFixed(2));
+    setTimeout(() => mouseThrottle = false, 50);
 },{passive:true});
 addEventListener('mouseover',e=>{document.body.classList.toggle('hov',!!e.target.closest('a,button,.pc,.t-rw,.pl-it,.co,.g-btn,.g-t,.g-page,.tag,.st,.lbb'))},{passive:true});
-(function tc(){
-    cur.style.left=mx+'px';cur.style.top=my+'px';
-    rx+=(mx-rx)*.14;ry+=(my-ry)*.14;
-    curR.style.left=rx+'px';curR.style.top=ry+'px';
-    requestAnimationFrame(tc);
-})();
+if (!isMobile) {
+    (function tc(){
+        cur.style.left=mx+'px';cur.style.top=my+'px';
+        rx+=(mx-rx)*.14;ry+=(my-ry)*.14;
+        curR.style.left=rx+'px';curR.style.top=ry+'px';
+        requestAnimationFrame(tc);
+    })();
+}
 
 /* ═══ EASTER EGGS ═══════════════════════════════════════════════ */
 let easterBuffer = '';
@@ -603,7 +648,7 @@ function toggleMob(){const nlinks=document.getElementById('nlinks'),btn=document
 function closeMob(){const nlinks=document.getElementById('nlinks'),btn=document.getElementById('mob-btn');if(nlinks.classList.contains('open')){nlinks.classList.remove('open');btn.setAttribute('aria-expanded','false');btn.textContent='☰';}}
 
 /* ═══ FALLBACK 2D SPARKS ══════════════════════════════════════ */
-function initSparks() { const c=document.getElementById('hc'),ctx=c.getContext('2d');let W,H,sp=[];const ro=new ResizeObserver(()=>{W=c.width=c.offsetWidth;H=c.height=c.offsetHeight});ro.observe(c);W=c.width=c.offsetWidth||window.innerWidth;H=c.height=c.offsetHeight||window.innerHeight; class S{constructor(){this.rs(true)}rs(i){this.x=Math.random()*W;this.y=i?Math.random()*H:H+5;this.vy=-(Math.random()*.42+.1);this.vx=(Math.random()-.5)*.16;this.l=0;this.ml=110+Math.random()*220;this.r=Math.random()*1.3+.3}step(){this.x+=this.vx;this.y+=this.vy;this.l++;if(this.l>=this.ml)this.rs()}draw(){const p=this.l/this.ml,a=p<.2?p/.2:1-(p-.2)/.8;ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,6.28);ctx.fillStyle=Math.random()>.5?cachedTheme.a1:cachedTheme.a2;ctx.globalAlpha=a*.48;ctx.fill();}} for(let i=0;i<50;i++){const s=new S();s.l=Math.random()*s.ml;sp.push(s)} (function fr(){ctx.clearRect(0,0,W,H);ctx.globalAlpha=1;sp.forEach(s=>{s.step();s.draw()});requestAnimationFrame(fr)})(); }
+function initSparks() { const c=document.getElementById('hc'),ctx=c.getContext('2d');let W,H,sp=[];const ro=new ResizeObserver(()=>{W=c.width=c.offsetWidth;H=c.height=c.offsetHeight});ro.observe(c);W=c.width=c.offsetWidth||window.innerWidth;H=c.height=c.offsetHeight||window.innerHeight; class S{constructor(){this.rs(true)}rs(i){this.x=Math.random()*W;this.y=i?Math.random()*H:H+5;this.vy=-(Math.random()*.42+.1);this.vx=(Math.random()-.5)*.16;this.l=0;this.ml=110+Math.random()*220;this.r=Math.random()*1.3+.3}step(){this.x+=this.vx;this.y+=this.vy;this.l++;if(this.l>=this.ml)this.rs()}draw(){const p=this.l/this.ml,a=p<.2?p/.2:1-(p-.2)/.8;ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,6.28);ctx.fillStyle=Math.random()>.5?cachedTheme.a1:cachedTheme.a2;ctx.globalAlpha=a*.48;ctx.fill();}} for(let i=0;i<50;i++){const s=new S();s.l=Math.random()*s.ml;sp.push(s)} (function fr(){ if(isPageHidden) return requestAnimationFrame(fr); ctx.clearRect(0,0,W,H);ctx.globalAlpha=1;sp.forEach(s=>{s.step();s.draw()});requestAnimationFrame(fr)})(); }
 
 /* ═══ 3D PORTAL OF THE ABYSS (THREE.JS) ════════════════════════════ */
 let portalScene, portalCamera, portalRenderer, portalParticles, portalGeo;
@@ -624,19 +669,10 @@ function initPortal() {
     const c1 = new THREE.Color(cachedTheme.a1);
     const c2 = new THREE.Color(cachedTheme.a2);
     for (let i = 0; i < particleCount; i++) {
-        const i3 = i * 3;
-        const theta = Math.random() * Math.PI * 2;
-        const phi = Math.acos((Math.random() * 2) - 1);
-        const r = 1.5 + Math.random() * 1.5;
-        positions[i3] = r * Math.sin(phi) * Math.cos(theta);
-        positions[i3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-        positions[i3 + 2] = r * Math.cos(phi);
-        velocities[i3] = (Math.random() - 0.5) * 0.02;
-        velocities[i3 + 1] = (Math.random() - 0.5) * 0.02;
-        velocities[i3 + 2] = -0.01 - Math.random() * 0.02;
-        const mix = Math.random();
-        const col = c1.clone().lerp(c2, mix);
-        colors[i3] = col.r; colors[i3+1] = col.g; colors[i3+2] = col.b;
+        const i3 = i * 3; const theta = Math.random() * Math.PI * 2; const phi = Math.acos((Math.random() * 2) - 1); const r = 1.5 + Math.random() * 1.5;
+        positions[i3] = r * Math.sin(phi) * Math.cos(theta); positions[i3 + 1] = r * Math.sin(phi) * Math.sin(theta); positions[i3 + 2] = r * Math.cos(phi);
+        velocities[i3] = (Math.random() - 0.5) * 0.02; velocities[i3 + 1] = (Math.random() - 0.5) * 0.02; velocities[i3 + 2] = -0.01 - Math.random() * 0.02;
+        const mix = Math.random(); const col = c1.clone().lerp(c2, mix); colors[i3] = col.r; colors[i3+1] = col.g; colors[i3+2] = col.b;
     }
     portalGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     portalGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
@@ -644,41 +680,22 @@ function initPortal() {
     const mat = new THREE.PointsMaterial({ size: 0.06, vertexColors: true, transparent: true, opacity: 1.0, blending: THREE.AdditiveBlending });
     portalParticles = new THREE.Points(portalGeo, mat);
     portalScene.add(portalParticles);
-    window.addEventListener('resize', () => {
-        portalCamera.aspect = window.innerWidth / window.innerHeight;
-        portalCamera.updateProjectionMatrix();
-        portalRenderer.setSize(window.innerWidth, window.innerHeight);
-    });
-    window.addEventListener('mousemove', (e) => {
-        portalMouseX = (e.clientX / window.innerWidth) * 2 - 1;
-        portalMouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-    });
+    window.addEventListener('resize', () => { portalCamera.aspect = window.innerWidth / window.innerHeight; portalCamera.updateProjectionMatrix(); portalRenderer.setSize(window.innerWidth, window.innerHeight); });
+    window.addEventListener('mousemove', (e) => { portalMouseX = (e.clientX / window.innerWidth) * 2 - 1; portalMouseY = -(e.clientY / window.innerHeight) * 2 + 1; });
     animatePortal();
 }
 function animatePortal() {
     requestAnimationFrame(animatePortal);
-    const pos = portalGeo.attributes.position.array;
-    const vel = portalGeo.userData.velocities.array;
+    if (isPageHidden) return;
+    const pos = portalGeo.attributes.position.array; const vel = portalGeo.userData.velocities.array;
     const bass = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bass')) || 0;
     for (let i = 0; i < pos.length; i += 3) {
-        const x = pos[i], y = pos[i+1], z = pos[i+2];
-        const angle = Math.atan2(y, x) + (0.02 + bass * 0.08);
-        const radius = Math.sqrt(x*x + y*y);
-        pos[i] = Math.cos(angle) * radius + vel[i];
-        pos[i+1] = Math.sin(angle) * radius + vel[i+1];
-        pos[i+2] += vel[i+2] + bass * 0.02;
-        pos[i] += portalMouseX * 0.002;
-        pos[i+1] += portalMouseY * 0.002;
-        if (pos[i+2] < -3 || Math.sqrt(pos[i]*pos[i] + pos[i+1]*pos[i+1]) < 0.1) {
-            const theta = Math.random() * Math.PI * 2;
-            pos[i] = Math.cos(theta) * (1.5 + Math.random());
-            pos[i+1] = Math.sin(theta) * (1.5 + Math.random());
-            pos[i+2] = 2.0 + Math.random();
-        }
+        const x = pos[i], y = pos[i+1], z = pos[i+2]; const angle = Math.atan2(y, x) + (0.02 + bass * 0.08); const radius = Math.sqrt(x*x + y*y);
+        pos[i] = Math.cos(angle) * radius + vel[i]; pos[i+1] = Math.sin(angle) * radius + vel[i+1]; pos[i+2] += vel[i+2] + bass * 0.02;
+        pos[i] += portalMouseX * 0.002; pos[i+1] += portalMouseY * 0.002;
+        if (pos[i+2] < -3 || Math.sqrt(pos[i]*pos[i] + pos[i+1]*pos[i+1]) < 0.1) { const theta = Math.random() * Math.PI * 2; pos[i] = Math.cos(theta) * (1.5 + Math.random()); pos[i+1] = Math.sin(theta) * (1.5 + Math.random()); pos[i+2] = 2.0 + Math.random(); }
     }
-    portalGeo.attributes.position.needsUpdate = true;
-    portalParticles.rotation.z += 0.002 + bass * 0.02;
-    portalRenderer.render(portalScene, portalCamera);
+    portalGeo.attributes.position.needsUpdate = true; portalParticles.rotation.z += 0.002 + bass * 0.02; portalRenderer.render(portalScene, portalCamera);
 }
 
 /* ═══ FOG CANVAS ═══════════════════════════════════════════════ */
@@ -688,35 +705,22 @@ let fogW, fogH;
 const fogParticles = [];
 function initFog() {
     const ro = new ResizeObserver(() => { fogW = fogCanvas.width = window.innerWidth; fogH = fogCanvas.height = window.innerHeight; });
-    ro.observe(fogCanvas);
-    fogW = fogCanvas.width = window.innerWidth; fogH = fogCanvas.height = window.innerHeight;
-    for(let i=0; i<25; i++) {
-        fogParticles.push({
-            x: Math.random() * fogW, y: Math.random() * fogH,
-            vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5,
-            r: 200 + Math.random() * 250, a: 0.06 + Math.random() * 0.05
-        });
-    }
+    ro.observe(fogCanvas); fogW = fogCanvas.width = window.innerWidth; fogH = fogCanvas.height = window.innerHeight;
+    for(let i=0; i<25; i++) { fogParticles.push({ x: Math.random() * fogW, y: Math.random() * fogH, vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5, r: 200 + Math.random() * 250, a: 0.06 + Math.random() * 0.05 }); }
     animateFog();
 }
 function animateFog() {
     requestAnimationFrame(animateFog);
+    if (isPageHidden) return;
     fogCtx.clearRect(0, 0, fogW, fogH);
     const bass = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bass')) || 0;
     fogParticles.forEach(p => {
-        p.x += p.vx + (mx - fogW/2) * 0.0002;
-        p.y += p.vy + (my - fogH/2) * 0.0002;
-        if(p.x < -p.r) p.x = fogW + p.r; if(p.x > fogW + p.r) p.x = -p.r;
-        if(p.y < -p.r) p.y = fogH + p.r; if(p.y > fogH + p.r) p.y = -p.r;
-        const currentR = p.r + bass * 100;
-        const currentA = p.a + bass * 0.1;
+        p.x += p.vx + (mx - fogW/2) * 0.0002; p.y += p.vy + (my - fogH/2) * 0.0002;
+        if(p.x < -p.r) p.x = fogW + p.r; if(p.x > fogW + p.r) p.x = -p.r; if(p.y < -p.r) p.y = fogH + p.r; if(p.y > fogH + p.r) p.y = -p.r;
+        const currentR = p.r + bass * 100; const currentA = p.a + bass * 0.1;
         const grad = fogCtx.createRadialGradient(p.x, p.y, 0, p.x, p.y, currentR);
-        grad.addColorStop(0, `rgba(155, 27, 48, ${currentA})`);
-        grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-        fogCtx.fillStyle = grad;
-        fogCtx.beginPath();
-        fogCtx.arc(p.x, p.y, currentR, 0, Math.PI*2);
-        fogCtx.fill();
+        grad.addColorStop(0, `rgba(155, 27, 48, ${currentA})`); grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        fogCtx.fillStyle = grad; fogCtx.beginPath(); fogCtx.arc(p.x, p.y, currentR, 0, Math.PI*2); fogCtx.fill();
     });
 }
 
@@ -745,50 +749,26 @@ let rawBass = 0, rawTreble = 0;
 function animWave(){
   if(!anlsr){requestAnimationFrame(animWave);return}
   requestAnimationFrame(animWave);
-  const W=wc.width,H=wc.height;
-  const fd=new Uint8Array(anlsr.frequencyBinCount);
-  const td=new Float32Array(anlsr.fftSize);
-  anlsr.getByteFrequencyData(fd);anlsr.getFloatTimeDomainData(td);
-  wctx.clearRect(0,0,W,H);
-  const c1=cachedTheme.a1, c2=cachedTheme.a2;
-  const bArr=fd.slice(0,12);
-  const bass=bArr.reduce((s,v)=>s+v,0)/(12*255);
-  rawBass += (bass - rawBass) * 0.2;
-  const tArr=fd.slice(100, 200);
-  const treble=tArr.reduce((s,v)=>s+v,0)/(100*255);
-  rawTreble += (treble - rawTreble) * 0.2;
-  document.documentElement.style.setProperty('--bass', rawBass.toFixed(3));
-  document.documentElement.style.setProperty('--treble', rawTreble.toFixed(3));
-  const step=Math.max(1,~~(td.length/W));
-  const midY=H*.5,amp=H*.4;
-  const pts=[];
+  if (isPageHidden) return;
+  const W=wc.width,H=wc.height; const fd=new Uint8Array(anlsr.frequencyBinCount); const td=new Float32Array(anlsr.fftSize);
+  anlsr.getByteFrequencyData(fd);anlsr.getFloatTimeDomainData(td); wctx.clearRect(0,0,W,H); const c1=cachedTheme.a1, c2=cachedTheme.a2;
+  const bArr=fd.slice(0,12); const bass=bArr.reduce((s,v)=>s+v,0)/(12*255); rawBass += (bass - rawBass) * 0.2;
+  const tArr=fd.slice(100, 200); const treble=tArr.reduce((s,v)=>s+v,0)/(100*255); rawTreble += (treble - rawTreble) * 0.2;
+  document.documentElement.style.setProperty('--bass', rawBass.toFixed(3)); document.documentElement.style.setProperty('--treble', rawTreble.toFixed(3));
+  const step=Math.max(1,~~(td.length/W)); const midY=H*.5,amp=H*.4; const pts=[];
   for(let x=0;x<W;x++){const idx=Math.min(~~(x*step),td.length-1);pts.push({x,y:midY+td[idx]*amp*(1+bass*1.5)});}
-  wctx.save();
-  const lg=wctx.createLinearGradient(0,0,W,0);
-  lg.addColorStop(0,c1);lg.addColorStop(.5,c2);lg.addColorStop(1,c1);
-  wctx.strokeStyle=lg;wctx.lineWidth=3+bass*6;
-  wctx.lineCap='round';wctx.lineJoin='round';
-  wctx.shadowColor=c2;wctx.shadowBlur=15+bass*25;wctx.globalAlpha=.9;
+  wctx.save(); const lg=wctx.createLinearGradient(0,0,W,0); lg.addColorStop(0,c1);lg.addColorStop(.5,c2);lg.addColorStop(1,c1);
+  wctx.strokeStyle=lg;wctx.lineWidth=3+bass*6; wctx.lineCap='round';wctx.lineJoin='round'; wctx.shadowColor=c2;wctx.shadowBlur=15+bass*25;wctx.globalAlpha=.9;
   wctx.beginPath();wctx.moveTo(pts[0].x,pts[0].y);
   for(let i=1;i<pts.length;i++){const xc=(pts[i].x+pts[i-1].x)/2,yc=(pts[i].y+pts[i-1].y)/2;wctx.quadraticCurveTo(pts[i-1].x,pts[i-1].y,xc,yc);}
   wctx.stroke();wctx.restore();
   wctx.save(); wctx.globalAlpha = 0.3 + bass*0.3; wctx.fillStyle = c1; wctx.shadowColor = c1; wctx.shadowBlur = 10;
   const bars = 32; const barW = W / bars;
-  for(let i=0; i<bars; i++){
-      const freqIdx = Math.floor(i * (fd.length/bars));
-      const barH = (fd[freqIdx]/255) * H * 0.8;
-      const x = i * barW; const y = H - barH; const radius = 4;
-      wctx.beginPath(); wctx.moveTo(x + radius, y); wctx.lineTo(x + barW - radius, y); wctx.quadraticCurveTo(x + barW, y, x + barW, y + radius);
-      wctx.lineTo(x + barW, H); wctx.lineTo(x, H); wctx.lineTo(x, y + radius); wctx.quadraticCurveTo(x, y, x + radius, y); wctx.fill();
-  }
-  wctx.restore();
-  const bv=Math.max(0,(bass-.16)*1.7);
-  document.documentElement.style.setProperty('--bs',bv.toFixed(3));
-  document.documentElement.style.setProperty('--bg-gv',bv.toFixed(3));
-  const beatScale = 1 + rawBass * 0.8;
-  const beatOpacity = 0.1 + rawBass * 0.6;
-  document.documentElement.style.setProperty('--orb-scale', beatScale.toFixed(3));
-  document.documentElement.style.setProperty('--orb-opacity', beatOpacity.toFixed(3));
+  for(let i=0; i<bars; i++){ const freqIdx = Math.floor(i * (fd.length/bars)); const barH = (fd[freqIdx]/255) * H * 0.8; const x = i * barW; const y = H - barH; const radius = 4;
+      wctx.beginPath(); wctx.moveTo(x + radius, y); wctx.lineTo(x + barW - radius, y); wctx.quadraticCurveTo(x + barW, y, x + barW, y + radius); wctx.lineTo(x + barW, H); wctx.lineTo(x, H); wctx.lineTo(x, y + radius); wctx.quadraticCurveTo(x, y, x + radius, y); wctx.fill(); }
+  wctx.restore(); const bv=Math.max(0,(bass-.16)*1.7); document.documentElement.style.setProperty('--bs',bv.toFixed(3)); document.documentElement.style.setProperty('--bg-gv',bv.toFixed(3));
+  const beatScale = 1 + rawBass * 0.8; const beatOpacity = 0.1 + rawBass * 0.6;
+  document.documentElement.style.setProperty('--orb-scale', beatScale.toFixed(3)); document.documentElement.style.setProperty('--orb-opacity', beatOpacity.toFixed(3));
 }
 
 /* ═══ GALLERY ════════════════════════════════════════════════════ */
@@ -802,12 +782,12 @@ function bookFlip(dir){const newIndex=bookIndex+(dir*2);if(newIndex>=0&&newIndex
 const lb=document.getElementById('lb'),lbCrd=document.getElementById('lb-crd'),lbIm=document.getElementById('lb-im'),lbSh=document.getElementById('lb-sh');let lbRd=0,lbSc=1;
 function lbOp(src){if(!src)return;lbIm.src=src;lbRd=0;lbSc=1;appLb();lb.classList.add('op');document.body.style.overflow='hidden';}
 function lbCl(){lb.classList.remove('op');document.body.style.overflow=''}
-function lbRo(d){lbRd+=d;appLb()}
-function lbZm(d){lbSc=Math.min(4,Math.max(.3,lbSc+d));appLb()}
-function lbRs(){lbRd=0;lbSc=1;appLb()}
+function lbRo(d){lbRd+=d;appLb()} function lbZm(d){lbSc=Math.min(4,Math.max(.3,lbSc+d));appLb()} function lbRs(){lbRd=0;lbSc=1;appLb()}
 function appLb(){lbCrd.style.transform=`perspective(1000px) rotateY(0deg) rotate(${lbRd}deg) scale(${lbSc})`;document.getElementById('lb-sp').textContent=~~(lbSc*100)+'%'}
-lb.addEventListener('mousemove',e=>{const r=lbCrd.getBoundingClientRect();if(!r.width)return;const cx=(e.clientX-r.left)/r.width-.5,cy=(e.clientY-r.top)/r.height-.5;lbCrd.style.transform=`perspective(1000px) rotateX(${-cy*18}deg) rotateY(${cx*18}deg) rotate(${lbRd}deg) scale(${lbSc})`;lbSh.style.background=`radial-gradient(circle at ${(cx+.5)*100}% ${(cy+.5)*100}%,rgba(255,255,255,.2) 0%,rgba(255,255,255,0) 55%)`;lbSh.style.opacity='1';},{passive:true});
-lb.addEventListener('mouseleave',()=>{lbCrd.style.transform=`rotate(${lbRd}deg) scale(${lbSc})`;lbSh.style.opacity='0'});
+if (!isMobile) {
+    lb.addEventListener('mousemove',e=>{const r=lbCrd.getBoundingClientRect();if(!r.width)return;const cx=(e.clientX-r.left)/r.width-.5,cy=(e.clientY-r.top)/r.height-.5;lbCrd.style.transform=`perspective(1000px) rotateX(${-cy*18}deg) rotateY(${cx*18}deg) rotate(${lbRd}deg) scale(${lbSc})`;lbSh.style.background=`radial-gradient(circle at ${(cx+.5)*100}% ${(cy+.5)*100}%,rgba(255,255,255,.2) 0%,rgba(255,255,255,0) 55%)`;lbSh.style.opacity='1';},{passive:true});
+    lb.addEventListener('mouseleave',()=>{lbCrd.style.transform=`rotate(${lbRd}deg) scale(${lbSc})`;lbSh.style.opacity='0'});
+}
 lb.addEventListener('click',e=>{if(e.target===lb)lbCl()});
 addEventListener('keydown',e=>{if(!lb.classList.contains('op'))return;if(e.key==='Escape')lbCl();if(e.key==='+')lbZm(.2);if(e.key==='-')lbZm(-.2);if(e.key==='ArrowLeft')lbRo(-90);if(e.key==='ArrowRight')lbRo(90);});
 
@@ -815,67 +795,23 @@ addEventListener('keydown',e=>{if(!lb.classList.contains('op'))return;if(e.key==
 const wingdingsEls = document.querySelectorAll('.wingdings');
 const wChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+=[]{}|;:,.<>?/~`';
 function glitchWingdings() {
-    if (!wingdingsEls.length) return;
-    const targetEl = wingdingsEls[Math.floor(Math.random() * wingdingsEls.length)];
-    const len = targetEl.textContent.length;
-    let flickCount = 0;
-    const flickerInterval = setInterval(() => {
-        let txt = '';
-        for (let i = 0; i < len; i++) { txt += wChars[Math.floor(Math.random() * wChars.length)]; }
-        targetEl.textContent = txt;
-        targetEl.style.opacity = (Math.random() * 0.5 + 0.1).toFixed(2);
-        targetEl.style.transform = `translateX(${(Math.random() - 0.5) * 6}px) skewX(${(Math.random()-0.5)*10}deg)`;
-        flickCount++;
-        if (flickCount > 3 + Math.floor(Math.random() * 3)) {
-            clearInterval(flickerInterval);
-            targetEl.style.opacity = 0.4;
-            targetEl.style.transform = 'translateX(0) skewX(0deg)';
-        }
-    }, 60 + Math.random() * 40);
+    if (!wingdingsEls.length) return; const targetEl = wingdingsEls[Math.floor(Math.random() * wingdingsEls.length)]; const len = targetEl.textContent.length; let flickCount = 0;
+    const flickerInterval = setInterval(() => { let txt = ''; for (let i = 0; i < len; i++) { txt += wChars[Math.floor(Math.random() * wChars.length)]; } targetEl.textContent = txt; targetEl.style.opacity = (Math.random() * 0.5 + 0.1).toFixed(2); targetEl.style.transform = `translateX(${(Math.random() - 0.5) * 6}px) skewX(${(Math.random()-0.5)*10}deg)`; flickCount++; if (flickCount > 3 + Math.floor(Math.random() * 3)) { clearInterval(flickerInterval); targetEl.style.opacity = 0.4; targetEl.style.transform = 'translateX(0) skewX(0deg)'; } }, 60 + Math.random() * 40);
 }
 wingdingsEls.forEach(el => el.addEventListener('mouseenter', glitchWingdings));
 function startWingdingsGlitch() { if (!wingdingsEls.length) return; setInterval(() => { glitchWingdings(); }, 2000 + Math.random() * 3000); }
 
-/* ═══ TERMINAL OF THE ANCIENTS (EXPANDED) ════════════════════════ */
+/* ═══ TERMINAL OF THE ANCIENTS ════════════════════════════════════ */
 const termOverlay = document.getElementById('terminal-overlay');
 const termOut = document.getElementById('term-out');
 const termIn = document.getElementById('term-in');
 let termOpen = false;
-
-function toggleTerminal() {
-    termOpen = !termOpen;
-    termOverlay.classList.toggle('open', termOpen);
-    if(termOpen) termIn.focus();
-}
-
-window.addEventListener('keydown', (e) => {
-    if (e.altKey && e.code === 'KeyT') { e.preventDefault(); toggleTerminal(); }
-    if (e.key === 'Escape' && termOpen) { toggleTerminal(); }
-});
-
-termIn.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-        const rawInput = termIn.value.trim();
-        termOut.innerHTML += `\n<span>abyss@wyrm:~$</span> ${rawInput}\n`;
-        processCommand(rawInput.toLowerCase());
-        termIn.value = '';
-        termOut.scrollTop = termOut.scrollHeight;
-    }
-});
-
-function termPrint(text, speed = 10) {
-    let i = 0; const outStr = text; const span = document.createElement('span');
-    termOut.appendChild(span);
-    const interval = setInterval(() => {
-        if (i < outStr.length) { span.textContent += outStr[i]; i++; termOut.scrollTop = termOut.scrollHeight; } else clearInterval(interval);
-    }, speed);
-}
-
+function toggleTerminal() { termOpen = !termOpen; termOverlay.classList.toggle('open', termOpen); if(termOpen) termIn.focus(); }
+window.addEventListener('keydown', (e) => { if (e.altKey && e.code === 'KeyT') { e.preventDefault(); toggleTerminal(); } if (e.key === 'Escape' && termOpen) { toggleTerminal(); } });
+termIn.addEventListener('keydown', (e) => { if (e.key === 'Enter') { const rawInput = termIn.value.trim(); termOut.innerHTML += `\n<span>abyss@wyrm:~$</span> ${rawInput}\n`; processCommand(rawInput.toLowerCase()); termIn.value = ''; termOut.scrollTop = termOut.scrollHeight; } });
+function termPrint(text, speed = 10) { let i = 0; const outStr = text; const span = document.createElement('span'); termOut.appendChild(span); const interval = setInterval(() => { if (i < outStr.length) { span.textContent += outStr[i]; i++; termOut.scrollTop = termOut.scrollHeight; } else clearInterval(interval); }, speed); }
 function processCommand(input) {
-    const parts = input.split(' ');
-    const cmd = parts[0];
-    const arg = parts.slice(1).join(' ');
-
+    const parts = input.split(' '); const cmd = parts[0]; const arg = parts.slice(1).join(' ');
     const cmds = {
         'help': () => { termPrint("Available commands:\n  help      - Show this message\n  scan      - Scan the abyss\n  status    - System status\n  time      - Current cycle\n  about     - Who is the Wyrm\n  clear     - Purge terminal\n  whoami    - Identify yourself\n  ping      - Test connection\n  fortune   - Read the prophecy\n  hack      - Initiate hack sequence\n  music     - [play|stop] Control audio\n  theme     - [name] Change dimension\n  exit      - Close terminal", 5); },
         'scan': () => { const coords = `${(Math.random()*180-90).toFixed(2)}°, ${(Math.random()*360-180).toFixed(2)}°`; termPrint(`Scanning... Signal found at [${coords}].\nWarning: Entity detected.`, 15); },
@@ -885,36 +821,14 @@ function processCommand(input) {
         'clear': () => { termOut.innerHTML = ''; },
         'whoami': () => { termPrint("You are a lost soul wandering the edge of the abyss.\nID: SOUL-#" + Math.floor(Math.random()*9999), 15); },
         'ping': () => { termPrint("Pinging 192.168.1.1...\nReply from 192.168.1.1: bytes=666 time=13ms TTL=6", 20); },
-        'fortune': () => {
-            const fortunes = ["The dragon sleeps, but its shadow moves.", "Beware the silent code.", "Your next compile will fail.", "The void offers no refunds.", "In the darkness, only the cursor blinks."];
-            termPrint(fortunes[Math.floor(Math.random()*fortunes.length)], 25);
-        },
-        'hack': () => {
-            termPrint("Initiating hack sequence...", 30);
-            setTimeout(() => termPrint("\n[####      ] 40% Bypassing firewall...", 30), 800);
-            setTimeout(() => termPrint("\n[########  ] 80% Accessing mainframe...", 30), 2000);
-            setTimeout(() => termPrint("\n[##########] 100% ACCESS GRANTED.\nDownloading soul... [ERROR 404: NOT FOUND]", 30), 3500);
-        },
-        'music': () => {
-            if(arg === 'play') { if(aud.paused) togPlay(); termPrint("Initiating audio sequence.", 10); }
-            else if(arg === 'stop') { if(!aud.paused) togPlay(); termPrint("Audio terminated.", 10); }
-            else termPrint("Usage: music [play|stop]", 10);
-        },
-        'theme': () => {
-            if(['dark','ash','crimson','toxic','soulless'].includes(arg)) {
-                setTheme(arg); termPrint(`Dimension shifted to ${arg}.`, 15);
-            } else termPrint("Unknown dimension. Available: dark, ash, crimson, toxic, soulless", 15);
-        },
+        'fortune': () => { const fortunes = ["The dragon sleeps, but its shadow moves.", "Beware the silent code.", "Your next compile will fail.", "The void offers no refunds.", "In the darkness, only the cursor blinks."]; termPrint(fortunes[Math.floor(Math.random()*fortunes.length)], 25); },
+        'hack': () => { termPrint("Initiating hack sequence...", 30); setTimeout(() => termPrint("\n[####      ] 40% Bypassing firewall...", 30), 800); setTimeout(() => termPrint("\n[########  ] 80% Accessing mainframe...", 30), 2000); setTimeout(() => termPrint("\n[##########] 100% ACCESS GRANTED.\nDownloading soul... [ERROR 404: NOT FOUND]", 30), 3500); },
+        'music': () => { if(arg === 'play') { if(aud.paused) togPlay(); termPrint("Initiating audio sequence.", 10); } else if(arg === 'stop') { if(!aud.paused) togPlay(); termPrint("Audio terminated.", 10); } else termPrint("Usage: music [play|stop]", 10); },
+        'theme': () => { if(['dark','ash','crimson','toxic','soulless'].includes(arg)) { setTheme(arg); termPrint(`Dimension shifted to ${arg}.`, 15); } else termPrint("Unknown dimension. Available: dark, ash, crimson, toxic, soulless", 15); },
         'exit': () => { if(termOpen) toggleTerminal(); },
-        
-        // СЕКРЕТНЫЕ КОМАНДЫ (не показываются в help)
         'summon': () => { if(arg === 'wyrm') { summonWyrm(); termPrint("ᛊ WYRM AWAKENS ᛊ", 30); } else termPrint("Summon what?", 10); },
         'evil': () => { if(arg === 'strafe') { triggerEasterEgg(); termPrint("EVIL STRAFE DETECTED", 30); } else termPrint("Evil what?", 10); },
-        'sudo': () => {
-            if(arg.includes('make me a sandwich')) termPrint("Creating dark matter sandwich... Done.", 20);
-            else if(arg.includes('rm -rf /')) { termPrint("Permission denied. The Abyss protects its own.", 20); document.body.classList.add('shaking'); setTimeout(()=>document.body.classList.remove('shaking'), 600); }
-            else termPrint("Nice try.", 10);
-        },
+        'sudo': () => { if(arg.includes('make me a sandwich')) termPrint("Creating dark matter sandwich... Done.", 20); else if(arg.includes('rm -rf /')) { termPrint("Permission denied. The Abyss protects its own.", 20); document.body.classList.add('shaking'); setTimeout(()=>document.body.classList.remove('shaking'), 600); } else termPrint("Nice try.", 10); },
         'follow': () => { if(arg === 'the compass') termPrint("The needle points to the heart of the abyss. You cannot escape.", 20); else termPrint("Follow what?", 10); },
         'iamwyrm': () => { termPrint("Access granted. Welcome home, Dragon of the Deep.", 20); setTheme('crimson'); },
         'decrypt': () => { termPrint("ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛇᛉᛊᛏᛒᛖᛗᛚᛝᛞᛟ -> THE VOID WATCHES BACK", 20); },
@@ -922,9 +836,7 @@ function processCommand(input) {
         'doom': () => { document.body.classList.add('shaking'); setTheme('crimson'); setTimeout(()=>document.body.classList.remove('shaking'), 1000); termPrint("DOOM MODE ACTIVATED.", 30); },
         'matrix': () => { termPrint("Wake up, Neo...\nThe Abyss has you.\nFollow the white rabbit.", 25); setTheme('toxic'); },
     };
-
-    if (cmds[cmd]) cmds[cmd]();
-    else if (cmd) termPrint(`Command not found: ${cmd}. Type 'help' for available commands.`, 10);
+    if (cmds[cmd]) cmds[cmd](); else if (cmd) termPrint(`Command not found: ${cmd}. Type 'help' for available commands.`, 10);
 }
 
 /* ═══ Init ═══════════════════════════════════════════════════════ */
@@ -932,10 +844,18 @@ updateCachedTheme();calcAge();ldTr(0,0);rnTracks();renderBook();document.getElem
 setTimeout(()=>{const hero=document.getElementById('page-hero');hero.classList.add('visible');hero.querySelectorAll('.rv').forEach(el=>el.classList.add('vs'));},100);
 
 startWingdingsGlitch();
-try { initFog(); } catch(e) { console.error("Fog init error:", e); }
-if (typeof THREE !== 'undefined') { try { initPortal(); } catch(e) { console.error("Portal init error:", e); initSparks(); } } else { initSparks(); }
 
-// ПРИНУДИТЕЛЬНО СКРЫВАЕМ ТЕРМИНАЛ И СБРАСЫВАЕМ СКРОЛЛ НА ЗАГРУЗКЕ
+// Conditional initialization based on device performance
+if (!isMobile) {
+    try { initFog(); } catch(e) { console.error("Fog init error:", e); }
+    if (typeof THREE !== 'undefined') { try { initPortal(); } catch(e) { console.error("Portal init error:", e); initSparks(); } } else { initSparks(); }
+} else {
+    // Mobile gets lightweight 2D sparks only for performance
+    initSparks();
+    document.getElementById('fog-canvas').style.display = 'none'; // Disable fog canvas on mobile completely
+}
+
+// Force close terminal and scroll reset on load
 termOverlay.classList.remove('open');
 window.scrollTo(0, 0);
 
