@@ -682,9 +682,12 @@ footer p { font-size: 0.9rem; color: var(--t2); }
       <div class="g-header-wrap rv d1">
         <div class="g-tb" id="gal-filters">
           <button class="g-t hoverable on" data-filter="all" data-k="ga_all">Все</button>
+          <button class="g-t hoverable" data-filter="d2">Dota 2</button>
           <button class="g-t hoverable" data-filter="mc">Minecraft</button>
           <button class="g-t hoverable" data-filter="sp">Spore</button>
-          <button class="g-t hoverable" data-filter="d2">Dota 2</button>
+          <button class="g-t hoverable" data-filter="md">Mtn Dew</button>
+          <button class="g-t hoverable" data-filter="ld">Lost Dream</button>
+          <button class="g-t hoverable" data-filter="od">Outdoors</button>
         </div>
         <div class="g-view-toggles">
           <button class="g-vt hoverable on" data-view="book" data-k="view_book">Книга</button>
@@ -1398,6 +1401,7 @@ function initMusicPlayer() {
       {name:'Dry Hands',artist:'C418',src:'music/c418/C418 Dry Hands.mp3'}
     ]},
     {name:'Разное', tracks:[
+      {name:'voyuitwaaien (super slowed)',artist:'latexfruit',src:'music/misc/latexfruit-voyuitwaaien-super-slowed.mp3'},
       {name:'shinra untitled',artist:'semmmyq',src:'music/misc/semmmyq shinra untitled.mp3'},
       {name:'You Could Be The One',artist:'Unknown',src:'music/misc/You Could Be The One.mp3'}
     ]}
@@ -1550,9 +1554,95 @@ function initMusicPlayer() {
 /* ═══ ГАЛЕРЕЯ ═════════════════════════════════════════════════════ */
 function initGallery() {
   const IMGS =[
+    {src:'images/dota2/1.jpg',cat:'d2',lbl:'Dota 2'},{src:'images/dota2/2.jpg',cat:'d2',lbl:'Dota 2'},
+    {src:'images/dota2/3.png',cat:'d2',lbl:'Dota 2'},{src:'images/dota2/4.jpg',cat:'d2',lbl:'Dota 2'},
+    {src:'images/dota2/5.jpg',cat:'d2',lbl:'Dota 2'},{src:'images/dota2/6.jpg',cat:'d2',lbl:'Dota 2'},
     {src:'images/minecraft/1.png',cat:'mc',lbl:'Minecraft'},{src:'images/minecraft/2.png',cat:'mc',lbl:'Minecraft'},
-    {src:'images/minecraft/3.png',cat:'mc',lbl:'Minecraft'},{src:'images/spore/Spore.png',cat:'sp',lbl:'Spore'},
-    {src:'images/dota2/1.jpg',cat:'d2',lbl:'Dota 2'},{src:'images/dota2/2.jpg',cat:'d2',lbl:'Dota 2'}
+    {src:'images/minecraft/3.png',cat:'mc',lbl:'Minecraft'},{src:'images/minecraft/4.png',cat:'mc',lbl:'Minecraft'},
+    {src:'images/minecraft/5.png',cat:'mc',lbl:'Minecraft'},{src:'images/minecraft/6.png',cat:'mc',lbl:'Minecraft'},
+    {src:'images/spore/Spore.png',cat:'sp',lbl:'Spore'},
+    {src:'images/MtnDew/1.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/2.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/3.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/4.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/5.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/6.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/7.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/8.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/9.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/10.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/11.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/12.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/13.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/14.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/15.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/16.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/17.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/18.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/19.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/20.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/21.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/22.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/23.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/24.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/25.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/26.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/27.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/28.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/29.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/30.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/31.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/32.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/33.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/34.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/35.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/36.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/37.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/38.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/39.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/40.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/41.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/42.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/43.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/44.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/45.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/46.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/47.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/48.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/49.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/50.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/51.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/52.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/53.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/54.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/55.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/56.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/57.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/58.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/59.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/60.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/61.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/62.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/63.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/64.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/65.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/66.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/67.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/68.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/69.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/70.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/71.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/72.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/73.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/74.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/75.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/76.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/77.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/78.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/79.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/80.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/81.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/82.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/83.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/84.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/85.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/86.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/87.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/LostDream/1.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/2.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/3.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/4.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/5.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/6.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/7.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/8.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/9.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/10.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/11.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/12.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/13.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/14.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/15.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/16.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/17.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/18.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/19.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/20.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/21.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/22.gif',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/23.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/24.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/25.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/26.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/27.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/28.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/29.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/30.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/31.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/32.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/33.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/34.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/35.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/36.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/37.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/38.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/39.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/40.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/41.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/42.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/43.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/44.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/45.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/46.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/47.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/48.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/49.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/50.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/51.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/52.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/53.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/54.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/55.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/56.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/57.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/58.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/59.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/60.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/61.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/62.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/63.png',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/64.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/65.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/66.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/67.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/68.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/69.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/70.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/71.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/72.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/73.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/74.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/OutsDoors/DD.png',cat:'od',lbl:'Outdoors'},{src:'images/OutsDoors/WhatsMe.png',cat:'od',lbl:'Outdoors'}
   ];
   let currSet = IMGS, page = 0, currentView = 'book';
   
