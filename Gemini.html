@@ -319,7 +319,7 @@ main { position: relative; z-index: 2; perspective: 1500px; width: 100%; min-hei
 .t-nm { flex: 1; min-width: 0; font-size: 0.85rem; color: var(--t2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: var(--f-df); font-weight: 700;}
 .t-rw.on .t-nx, .t-rw.on .t-nm { color: var(--a2); font-weight: 700; text-shadow: 0 0 10px var(--gw2); }
 
-/* ГАЛЕРЕЯ & СОРТИРОВКА */
+/* ГАЛЕРЕЯ */
 .g-header-wrap { display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 30px; position: relative; z-index: 2; width: 100%; }
 .g-view-toggles { display: flex; gap: 6px; background: rgba(0,0,0,0.5); padding: 4px; border-radius: 30px; border: 1px solid var(--b1); }
 .g-vt { font-family: var(--f-df); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; color: var(--t2); transition: all 0.3s; cursor: pointer; }
@@ -328,13 +328,6 @@ main { position: relative; z-index: 2; perspective: 1500px; width: 100%; min-hei
 .g-tb { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
 .g-t { font-family: var(--f-df); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 18px; border: var(--border-width) var(--border-style) var(--b1); color: var(--t2); background: var(--gl); border-radius: 30px; transition: all var(--anim-speed) var(--anim-timing); cursor: pointer; }
 .g-t:hover, .g-t.on { border-color: var(--a2); color: var(--bg); background: var(--a1); box-shadow: 0 0 20px var(--gw2); transform: translateY(-2px); }
-
-/* Новая панель сортировки */
-.g-sort-bar { display: flex; gap: 15px; align-items: center; justify-content: center; width: 100%; max-width: 600px; padding: 12px 20px; background: rgba(10,2,2,0.8); backdrop-filter: blur(10px); border: var(--border-width) var(--border-style) var(--b1); border-radius: var(--radius); margin-top: 5px; box-shadow: inset 0 0 20px rgba(0,0,0,0.8); flex-wrap: wrap; }
-.g-sort-lbl { font-family: var(--f-df); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--t2); }
-.g-sort-sel { background: rgba(0,0,0,0.6); color: var(--t1); border: 1px solid var(--b2); padding: 8px 16px; border-radius: calc(var(--radius) * 0.5); font-family: var(--f-df); font-size: 0.85rem; font-weight: 700; outline: none; cursor: pointer; transition: all var(--anim-speed); box-shadow: 0 0 10px var(--gl); }
-.g-sort-sel:hover, .g-sort-sel:focus { border-color: var(--a2); box-shadow: 0 0 15px var(--gw); background: rgba(0,0,0,0.8); }
-.g-sort-sel option { background: var(--bg2); color: var(--t1); font-family: var(--fb); font-weight: normal; }
 
 .grimoire-container { perspective: 2000px; display: flex; flex-direction: column; align-items: center; gap: 40px; position: relative; z-index: 2; width: 100%; }
 .grimoire { display: flex; width: 100%; max-width: 950px; min-height: 500px; background: rgba(10,2,2,0.8); backdrop-filter: blur(15px); border: var(--border-width) var(--border-style) var(--b1); border-radius: var(--radius); box-shadow: var(--shadow-heavy), inset 0 0 60px rgba(0,0,0,0.9); transition: opacity 0.4s, transform 0.4s; }
@@ -357,11 +350,6 @@ main { position: relative; z-index: 2; perspective: 1500px; width: 100%; min-hei
 .card-inner:hover img { filter: brightness(1) contrast(1.15); }
 .card-info { position: absolute; bottom: 0; inset-inline: 0; padding: 15px; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); display: flex; justify-content: space-between; align-items: flex-end; z-index: 6; pointer-events: none; }
 .card-lbl { font-family: var(--fh); font-weight: 900; color: var(--t1); text-shadow: 0 2px 4px #000; font-size: 1rem; }
-
-/* Теги метаданных поверх сетки */
-.g-meta-tags { position: absolute; top: 10px; left: 10px; display: flex; flex-direction: column; gap: 4px; z-index: 5; pointer-events: none; opacity: 0; transition: opacity 0.3s; }
-.card-inner:hover .g-meta-tags { opacity: 1; }
-.g-meta-tag { background: rgba(0,0,0,0.8); color: var(--a2); font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; font-family: var(--fb); border: 1px solid var(--b1); backdrop-filter: blur(4px); box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
 
 /* Lightbox */
 #lb { position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; backdrop-filter: blur(20px); perspective: 1500px; }
@@ -716,21 +704,6 @@ footer p { font-size: 0.85rem; color: var(--t2); }
           <button class="g-vt hoverable on" data-view="book" data-k="view_book">Книга</button>
           <button class="g-vt hoverable" data-view="grid" data-k="view_grid">Сетка</button>
         </div>
-        
-        <!-- ПАНЕЛЬ СОРТИРОВКИ ПО МЕТАДАННЫМ -->
-        <div class="g-sort-bar">
-          <span class="g-sort-lbl" data-k="ga_sort">Сортировка:</span>
-          <select id="gal-sort-by" class="g-sort-sel hoverable">
-            <option value="default" data-k="sort_def">По умолчанию</option>
-            <option value="date" data-k="sort_date">По дате (Новые)</option>
-            <option value="date_asc" data-k="sort_date_asc">По дате (Старые)</option>
-            <option value="rating" data-k="sort_rate">По рейтингу (Убыв.)</option>
-            <option value="res" data-k="sort_res">По разрешению (Убыв.)</option>
-            <option value="size" data-k="sort_size">По весу файла (Убыв.)</option>
-            <option value="name" data-k="sort_name">По имени (А-Я)</option>
-          </select>
-        </div>
-
       </div>
       
       <!-- Book View -->
@@ -779,8 +752,10 @@ footer p { font-size: 0.85rem; color: var(--t2); }
         </a>
       </div>
 
+      <!-- НОВАЯ ФОРМА ОБРАТНОЙ СВЯЗИ -->
       <div class="cf-wrap rv d3 glass-box">
-        <h3 class="cf-title" data-k="cf_title">Отправить сообщение</h3>
+        <h3 class="cf-title" data-k="cf_title">Отправить послание</h3>
+        <!-- ВАЖНО: ЗАМЕНИ ССЫЛКУ НИЖЕ НА СВОЮ ИЗ FORMSPREE.IO ИЛИ WEB3FORMS -->
         <form id="contact-form" action="https://formspree.io/f/xeenlepy" method="POST">
           <div class="cf-row">
             <div class="cf-group">
@@ -793,7 +768,7 @@ footer p { font-size: 0.85rem; color: var(--t2); }
           <div class="cf-group">
             <textarea name="message" class="cf-textarea hoverable" rows="5" required placeholder="Твое сообщение..." data-k="cf_msg_p"></textarea>
           </div>
-          <button type="submit" class="btn-primary hoverable" style="width: 100%;"><span data-k="cf_send">Отправить</span></button>
+          <button type="submit" class="btn-primary hoverable" style="width: 100%;"><span data-k="cf_send">Призвать ворона</span></button>
           <div id="cf-status" class="cf-status"></div>
         </form>
       </div>
@@ -939,18 +914,10 @@ const i18n = {
   ga_all: { ru: 'Все', en: 'All' },
   view_book: { ru: 'Книга', en: 'Book' },
   view_grid: { ru: 'Сетка', en: 'Grid' },
-  ga_sort: { ru: 'Сортировка:', en: 'Sort By:' },
-  sort_def: { ru: 'По умолчанию', en: 'Default' },
-  sort_date: { ru: 'По дате (Новые)', en: 'Date (Newest)' },
-  sort_date_asc: { ru: 'По дате (Старые)', en: 'Date (Oldest)' },
-  sort_rate: { ru: 'По рейтингу (Убыв.)', en: 'Rating (High-Low)' },
-  sort_res: { ru: 'По разрешению (Убыв.)', en: 'Resolution (High-Low)' },
-  sort_size: { ru: 'По весу файла (Убыв.)', en: 'File Size (High-Low)' },
-  sort_name: { ru: 'По имени (А-Я)', en: 'Name (A-Z)' },
   co_ey: { ru: 'Find Me', en: 'Find Me' },
   foot: { ru: 'Создано с тьмой и кодом', en: 'Created with darkness and code' },
   theme_title: { ru: 'Темы', en: 'Themes' },
-  cf_title: { ru: 'Отправить сообщение', en: 'Send a Message', fr: 'Envoyer un message', zh: '发送消息', ja: 'メッセージを送る' },
+  cf_title: { ru: 'Отправить послание', en: 'Send a Message', fr: 'Envoyer un message', zh: '发送消息', ja: 'メッセージを送る' },
   cf_send: { ru: 'Призвать ворона', en: 'Summon the Raven', fr: 'Invoquer le corbeau', zh: '召唤乌鸦', ja: 'カラスを召喚する' },
   cf_name_p: { ru: 'Имя', en: 'Name', fr: 'Nom', zh: '名字', ja: '名前' },
   cf_email_p: { ru: 'Email', en: 'Email', fr: 'Email', zh: '电子邮件', ja: 'Eメール' },
@@ -1024,7 +991,7 @@ window.onload = () => {
   initGallery();
   initMusicPlayer();
   initTerminal();
-  initContactForm(); 
+  initContactForm(); // Инициализация формы
   setupScrollObserver();
   updateThemeCache();
 };
@@ -1185,6 +1152,7 @@ function initSkillGraph() {
   const rawData = {
     nodes:[
       { id: 'me', label: {ru:'Abysswyrm',en:'Abysswyrm'}, icon: 'images/icons/sword.png', type: 'root', fixed: true },
+      
       { id: 'c_engine', label: {ru:'Игровые Движки',en:'Game Engines'}, type: 'category' },
       { id: 'c_lang', label: {ru:'Языки',en:'Languages'}, type: 'category' },
       { id: 'c_ide', label: {ru:'Среды Разработки',en:'IDE'}, type: 'category' },
@@ -1193,9 +1161,11 @@ function initSkillGraph() {
       { id: 'c_ai', label: {ru:'ИИ Модели',en:'AI Models'}, type: 'category' },
       { id: 'c_os', label: {ru:'ОС',en:'OS'}, type: 'category' },
       { id: 'c_launcher', label: {ru:'Лаунчеры',en:'Launchers'}, type: 'category' },
+
       { id: 'godot', label: 'Godot', icon: 'images/ico/godot.png', cat: 'engine' },
       { id: 'unity', label: 'Unity', icon: 'images/ico/unity.png', cat: 'engine', used: true },
       { id: 'ue', label: 'Unreal Engine', icon: 'images/ico/unreal.png', cat: 'engine' },
+
       { id: 'python', label: 'Python', icon: 'images/ico/python.png', cat: 'lang', used: true },
       { id: 'csharp', label: 'C#', icon: 'images/ico/csharp.png', cat: 'lang', used: true },
       { id: 'cpp', label: 'C++', icon: 'images/ico/cpp.png', cat: 'lang' },
@@ -1203,18 +1173,22 @@ function initSkillGraph() {
       { id: 'html', label: 'HTML', icon: 'images/ico/html.png', cat: 'lang' },
       { id: 'css', label: 'CSS', icon: 'images/ico/css.png', cat: 'lang' },
       { id: 'rust', label: 'Rust', icon: 'images/ico/rust.png', cat: 'lang' },
+
       { id: 'cursor', label: 'Cursor', icon: 'images/ico/cursor.png', cat: 'ide', used: true },
       { id: 'vscode', label: 'VS Code', icon: 'images/ico/vscode.png', cat: 'ide' },
       { id: 'vs', label: 'Visual Studio', icon: 'images/ico/vs.png', cat: 'ide', used: true },
       { id: 'intellij', label: 'IntelliJ IDEA', icon: 'images/ico/intellij.png', cat: 'ide' },
+
       { id: 'premier', label: 'Premier Pro', icon: 'images/ico/premier.png', cat: 'video', used: true },
       { id: 'ae', label: 'After Effects', icon: 'images/ico/ae.png', cat: 'video', used: true },
       { id: 'davinci', label: 'DaVinci Resolve', icon: 'images/ico/davinci.png', cat: 'video' },
       { id: 'vegas', label: 'Sony Vegas', icon: 'images/ico/vegas.png', cat: 'video' },
+
       { id: 'ps', label: 'Adobe Photoshop', icon: 'images/ico/photoshop.png', cat: 'art', used: true },
       { id: 'krita', label: 'Krita', icon: 'images/ico/krita.png', cat: 'art' },
       { id: 'gimp', label: 'GIMP', icon: 'images/ico/gimp.png', cat: 'art' },
       { id: 'illustrator', label: 'Adobe Illustrator', icon: 'images/ico/illustrator.png', cat: 'art' },
+
       { id: 'claude', label: 'Claude', icon: 'images/ico/claude.png', cat: 'ai', used: true },
       { id: 'gemini', label: 'Gemini', icon: 'images/ico/gemini.png', cat: 'ai', used: true },
       { id: 'deepseek', label: 'DeepSeek', icon: 'images/ico/deepseek.png', cat: 'ai' },
@@ -1222,9 +1196,11 @@ function initSkillGraph() {
       { id: 'grok', label: 'Grok', icon: 'images/ico/grok.png', cat: 'ai' },
       { id: 'glm', label: 'GLM', icon: 'images/ico/glm.png', cat: 'ai', used: true },
       { id: 'ernie', label: 'ERNIE', icon: 'images/ico/ernie.png', cat: 'ai' },
+
       { id: 'linux', label: 'Linux', icon: 'images/ico/linux.png', cat: 'os' },
       { id: 'windows', label: 'Windows', icon: 'images/ico/windows.png', cat: 'os', used: true },
       { id: 'macos', label: 'macOS', icon: 'images/ico/macos.png', cat: 'os' },
+
       { id: 'steam', label: 'Steam', icon: 'images/ico/steam.png', cat: 'launcher', used: true },
       { id: 'epic', label: 'Epic Games', icon: 'images/ico/epic.png', cat: 'launcher' },
       { id: 'ea', label: 'EA App', icon: 'images/ico/ea.png', cat: 'launcher' },
@@ -1241,13 +1217,19 @@ function initSkillGraph() {
   rawData.nodes.forEach(n => { if (n.cat) explicitLinks.push({ s: 'c_' + n.cat, t: n.id }); });
 
   let nodes = rawData.nodes.map(n => ({ 
-    ...n, type: n.type || 'node',
-    x: w/2 + (Math.random()-0.5)*800, y: h/2 + (Math.random()-0.5)*800, 
-    vx: 0, vy: 0, dimmed: false
+    ...n, 
+    type: n.type || 'node',
+    x: w/2 + (Math.random()-0.5)*800, 
+    y: h/2 + (Math.random()-0.5)*800, 
+    vx: 0, vy: 0,
+    dimmed: false
   }));
   nodes[0].x = w/2; nodes[0].y = h/2;
 
-  let links = explicitLinks.map(l => ({ s: nodes.find(n => n.id === l.s), t: nodes.find(n => n.id === l.t) })).filter(l => l.s && l.t);
+  let links = explicitLinks.map(l => ({ 
+    s: nodes.find(n => n.id === l.s), 
+    t: nodes.find(n => n.id === l.t) 
+  })).filter(l => l.s && l.t);
 
   function renderNodes() {
     nodesDiv.innerHTML = '';
@@ -1255,82 +1237,150 @@ function initSkillGraph() {
       const el = document.createElement('div');
       el.className = `g-node hoverable ${n.type} ${n.fixed && n.type!=='root' ? 'fixed-node' : ''} ${n.used ? 'used' : ''}`;
       el.id = `node-${n.id}`;
+      
       let content = '';
       if(n.icon) content += `<img src="${n.icon}" alt="" onerror="this.style.display='none'"/>`;
       content += `<span>${typeof n.label === 'string' ? n.label : n.label.ru}</span>`;
-      el.innerHTML = content; nodesDiv.appendChild(el); n.el = el;
+      
+      el.innerHTML = content;
+      nodesDiv.appendChild(el);
+      n.el = el;
       
       let isDragging = false;
       el.addEventListener('pointerdown', e => {
         e.preventDefault();
-        if(e.detail === 2 && n.type !== 'root') { n.fixed = false; el.classList.remove('fixed-node'); SM.play('toggle'); return; }
-        if (isLinkMode) {
-          selectedNode = n; const rect = container.getBoundingClientRect();
-          tempMousePos = { x: e.clientX - rect.left, y: e.clientY - rect.top }; SM.play('click'); return;
+        
+        if(e.detail === 2 && n.type !== 'root') {
+          n.fixed = false;
+          el.classList.remove('fixed-node');
+          SM.play('toggle');
+          return;
         }
+
+        if (isLinkMode) {
+          selectedNode = n;
+          const rect = container.getBoundingClientRect();
+          tempMousePos = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+          SM.play('click');
+          return;
+        }
+
         isDragging = true; n.fixed = true; 
         if(n.type !== 'root') el.classList.add('fixed-node');
         SM.play('drag'); 
-        const move = ev => { const rect = container.getBoundingClientRect(); n.x = (ev.clientX || ev.touches?.[0].clientX) - rect.left; n.y = (ev.clientY || ev.touches?.[0].clientY) - rect.top; };
-        const up = () => { isDragging = false; SM.play('drop'); document.removeEventListener('pointermove', move); document.removeEventListener('pointerup', up); document.removeEventListener('touchmove', move); document.removeEventListener('touchend', up); };
-        document.addEventListener('pointermove', move); document.addEventListener('pointerup', up);
-        document.addEventListener('touchmove', move, {passive: false}); document.addEventListener('touchend', up);
+        
+        const move = ev => { 
+          const rect = container.getBoundingClientRect();
+          n.x = (ev.clientX || ev.touches?.[0].clientX) - rect.left; 
+          n.y = (ev.clientY || ev.touches?.[0].clientY) - rect.top; 
+        };
+        const up = () => { 
+          isDragging = false; 
+          SM.play('drop'); 
+          document.removeEventListener('pointermove', move); 
+          document.removeEventListener('pointerup', up);
+          document.removeEventListener('touchmove', move); 
+          document.removeEventListener('touchend', up);
+        };
+        document.addEventListener('pointermove', move); 
+        document.addEventListener('pointerup', up);
+        document.addEventListener('touchmove', move, {passive: false}); 
+        document.addEventListener('touchend', up);
       });
 
       el.addEventListener('pointerup', e => {
         if(isLinkMode && selectedNode && selectedNode !== n) {
           let exists = links.find(l => (l.s === selectedNode && l.t === n) || (l.t === selectedNode && l.s === n));
-          if(!exists) { links.push({ s: selectedNode, t: n }); SM.play('link'); }
+          if(!exists) { 
+            links.push({ s: selectedNode, t: n });
+            SM.play('link'); 
+          }
         }
       });
     });
   }
 
   window.renderSkillGraphLabels = function(lang) {
-    nodes.forEach(n => { if(typeof n.label === 'object') { n.el.querySelector('span').textContent = n.label[lang] || n.label.en; } });
+    nodes.forEach(n => {
+      if(typeof n.label === 'object') {
+        n.el.querySelector('span').textContent = n.label[lang] || n.label.en;
+      }
+    });
   };
 
   container.addEventListener('pointermove', e => {
-    if(isLinkMode && selectedNode) { const rect = container.getBoundingClientRect(); tempMousePos = { x: e.clientX - rect.left, y: e.clientY - rect.top }; }
+    if(isLinkMode && selectedNode) {
+      const rect = container.getBoundingClientRect();
+      tempMousePos = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    }
   });
   container.addEventListener('pointerup', () => { if(isLinkMode) selectedNode = null; });
 
   const btnLink = document.getElementById('btn-link-mode');
   btnLink.addEventListener('click', () => {
-    isLinkMode = !isLinkMode; const lang = document.getElementById('curr-lang').textContent.toLowerCase();
-    const txtOff = lang === 'ru' ? 'Режим связей: ВЫКЛ' : 'Link Mode: OFF'; const txtOn = lang === 'ru' ? 'Режим связей: ВКЛ' : 'Link Mode: ON';
-    btnLink.innerHTML = `🔗 <span>${isLinkMode ? txtOn : txtOff}</span>`; btnLink.style.background = isLinkMode ? 'var(--a1)' : ''; btnLink.style.color = isLinkMode ? '#fff' : ''; selectedNode = null; SM.play('toggle');
+    isLinkMode = !isLinkMode;
+    const lang = document.getElementById('curr-lang').textContent.toLowerCase();
+    const txtOff = lang === 'ru' ? 'Режим связей: ВЫКЛ' : 'Link Mode: OFF';
+    const txtOn = lang === 'ru' ? 'Режим связей: ВКЛ' : 'Link Mode: ON';
+    btnLink.innerHTML = `🔗 <span>${isLinkMode ? txtOn : txtOff}</span>`;
+    btnLink.style.background = isLinkMode ? 'var(--a1)' : '';
+    btnLink.style.color = isLinkMode ? '#fff' : '';
+    selectedNode = null;
+    SM.play('toggle');
   });
 
   const btnFreeze = document.getElementById('btn-freeze');
   btnFreeze.addEventListener('click', () => {
-    isPhysicsFrozen = !isPhysicsFrozen; const lang = document.getElementById('curr-lang').textContent.toLowerCase();
+    isPhysicsFrozen = !isPhysicsFrozen;
+    const lang = document.getElementById('curr-lang').textContent.toLowerCase();
     const txt = lang === 'ru' ? (isPhysicsFrozen ? 'Разморозить физику' : 'Заморозить физику') : (isPhysicsFrozen ? 'Unfreeze Physics' : 'Freeze Physics');
-    btnFreeze.innerHTML = `❄️ <span>${txt}</span>`; btnFreeze.style.background = isPhysicsFrozen ? 'var(--a1)' : ''; btnFreeze.style.color = isPhysicsFrozen ? '#fff' : ''; SM.play('toggle');
+    btnFreeze.innerHTML = `❄️ <span>${txt}</span>`;
+    btnFreeze.style.background = isPhysicsFrozen ? 'var(--a1)' : '';
+    btnFreeze.style.color = isPhysicsFrozen ? '#fff' : '';
+    SM.play('toggle');
   });
 
   document.getElementById('btn-rebuild').addEventListener('click', () => {
     SM.play('link');
-    nodes.forEach(n => { if (n.type !== 'root') { n.fixed = false; n.el.classList.remove('fixed-node'); n.vx += (Math.random()-0.5)*100; n.vy += (Math.random()-0.5)*100; } });
+    nodes.forEach(n => {
+      if (n.type !== 'root') {
+        n.fixed = false;
+        n.el.classList.remove('fixed-node');
+        n.vx += (Math.random()-0.5)*100;
+        n.vy += (Math.random()-0.5)*100;
+      }
+    });
   });
 
   document.getElementById('btn-clear-links').addEventListener('click', () => {
-    links = links.filter(l => explicitLinks.find(el => el.s === l.s.id && el.t === l.t.id)); SM.play('drop');
+    links = links.filter(l => explicitLinks.find(el => el.s === l.s.id && el.t === l.t.id));
+    SM.play('drop');
   });
 
   const btnCat = document.getElementById('btn-cat-filter');
   btnCat.addEventListener('click', () => {
-    catToggleState = (catToggleState + 1) % 3; const lang = document.getElementById('curr-lang').textContent.toLowerCase();
-    const statesRu =['Категории: Все', 'Категории: Код', 'Категории: Арт/Медиа']; const statesEn = ['Categories: All', 'Categories: Code', 'Categories: Art/Media'];
+    catToggleState = (catToggleState + 1) % 3;
+    const lang = document.getElementById('curr-lang').textContent.toLowerCase();
+    const statesRu =['Категории: Все', 'Категории: Код', 'Категории: Арт/Медиа'];
+    const statesEn = ['Categories: All', 'Categories: Code', 'Categories: Art/Media'];
     btnCat.innerHTML = `👁️ <span>${lang==='ru'?statesRu[catToggleState]:statesEn[catToggleState]}</span>`;
+    
     nodes.forEach(n => {
-        if(catToggleState === 0) { n.el.style.opacity = '1'; n.el.style.pointerEvents = 'auto'; n.dimmed = false; } else {
+        if(catToggleState === 0) {
+            n.el.style.opacity = '1';
+            n.el.style.pointerEvents = 'auto';
+            n.dimmed = false;
+        } else {
             let show = (n.type === 'root' || n.type === 'category');
             if(catToggleState === 1 && (n.cat === 'engine' || n.cat === 'lang' || n.cat === 'ide' || n.cat === 'os' || n.cat === 'launcher')) show = true;
             if(catToggleState === 2 && (n.cat === 'video' || n.cat === 'art' || n.cat === 'ai')) show = true;
-            n.el.style.opacity = show ? '1' : '0.15'; n.el.style.pointerEvents = show ? 'auto' : 'none'; n.dimmed = !show;
+            
+            n.el.style.opacity = show ? '1' : '0.15';
+            n.el.style.pointerEvents = show ? 'auto' : 'none';
+            n.dimmed = !show;
         }
-    }); SM.play('toggle');
+    });
+    SM.play('toggle');
   });
 
   document.getElementById('btn-add-node').addEventListener('click', () => {
@@ -1343,39 +1393,71 @@ function initSkillGraph() {
 
   renderNodes();
 
+  // Физика графа
   function tick() {
     if(App.currentPage !== 'skills') { requestAnimationFrame(tick); return; }
+    
     if(!isPhysicsFrozen) {
-      const k = 0.04; const repulsion = 8000; const damping = 0.8; const targetDist = 150;  
+      const k = 0.04;          
+      const repulsion = 8000;  
+      const damping = 0.8;     
+      const targetDist = 150;  
+
       for(let i=0; i<nodes.length; i++) {
         for(let j=i+1; j<nodes.length; j++) {
-          let dx = nodes[i].x - nodes[j].x; let dy = nodes[i].y - nodes[j].y; let distSq = dx*dx + dy*dy || 1; let dist = Math.sqrt(distSq);
-          if(dist < 350) { let f = repulsion / distSq; let fx = (dx/dist) * f; let fy = (dy/dist) * f;
+          let dx = nodes[i].x - nodes[j].x;
+          let dy = nodes[i].y - nodes[j].y;
+          let distSq = dx*dx + dy*dy || 1;
+          let dist = Math.sqrt(distSq);
+          if(dist < 350) {
+            let f = repulsion / distSq;
+            let fx = (dx/dist) * f;
+            let fy = (dy/dist) * f;
             if(!nodes[i].fixed) { nodes[i].vx += fx; nodes[i].vy += fy; }
             if(!nodes[j].fixed) { nodes[j].vx -= fx; nodes[j].vy -= fy; }
           }
         }
       }
+      
       links.forEach(l => {
-        let dx = l.t.x - l.s.x; let dy = l.t.y - l.s.y; let dist = Math.sqrt(dx*dx + dy*dy) || 1; let f = (dist - targetDist) * k; let fx = (dx/dist) * f; let fy = (dy/dist) * f;
-        if(!l.s.fixed) { l.s.vx += fx; l.s.vy += fy; } if(!l.t.fixed) { l.t.vx -= fx; l.t.vy -= fy; }
+        let dx = l.t.x - l.s.x;
+        let dy = l.t.y - l.s.y;
+        let dist = Math.sqrt(dx*dx + dy*dy) || 1;
+        let f = (dist - targetDist) * k;
+        let fx = (dx/dist) * f;
+        let fy = (dy/dist) * f;
+        if(!l.s.fixed) { l.s.vx += fx; l.s.vy += fy; }
+        if(!l.t.fixed) { l.t.vx -= fx; l.t.vy -= fy; }
       });
+      
       nodes.forEach(n => {
         if(!n.fixed) {
-          n.vx += (w/2 - n.x) * 0.0003; n.vy += (h/2 - n.y) * 0.0003; n.vx *= damping; n.vy *= damping; n.x += n.vx; n.y += n.vy;
-          if(n.x < 40) n.x = 40; if(n.x > w-40) n.x = w-40; if(n.y < 40) n.y = 40; if(n.y > h-40) n.y = h-40;
+          n.vx += (w/2 - n.x) * 0.0003;
+          n.vy += (h/2 - n.y) * 0.0003;
+          n.vx *= damping; n.vy *= damping;
+          n.x += n.vx; n.y += n.vy;
+          
+          if(n.x < 40) n.x = 40; if(n.x > w-40) n.x = w-40;
+          if(n.y < 40) n.y = 40; if(n.y > h-40) n.y = h-40;
         }
       });
     }
 
-    nodes.forEach(n => { n.el.style.left = n.x + 'px'; n.el.style.top = n.y + 'px'; });
+    nodes.forEach(n => {
+        n.el.style.left = n.x + 'px'; n.el.style.top = n.y + 'px';
+    });
 
-    ctx.clearRect(0, 0, w, h); ctx.lineCap = 'round';
+    ctx.clearRect(0, 0, w, h);
+    ctx.lineCap = 'round';
+    
     links.forEach(l => {
       if(l.s.dimmed || l.t.dimmed) return;
       ctx.beginPath(); ctx.moveTo(l.s.x, l.s.y); ctx.lineTo(l.t.x, l.t.y);
       let isActivePath = l.t.used || l.s.used || l.t.type === 'category' || l.s.type === 'root';
-      ctx.strokeStyle = App.themeData.a1; ctx.globalAlpha = isActivePath ? 0.7 : 0.2; ctx.lineWidth = isActivePath ? 2 : 1.5; ctx.stroke();
+      ctx.strokeStyle = App.themeData.a1; 
+      ctx.globalAlpha = isActivePath ? 0.7 : 0.2;
+      ctx.lineWidth = isActivePath ? 2 : 1.5;
+      ctx.stroke();
     });
 
     if (isLinkMode && selectedNode) {
@@ -1383,6 +1465,7 @@ function initSkillGraph() {
       ctx.strokeStyle = App.themeData.a2; ctx.globalAlpha = 0.8; ctx.lineWidth = 2;
       ctx.setLineDash([6, 6]); ctx.stroke(); ctx.setLineDash([]);
     }
+
     requestAnimationFrame(tick);
   }
   tick();
@@ -1390,7 +1473,8 @@ function initSkillGraph() {
   window.addEventListener('resize', () => {
     if(App.currentPage !== 'skills') return;
     w = container.offsetWidth; h = container.offsetHeight;
-    canvas.width = w; canvas.height = h; nodes[0].x = w/2; nodes[0].y = h/2; 
+    canvas.width = w; canvas.height = h;
+    nodes[0].x = w/2; nodes[0].y = h/2; 
   });
 }
 
@@ -1402,14 +1486,24 @@ function initMusicPlayer() {
       {name:'Береги себя',artist:'Автоспорт',src:'music/motorsport/Автоспорт Береги себя.mp3'},
       {name:'Песня о привязанности',artist:'Автоспорт',src:'music/motorsport/Автоспорт песня о привязанности.mp3'},
       {name:'Пятый день недели',artist:'Автоспорт',src:'music/motorsport/Автоспорт пятый день недели.mp3'},
-      {name:'Я не буду спать',artist:'Автоспорт',src:'music/motorsport/Автоспорт я не буду спать.mp3'}
+      {name:'Я не буду спать',artist:'Автоспорт',src:'music/motorsport/Автоспорт я не буду спать.mp3'},
+      {name:'Пожалуйста, только не домой',artist:'Автоспорт',src:'music/motorsport/Пожалуйста, только не домой.mp3'}
+
     ]},
     {name:'C418', tracks:[
       {name:'Moog City',artist:'C418',src:'music/c418/C418 Moog City.mp3'},
-      {name:'Sweden',artist:'C418',src:'music/c418/C418 Sweden.mp3'}
+      {name:'Dry Hands',artist:'C418',src:'music/c418/C418 Dry Hands.mp3'},
+      {name:'Haggstrom',artist:'C418',src:'music/c418/C418 Haggstrom.mp3'},
+      {name:'Mice On Venus',artist:'C418',src:'music/c418/C418 Mice On Venus.mp3'},
+      {name:'Subwoofer Lullaby',artist:'C418',src:'music/c418/C418 Subwoofer Lullaby.mp3'},
+      {name:'Sweden',artist:'C418',src:'music/c418/C418 Sweden.mp3'},
+      {name:'Wet Hands',artist:'C418',src:'music/c418/Wet Hands.mp3'}
     ]},
     {name:'Разное', tracks:[
-      {name:'voyuitwaaien (super slowed)',artist:'latexfruit',src:'music/misc/latexfruit-voyuitwaaien-super-slowed.mp3'}
+      {name:'voyuitwaaien (super slowed)',artist:'latexfruit',src:'music/misc/latexfruit-voyuitwaaien-super-slowed.mp3'},
+      {name:'shinra untitled',artist:'semmmyq',src:'music/misc/semmmyq shinra untitled.mp3'},
+      {name:'You Could Be The One',artist:'Unknown',src:'music/misc/You Could Be The One.mp3'},
+      {name:'Unknown_artist_superswag',artist:'Unknown',src:'music/misc/Unknown_artist_superswag.mp3'}
     ]}
   ];
   let currPl = 0, currTr = 0, isPlaying = false;
@@ -1437,16 +1531,21 @@ function initMusicPlayer() {
   }
 
   function loadTrack(pIdx, tIdx, playNow = false) {
-    currPl = pIdx; currTr = parseInt(tIdx); const tr = plData[currPl].tracks[currTr];
+    currPl = pIdx; currTr = parseInt(tIdx);
+    const tr = plData[currPl].tracks[currTr];
     ui.tit.textContent = tr.name; ui.art.textContent = tr.artist;
     renderTracks(); audio.src = tr.src;
-    if(playNow) { initAudioApi(); audio.play().then(() => { isPlaying = true; updatePlayBtn(); }).catch(()=>{}); }
+    if(playNow) {
+      initAudioApi();
+      audio.play().then(() => { isPlaying = true; updatePlayBtn(); }).catch(()=>{});
+    }
   }
 
   function updatePlayBtn() { ui.btnPl.textContent = audio.paused ? '▶' : '⏸'; }
   function togglePlay() {
     initAudioApi();
-    if(audio.paused) { audio.play().catch(()=>{}); isPlaying=true; } else { audio.pause(); isPlaying=false; }
+    if(audio.paused) { audio.play().catch(()=>{}); isPlaying=true; }
+    else { audio.pause(); isPlaying=false; }
     updatePlayBtn();
   }
 
@@ -1455,14 +1554,16 @@ function initMusicPlayer() {
   ui.btnN.addEventListener('click', () => { let n = currTr + 1; if(n>=plData[currPl].tracks.length) n = 0; loadTrack(currPl, n, isPlaying); });
   
   audio.addEventListener('timeupdate', () => {
-    if(!audio.duration) return; ui.pFill.style.width = (audio.currentTime / audio.duration) * 100 + '%';
+    if(!audio.duration) return;
+    ui.pFill.style.width = (audio.currentTime / audio.duration) * 100 + '%';
     ui.curr.textContent = fmt(audio.currentTime); ui.dur.textContent = fmt(audio.duration);
   });
   audio.addEventListener('ended', () => ui.btnN.click());
   audio.addEventListener('play', updatePlayBtn); audio.addEventListener('pause', updatePlayBtn);
   
   ui.pBar.addEventListener('click', (e) => {
-    if(!audio.duration) return; audio.currentTime = ((e.clientX - ui.pBar.getBoundingClientRect().left) / ui.pBar.offsetWidth) * audio.duration;
+    if(!audio.duration) return;
+    audio.currentTime = ((e.clientX - ui.pBar.getBoundingClientRect().left) / ui.pBar.offsetWidth) * audio.duration;
   });
 
   document.querySelectorAll('.pl-it').forEach(pl => {
@@ -1472,7 +1573,9 @@ function initMusicPlayer() {
     });
   });
 
-  let aCtx, analyser, src, isApiReady = false; let filters =[]; let rawBass = 0;
+  let aCtx, analyser, src, isApiReady = false;
+  let filters =[];
+  let rawBass = 0;
   const cw = document.getElementById('wc'), ctx = cw.getContext('2d');
   
   function resizeCanvas() { cw.width = cw.offsetWidth || 400; cw.height = 140; }
@@ -1481,252 +1584,197 @@ function initMusicPlayer() {
   function initAudioApi() {
     if (isApiReady) return;
     try {
-      aCtx = new (window.AudioContext || window.webkitAudioContext)(); src = aCtx.createMediaElementSource(audio);
+      aCtx = new (window.AudioContext || window.webkitAudioContext)();
+      src = aCtx.createMediaElementSource(audio);
+      
       const freqs =[60, 230, 910, 3600, 14000];
-      filters = freqs.map((f, i) => { let flt = aCtx.createBiquadFilter(); flt.type = i === 0 ? 'lowshelf' : (i === freqs.length-1 ? 'highshelf' : 'peaking'); flt.frequency.value = f; return flt; });
-      src.connect(filters[0]); for(let i=0; i<filters.length-1; i++) filters[i].connect(filters[i+1]);
-      analyser = aCtx.createAnalyser(); analyser.fftSize = 256; analyser.smoothingTimeConstant = 0.85;
-      filters[filters.length-1].connect(analyser); analyser.connect(aCtx.destination);
+      filters = freqs.map((f, i) => {
+        let flt = aCtx.createBiquadFilter();
+        flt.type = i === 0 ? 'lowshelf' : (i === freqs.length-1 ? 'highshelf' : 'peaking');
+        flt.frequency.value = f;
+        return flt;
+      });
+      
+      src.connect(filters[0]);
+      for(let i=0; i<filters.length-1; i++) filters[i].connect(filters[i+1]);
+      
+      analyser = aCtx.createAnalyser();
+      analyser.fftSize = 256; analyser.smoothingTimeConstant = 0.85;
+      
+      filters[filters.length-1].connect(analyser);
+      analyser.connect(aCtx.destination);
+      
       isApiReady = true; drawVisualizer();
     } catch(e) { console.warn('AudioContext failed'); isApiReady = true; }
   }
 
-  document.querySelectorAll('.eq-sl').forEach(sl => { sl.addEventListener('input', e => { if(filters.length) filters[e.target.dataset.idx].gain.value = e.target.value; }); });
+  document.querySelectorAll('.eq-sl').forEach(sl => {
+    sl.addEventListener('input', e => {
+      if(filters.length) filters[e.target.dataset.idx].gain.value = e.target.value;
+    });
+  });
 
   function drawVisualizer() {
-    if(!analyser) return; requestAnimationFrame(drawVisualizer);
+    if(!analyser) return;
+    requestAnimationFrame(drawVisualizer);
     if(App.isPageHidden || App.currentPage !== 'music') return;
-    const W = cw.width, H = cw.height; const fd = new Uint8Array(analyser.frequencyBinCount); analyser.getByteFrequencyData(fd); ctx.clearRect(0, 0, W, H);
-    rawBass += ((fd[2]/255) - rawBass)*0.2; document.documentElement.style.setProperty('--bass', rawBass.toFixed(3));
-    const bars = 60; const step = Math.floor(fd.length / bars);
+    
+    const W = cw.width, H = cw.height;
+    const fd = new Uint8Array(analyser.frequencyBinCount);
+    analyser.getByteFrequencyData(fd);
+    ctx.clearRect(0, 0, W, H);
+    
+    rawBass += ((fd[2]/255) - rawBass)*0.2;
+    document.documentElement.style.setProperty('--bass', rawBass.toFixed(3));
+    
+    const bars = 60;
+    const step = Math.floor(fd.length / bars);
+    
     ctx.save();
-    let lg = ctx.createLinearGradient(0,0,W,0); lg.addColorStop(0, App.themeData.a1); lg.addColorStop(.5, App.themeData.a2); lg.addColorStop(1, App.themeData.a1);
-    ctx.beginPath(); let points =[];
+    let lg = ctx.createLinearGradient(0,0,W,0);
+    lg.addColorStop(0, App.themeData.a1); lg.addColorStop(.5, App.themeData.a2); lg.addColorStop(1, App.themeData.a1);
+    
+    ctx.beginPath();
+    let points =[];
     for(let i=0; i<=bars; i++) {
-      let val = (i === bars) ? 0 : fd[i*step] / 255; let amp = val * H * 0.45; let timeOsc = Math.sin(Date.now()*0.002 + i*0.15) * (2 + rawBass*10);
-      let x = (i / bars) * W; let y = (H/2) + timeOsc - amp; if(i===0 || i===bars) y = H/2; points.push({x, y});
+      let val = (i === bars) ? 0 : fd[i*step] / 255;
+      let amp = val * H * 0.45;
+      let timeOsc = Math.sin(Date.now()*0.002 + i*0.15) * (2 + rawBass*10);
+      let x = (i / bars) * W;
+      let y = (H/2) + timeOsc - amp;
+      if(i===0 || i===bars) y = H/2;
+      points.push({x, y});
     }
+
     ctx.moveTo(points[0].x, points[0].y);
-    for(let i=1; i<points.length - 2; i++) { let xc = (points[i].x + points[i+1].x) / 2; let yc = (points[i].y + points[i+1].y) / 2; ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc); }
-    if(points.length > 2) { ctx.quadraticCurveTo(points[points.length-2].x, points[points.length-2].y, points[points.length-1].x, points[points.length-1].y); }
-    ctx.strokeStyle = lg; ctx.lineWidth = 3 + rawBass*3; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.shadowColor = App.themeData.a2; ctx.shadowBlur = 10 + rawBass*15; ctx.stroke();
-    ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.closePath(); ctx.fillStyle = lg; ctx.globalAlpha = 0.15 + (rawBass*0.1); ctx.fill();
+    for(let i=1; i<points.length - 2; i++) {
+      let xc = (points[i].x + points[i+1].x) / 2;
+      let yc = (points[i].y + points[i+1].y) / 2;
+      ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    if(points.length > 2) {
+      ctx.quadraticCurveTo(points[points.length-2].x, points[points.length-2].y, points[points.length-1].x, points[points.length-1].y);
+    }
+
+    ctx.strokeStyle = lg; 
+    ctx.lineWidth = 3 + rawBass*3; 
+    ctx.lineCap='round'; 
+    ctx.lineJoin='round';
+    ctx.shadowColor = App.themeData.a2; 
+    ctx.shadowBlur = 10 + rawBass*15;
+    ctx.stroke();
+
+    ctx.lineTo(W, H);
+    ctx.lineTo(0, H);
+    ctx.closePath();
+    ctx.fillStyle = lg;
+    ctx.globalAlpha = 0.15 + (rawBass*0.1);
+    ctx.fill();
+
     ctx.restore();
   }
+
   loadTrack(0, 0, false);
 }
 
-/* ═══ ГАЛЕРЕЯ (Динамическая сортировка и метаданные) ══════════════ */
+/* ═══ ГАЛЕРЕЯ (Книга + Сетка) ═════════════════════════════════════ */
 function initGallery() {
-  /* Примечание: JavaScript в браузере не умеет сканировать локальные папки автоматически. 
-     Поэтому данный массив имитирует структуру ваших папок (images/IMAGE/...) и 
-     поступает как ответ от бэкенда для клиентской части. */
   const IMGS =[
-    {src:'images/IMAGE/dota2/dota (1).jpg',cat:'d2',lbl:'Dota 2'},
-    {src:'images/IMAGE/dota2/dota (2).jpg',cat:'d2',lbl:'Dota 2'},
-    {src:'images/IMAGE/dota2/dota (3).jpg',cat:'d2',lbl:'Dota 2'},
-    {src:'images/IMAGE/dota2/dota (4).jpg',cat:'d2',lbl:'Dota 2'},
-    {src:'images/IMAGE/dota2/dota (5).jpg',cat:'d2',lbl:'Dota 2'},
-    {src:'images/IMAGE/LostDream/LostDream (1).gif',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (2).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (3).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (4).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (5).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (6).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (7).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (8).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (9).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (10).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (11).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (12).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (13).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (14).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (15).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (16).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (17).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (18).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (19).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (20).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (21).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (22).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (23).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (24).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (25).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (26).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (27).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (28).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (29).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (30).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (31).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (32).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (33).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (34).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (35).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (36).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (37).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (38).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (39).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (40).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (41).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (42).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (43).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (44).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (45).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (46).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (47).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (48).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (49).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (50).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (51).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (52).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (53).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (54).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (55).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (56).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (57).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (58).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (59).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (60).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (61).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (62).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (63).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (64).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (65).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (66).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (67).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (68).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (69).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (70).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (71).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/LostDream/LostDream (72).jpg',cat:'ld',lbl:'Lost Dream'},
-    {src:'images/IMAGE/spore/Spore.png',cat:'sp',lbl:'Spore'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (1).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (2).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (3).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (4).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (5).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (6).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (7).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (8).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (9).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (10).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (11).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (12).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (13).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (14).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (15).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (16).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (17).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (18).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (19).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (20).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (21).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (22).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (23).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (24).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (25).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (26).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (27).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (28).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (29).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (30).jpg',cat:'md',lbl:'Mtn Dew'}, 
-    {src:'images/IMAGE/MtnDew/MTNDEW (31).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (32).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (33).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (34).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (35).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (36).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (37).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (38).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (39).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (40).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (41).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (42).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (43).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (44).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (45).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (46).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (47).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (48).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (49).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (50).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (51).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (52).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (53).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (54).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (55).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (56).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (57).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (58).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (59).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (60).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (61).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (62).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (63).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (64).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (65).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (66).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (67).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (68).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (69).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (70).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (71).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (72).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (73).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (74).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (75).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (76).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (77).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (78).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (79).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (80).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (81).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (82).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (83).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (84).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (85).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (86).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/MtnDew/MTNDEW (87).jpg',cat:'md',lbl:'Mtn Dew'},
-    {src:'images/IMAGE/minecraft/Minecraft (1).png',cat:'mc',lbl:'Minecraft'},
-    {src:'images/IMAGE/minecraft/Minecraft (2).png',cat:'mc',lbl:'Minecraft'},
-    {src:'images/IMAGE/minecraft/Minecraft (3).png',cat:'mc',lbl:'Minecraft'},
-    {src:'images/IMAGE/minecraft/Minecraft (4).png',cat:'mc',lbl:'Minecraft'},
-    {src:'images/IMAGE/minecraft/Minecraft (5).png',cat:'mc',lbl:'Minecraft'},
-    {src:'images/IMAGE/minecraft/Minecraft (6).png',cat:'mc',lbl:'Minecraft'},
+    {src:'images/dota2/1.jpg',cat:'d2',lbl:'Dota 2'},{src:'images/dota2/2.jpg',cat:'d2',lbl:'Dota 2'},
+    {src:'images/dota2/3.png',cat:'d2',lbl:'Dota 2'},{src:'images/dota2/4.jpg',cat:'d2',lbl:'Dota 2'},
+    {src:'images/dota2/5.jpg',cat:'d2',lbl:'Dota 2'},{src:'images/dota2/6.jpg',cat:'d2',lbl:'Dota 2'},
+    {src:'images/minecraft/1.png',cat:'mc',lbl:'Minecraft'},{src:'images/minecraft/2.png',cat:'mc',lbl:'Minecraft'},
+    {src:'images/minecraft/3.png',cat:'mc',lbl:'Minecraft'},{src:'images/minecraft/4.png',cat:'mc',lbl:'Minecraft'},
+    {src:'images/minecraft/5.png',cat:'mc',lbl:'Minecraft'},{src:'images/minecraft/6.png',cat:'mc',lbl:'Minecraft'},
+    {src:'images/spore/Spore.png',cat:'sp',lbl:'Spore'},
+    {src:'images/MtnDew/1.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/2.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/3.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/4.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/5.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/6.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/7.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/8.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/9.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/10.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/11.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/12.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/13.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/14.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/15.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/16.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/17.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/18.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/19.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/20.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/21.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/22.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/23.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/24.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/25.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/26.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/27.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/28.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/29.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/30.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/31.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/32.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/33.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/34.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/35.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/36.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/37.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/38.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/39.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/40.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/41.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/42.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/43.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/44.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/45.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/46.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/47.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/48.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/49.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/50.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/51.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/52.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/53.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/54.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/55.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/56.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/57.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/58.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/59.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/60.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/61.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/62.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/63.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/64.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/65.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/66.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/67.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/68.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/69.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/70.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/71.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/72.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/73.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/74.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/75.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/76.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/77.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/78.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/79.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/80.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/81.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/82.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/83.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/84.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/85.jpg',cat:'md',lbl:'Mtn Dew'},{src:'images/MtnDew/86.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/MtnDew/87.jpg',cat:'md',lbl:'Mtn Dew'},
+    {src:'images/LostDream/1.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/2.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/3.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/4.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/5.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/6.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/7.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/8.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/9.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/10.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/11.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/12.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/13.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/14.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/15.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/16.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/17.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/18.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/19.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/20.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/21.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/22.gif',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/23.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/24.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/25.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/26.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/27.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/28.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/29.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/30.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/31.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/32.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/33.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/34.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/35.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/36.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/37.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/38.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/39.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/40.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/41.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/42.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/43.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/44.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/45.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/46.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/47.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/48.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/49.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/50.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/51.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/52.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/53.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/54.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/55.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/56.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/57.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/58.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/59.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/60.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/61.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/62.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/63.png',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/64.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/65.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/66.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/67.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/68.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/69.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/70.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/71.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/72.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/LostDream/73.jpg',cat:'ld',lbl:'Lost Dream'},{src:'images/LostDream/74.jpg',cat:'ld',lbl:'Lost Dream'},
+    {src:'images/OutsDoors/DD.png',cat:'od',lbl:'Outdoors'},{src:'images/OutsDoors/WhatsMe.png',cat:'od',lbl:'Outdoors'}
   ];
-
-  // Генерация имитации метаданных (размер, дата, рейтинг, разрешение)
-  IMGS.forEach((img, i) => {
-    img.meta = {
-      date: new Date(2020 + (i % 4), i % 12, (i * 3) % 28 + 1).getTime(),
-      rating: ((i * 7) % 50) / 10,
-      width: 1920 - ((i % 3) * 640),
-      height: 1080 - ((i % 3) * 360),
-      sizeMb: ((i * 13) % 150) / 10 + 0.5,
-      name: img.src.split('/').pop().toLowerCase()
-    };
-  });
-
-  let currSet = IMGS; 
-  let displaySet = IMGS;
-  let page = 0, currentView = 'book', currentSort = 'default';
+  let currSet = IMGS, page = 0, currentView = 'book';
   
   const FB = l => `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Crect width='400' height='300' fill='%230a0202'/%3E%3Ctext x='200' y='155' text-anchor='middle' font-size='22' fill='%233a1010'%3E${encodeURIComponent(l)}%3C/text%3E%3C/svg%3E`;
+  
   const lb = document.getElementById('lb'), lbi = document.getElementById('lb-im');
-
-  function updateDisplaySet() {
-    let arr = [...currSet];
-    switch(currentSort) {
-      case 'date': arr.sort((a,b) => b.meta.date - a.meta.date); break;
-      case 'date_asc': arr.sort((a,b) => a.meta.date - b.meta.date); break;
-      case 'rating': arr.sort((a,b) => b.meta.rating - a.meta.rating); break;
-      case 'res': arr.sort((a,b) => (b.meta.width * b.meta.height) - (a.meta.width * a.meta.height)); break;
-      case 'size': arr.sort((a,b) => b.meta.sizeMb - a.meta.sizeMb); break;
-      case 'name': arr.sort((a,b) => a.meta.name.localeCompare(b.meta.name)); break;
-      case 'default': default: break;
-    }
-    displaySet = arr;
-  }
   
   function renderView() {
     if(currentView === 'book') {
@@ -1741,7 +1789,7 @@ function initGallery() {
   }
 
   function renderBook() {
-    const lim = displaySet[page], rim = displaySet[page+1];
+    const lim = currSet[page], rim = currSet[page+1];
     const imgL = document.getElementById('img-l'), imgR = document.getElementById('img-r');
     
     imgL.src = lim ? lim.src : ''; imgL.onerror = function() { this.src = FB(lim ? lim.lbl : ''); };
@@ -1750,11 +1798,11 @@ function initGallery() {
     imgR.src = rim ? rim.src : ''; imgR.onerror = function() { this.src = FB(rim ? rim.lbl : ''); };
     document.getElementById('tit-r').textContent = rim ? rim.lbl : ''; document.getElementById('num-r').textContent = rim ? (page+2) : '';
     
-    document.getElementById('gal-ind').textContent = `${Math.ceil((page+1)/2)} / ${Math.ceil(displaySet.length/2)}`;
+    document.getElementById('gal-ind').textContent = `${Math.ceil((page+1)/2)} / ${Math.ceil(currSet.length/2)}`;
   }
   
   document.getElementById('gal-prev').addEventListener('click', () => { if(page > 0) flip(-2); });
-  document.getElementById('gal-next').addEventListener('click', () => { if(page < displaySet.length-2) flip(2); });
+  document.getElementById('gal-next').addEventListener('click', () => { if(page < currSet.length-2) flip(2); });
   
   function flip(dir) {
     const g = document.getElementById('grimoire');
@@ -1768,29 +1816,15 @@ function initGallery() {
 
   function renderGrid() {
     const grid = document.getElementById('gal-grid-view');
-    grid.innerHTML = displaySet.map((item) => {
-      const dateStr = new Date(item.meta.date).toLocaleDateString();
-      const resStr = `${item.meta.width}x${item.meta.height}`;
-      return `
+    grid.innerHTML = currSet.map((item) => `
       <div class="card-3d">
         <div class="card-inner" onclick="document.getElementById('img-l').src='${item.src}'; document.getElementById('page-left').click()">
           <img loading="lazy" src="${item.src}" onerror="this.src='${FB(item.lbl)}'" alt=""/>
-          <div class="g-meta-tags">
-            <span class="g-meta-tag">📅 ${dateStr}</span>
-            <span class="g-meta-tag">⭐ ${item.meta.rating.toFixed(1)}</span>
-            <span class="g-meta-tag">📏 ${resStr}</span>
-            <span class="g-meta-tag">💾 ${item.meta.sizeMb.toFixed(1)} MB</span>
-          </div>
           <div class="card-info"><span class="card-lbl">${item.lbl}</span></div>
         </div>
       </div>
-      `;
-    }).join('');
+    `).join('');
   }
-
-  document.getElementById('gal-sort-by').addEventListener('change', (e) => {
-    currentSort = e.target.value; page = 0; updateDisplaySet(); renderView();
-  });
 
   document.querySelectorAll('.g-vt').forEach(btn => {
     btn.addEventListener('click', e => {
@@ -1804,18 +1838,17 @@ function initGallery() {
       document.querySelectorAll('#gal-filters .g-t').forEach(b => b.classList.remove('on'));
       f.classList.add('on');
       let t = f.dataset.filter; currSet = t === 'all' ? IMGS : IMGS.filter(i => i.cat === t);
-      page = 0; updateDisplaySet(); renderView();
+      page = 0; renderView();
     });
   });
 
-  document.getElementById('page-left').addEventListener('click', () => { if(displaySet[page] && currentView==='book') openLb(displaySet[page].src); else if(currentView==='grid') openLb(document.getElementById('img-l').src); });
-  document.getElementById('page-right').addEventListener('click', () => { if(displaySet[page+1]) openLb(displaySet[page+1].src); });
+  document.getElementById('page-left').addEventListener('click', () => { if(currSet[page] && currentView==='book') openLb(currSet[page].src); else if(currentView==='grid') openLb(document.getElementById('img-l').src); });
+  document.getElementById('page-right').addEventListener('click', () => { if(currSet[page+1]) openLb(currSet[page+1].src); });
   
   function openLb(src) { lbi.src = src; lb.classList.add('op'); document.body.style.overflow='hidden'; }
   document.getElementById('lb-cl').addEventListener('click', () => { lb.classList.remove('op'); document.body.style.overflow=''; });
   lb.addEventListener('click', e => { if(e.target === lb) { lb.classList.remove('op'); document.body.style.overflow=''; } });
 
-  updateDisplaySet();
   renderView();
 }
 
